@@ -1,124 +1,124 @@
-## Functions
+# Funções
 
-Functions are prevalent in Rust code. You’ve already seen one of the most
-important functions in the language: the `main` function, which is the entry
-point of many programs. You’ve also seen the `fn` keyword, which allows you to
-declare new functions.
+Funções são predominantes no código Rust. Você já viu uma das funções mais
+importantes na linguagem: a função `main`, que é o ponto de entrada
+de muitos programas. Você também viu a palavra-chave `fn`, que permite que você
+declare novas funções.
 
-Rust code uses _snake case_ as the conventional style for function and variable
-names, in which all letters are lowercase and underscores separate words.
-Here’s a program that contains an example function definition:
+O código Rust usa _snake case_ como o estilo convencional para nomes de funções e variáveis,
+no qual todas as letras são minúsculas e sublinhados separam palavras.
+Aqui está um programa que contém uma definição de função de exemplo:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-16-functions/src/main.rs}}
 ```
 
-We define a function in Rust by entering `fn` followed by a function name and a
-set of parentheses. The curly brackets tell the compiler where the function
-body begins and ends.
+Definimos uma função em Rust digitando `fn` seguido por um nome de função e um
+conjunto de parênteses. As chaves dizem ao compilador onde o corpo da função
+começa e termina.
 
-We can call any function we’ve defined by entering its name followed by a set
-of parentheses. Because `another_function` is defined in the program, it can be
-called from inside the `main` function. Note that we defined `another_function`
-_after_ the `main` function in the source code; we could have defined it before
-as well. Rust doesn’t care where you define your functions, only that they’re
-defined somewhere in a scope that can be seen by the caller.
+Podemos chamar qualquer função que definimos digitando seu nome seguido por um conjunto
+de parênteses. Como `another_function` é definida no programa, ela pode ser
+chamada de dentro da função `main`. Note que definimos `another_function`
+_depois_ da função `main` no código fonte; poderíamos tê-la definido antes
+também. O Rust não se importa onde você define suas funções, apenas que elas estejam
+definidas em algum lugar em um escopo que possa ser visto pelo chamador.
 
-Let’s start a new binary project named _functions_ to explore functions
-further. Place the `another_function` example in _src/main.rs_ and run it. You
-should see the following output:
+Vamos começar um novo projeto binário chamado _functions_ para explorar funções
+mais a fundo. Coloque o exemplo `another_function` em _src/main.rs_ e execute-o. Você
+deve ver a seguinte saída:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-16-functions/output.txt}}
 ```
 
-The lines execute in the order in which they appear in the `main` function.
-First the “Hello, world!” message prints, and then `another_function` is called
-and its message is printed.
+As linhas executam na ordem em que aparecem na função `main`.
+Primeiro a mensagem “Hello, world!” é impressa, e então `another_function` é chamada
+e sua mensagem é impressa.
 
-### Parameters
+### Parâmetros
 
-We can define functions to have _parameters_, which are special variables that
-are part of a function’s signature. When a function has parameters, you can
-provide it with concrete values for those parameters. Technically, the concrete
-values are called _arguments_, but in casual conversation, people tend to use
-the words _parameter_ and _argument_ interchangeably for either the variables
-in a function’s definition or the concrete values passed in when you call a
-function.
+Podemos definir funções para ter _parâmetros_, que são variáveis especiais que
+fazem parte da assinatura de uma função. Quando uma função tem parâmetros, você pode
+fornecer a ela valores concretos para esses parâmetros. Tecnicamente, os valores
+concretos são chamados de _argumentos_, mas em conversas informais, as pessoas tendem a usar
+as palavras _parâmetro_ e _argumento_ de forma intercambiável para as variáveis
+na definição de uma função ou os valores concretos passados quando você chama uma
+função.
 
-In this version of `another_function` we add a parameter:
+Nesta versão de `another_function` adicionamos um parâmetro:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-17-functions-with-parameters/src/main.rs}}
 ```
 
-Try running this program; you should get the following output:
+Tente executar este programa; você deve obter a seguinte saída:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-17-functions-with-parameters/output.txt}}
 ```
 
-The declaration of `another_function` has one parameter named `x`. The type of
-`x` is specified as `i32`. When we pass `5` in to `another_function`, the
-`println!` macro puts `5` where the pair of curly brackets containing `x` was
-in the format string.
+A declaração de `another_function` tem um parâmetro chamado `x`. O tipo de
+`x` é especificado como `i32`. Quando passamos `5` para `another_function`, a
+macro `println!` coloca `5` onde o par de chaves contendo `x` estava
+na string de formatação.
 
-In function signatures, you _must_ declare the type of each parameter. This is
-a deliberate decision in Rust’s design: Requiring type annotations in function
-definitions means the compiler almost never needs you to use them elsewhere in
-the code to figure out what type you mean. The compiler is also able to give
-more-helpful error messages if it knows what types the function expects.
+Em assinaturas de função, você _deve_ declarar o tipo de cada parâmetro. Esta é
+uma decisão deliberada no design do Rust: Exigir anotações de tipo em definições de
+função significa que o compilador quase nunca precisa que você as use em outro lugar no
+código para descobrir qual tipo você quer dizer. O compilador também é capaz de dar
+mensagens de erro mais úteis se souber quais tipos a função espera.
 
-When defining multiple parameters, separate the parameter declarations with
-commas, like this:
+Ao definir múltiplos parâmetros, separe as declarações de parâmetros com
+vírgulas, como este:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-18-functions-with-multiple-parameters/src/main.rs}}
 ```
 
-This example creates a function named `print_labeled_measurement` with two
-parameters. The first parameter is named `value` and is an `i32`. The second is
-named `unit_label` and is type `char`. The function then prints text containing
-both the `value` and the `unit_label`.
+Este exemplo cria uma função chamada `print_labeled_measurement` com dois
+parâmetros. O primeiro parâmetro é chamado `value` e é um `i32`. O segundo é
+chamado `unit_label` e é do tipo `char`. A função então imprime texto contendo
+tanto o `value` quanto o `unit_label`.
 
-Let’s try running this code. Replace the program currently in your _functions_
-project’s _src/main.rs_ file with the preceding example and run it using `cargo
+Vamos tentar executar este código. Substitua o programa atualmente no arquivo _src/main.rs_ do seu
+projeto _functions_ com o exemplo precedente e execute-o usando `cargo
 run`:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-18-functions-with-multiple-parameters/output.txt}}
 ```
 
-Because we called the function with `5` as the value for `value` and `'h'` as
-the value for `unit_label`, the program output contains those values.
+Porque chamamos a função com `5` como o valor para `value` e `'h'` como
+o valor para `unit_label`, a saída do programa contém esses valores.
 
-### Statements and Expressions
+### Declarações e Expressões
 
-Function bodies are made up of a series of statements optionally ending in an
-expression. So far, the functions we’ve covered haven’t included an ending
-expression, but you have seen an expression as part of a statement. Because
-Rust is an expression-based language, this is an important distinction to
-understand. Other languages don’t have the same distinctions, so let’s look at
-what statements and expressions are and how their differences affect the bodies
-of functions.
+Corpos de função são compostos de uma série de declarações (statements) opcionalmente terminando em uma
+expressão. Até agora, as funções que cobrimos não incluíram uma expressão
+final, mas você viu uma expressão como parte de uma declaração. Como o
+Rust é uma linguagem baseada em expressões, esta é uma distinção importante para
+entender. Outras linguagens não têm as mesmas distinções, então vamos olhar para
+o que são declarações e expressões e como suas diferenças afetam os corpos
+das funções.
 
-- _Statements_ are instructions that perform some action and do not return
-  a value.
-- _Expressions_ evaluate to a resultant value.
+- _Declarações_ são instruções que realizam alguma ação e não retornam
+  um valor.
+- _Expressões_ avaliam para um valor resultante.
 
-Let’s look at some examples.
+Vamos olhar para alguns exemplos.
 
-We’ve actually already used statements and expressions. Creating a variable and
-assigning a value to it with the `let` keyword is a statement. In Listing 3-1,
-`let y = 6;` is a statement.
+Na verdade, já usamos declarações e expressões. Criar uma variável e
+atribuir um valor a ela com a palavra-chave `let` é uma declaração. Na Listagem 3-1,
+`let y = 6;` é uma declaração.
 
-<Listing number="3-1" file-name="src/main.rs" caption="A `main` function declaration containing one statement">
+<Listing number="3-1" file-name="src/main.rs" caption="Uma declaração de função `main` contendo uma declaração">
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/listing-03-01/src/main.rs}}
@@ -126,46 +126,46 @@ assigning a value to it with the `let` keyword is a statement. In Listing 3-1,
 
 </Listing>
 
-Function definitions are also statements; the entire preceding example is a
-statement in itself. (As we’ll see shortly, calling a function is not a
-statement, though.)
+Definições de função também são declarações; todo o exemplo precedente é uma
+declaração em si. (Como veremos em breve, chamar uma função não é uma
+declaração, no entanto.)
 
-Statements do not return values. Therefore, you can’t assign a `let` statement
-to another variable, as the following code tries to do; you’ll get an error:
+Declarações não retornam valores. Portanto, você não pode atribuir uma declaração `let`
+a outra variável, como o código a seguir tenta fazer; você receberá um erro:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-19-statements-vs-expressions/src/main.rs}}
 ```
 
-When you run this program, the error you’ll get looks like this:
+Quando você executa este programa, o erro que você receberá se parece com este:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-19-statements-vs-expressions/output.txt}}
 ```
 
-The `let y = 6` statement does not return a value, so there isn’t anything for
-`x` to bind to. This is different from what happens in other languages, such as
-C and Ruby, where the assignment returns the value of the assignment. In those
-languages, you can write `x = y = 6` and have both `x` and `y` have the value
-`6`; that is not the case in Rust.
+A declaração `let y = 6` não retorna um valor, então não há nada para
+`x` se vincular. Isso é diferente do que acontece em outras linguagens, como
+C e Ruby, onde a atribuição retorna o valor da atribuição. Nessas
+linguagens, você pode escrever `x = y = 6` e ter tanto `x` quanto `y` com o valor
+`6`; esse não é o caso em Rust.
 
-Expressions evaluate to a value and make up most of the rest of the code that
-you’ll write in Rust. Consider a math operation, such as `5 + 6`, which is an
-expression that evaluates to the value `11`. Expressions can be part of
-statements: In Listing 3-1, the `6` in the statement `let y = 6;` is an
-expression that evaluates to the value `6`. Calling a function is an
-expression. Calling a macro is an expression. A new scope block created with
-curly brackets is an expression, for example:
+Expressões avaliam para um valor e compõem a maior parte do resto do código que
+você escreverá em Rust. Considere uma operação matemática, como `5 + 6`, que é uma
+expressão que avalia para o valor `11`. Expressões podem ser parte de
+declarações: Na Listagem 3-1, o `6` na declaração `let y = 6;` é uma
+expressão que avalia para o valor `6`. Chamar uma função é uma
+expressão. Chamar uma macro é uma expressão. Um novo bloco de escopo criado com
+chaves é uma expressão, por exemplo:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-20-blocks-are-expressions/src/main.rs}}
 ```
 
-This expression:
+Esta expressão:
 
 ```rust,ignore
 {
@@ -174,80 +174,80 @@ This expression:
 }
 ```
 
-is a block that, in this case, evaluates to `4`. That value gets bound to `y`
-as part of the `let` statement. Note the `x + 1` line without a semicolon at
-the end, which is unlike most of the lines you’ve seen so far. Expressions do
-not include ending semicolons. If you add a semicolon to the end of an
-expression, you turn it into a statement, and it will then not return a value.
-Keep this in mind as you explore function return values and expressions next.
+é um bloco que, neste caso, avalia para `4`. Esse valor é vinculado a `y`
+como parte da declaração `let`. Note a linha `x + 1` sem um ponto e vírgula no
+final, o que é diferente da maioria das linhas que você viu até agora. Expressões não
+incluem pontos e vírgulas finais. Se você adicionar um ponto e vírgula ao final de uma
+expressão, você a transforma em uma declaração, e ela então não retornará um valor.
+Tenha isso em mente enquanto explora valores de retorno de função e expressões a seguir.
 
-### Functions with Return Values
+### Funções com Valores de Retorno
 
-Functions can return values to the code that calls them. We don’t name return
-values, but we must declare their type after an arrow (`->`). In Rust, the
-return value of the function is synonymous with the value of the final
-expression in the block of the body of a function. You can return early from a
-function by using the `return` keyword and specifying a value, but most
-functions return the last expression implicitly. Here’s an example of a
-function that returns a value:
+Funções podem retornar valores para o código que as chama. Não nomeamos valores de
+retorno, mas devemos declarar seu tipo após uma seta (`->`). Em Rust, o
+valor de retorno da função é sinônimo do valor da expressão final
+no bloco do corpo de uma função. Você pode retornar cedo de uma
+função usando a palavra-chave `return` e especificando um valor, mas a maioria das
+funções retorna a última expressão implicitamente. Aqui está um exemplo de uma
+função que retorna um valor:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-21-function-return-values/src/main.rs}}
 ```
 
-There are no function calls, macros, or even `let` statements in the `five`
-function—just the number `5` by itself. That’s a perfectly valid function in
-Rust. Note that the function’s return type is specified too, as `-> i32`. Try
-running this code; the output should look like this:
+Não há chamadas de função, macros, ou mesmo declarações `let` na função
+`five`—apenas o número `5` por si só. Essa é uma função perfeitamente válida em
+Rust. Note que o tipo de retorno da função é especificado também, como `-> i32`. Tente
+executar este código; a saída deve se parecer com esta:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-21-function-return-values/output.txt}}
 ```
 
-The `5` in `five` is the function’s return value, which is why the return type
-is `i32`. Let’s examine this in more detail. There are two important bits:
-First, the line `let x = five();` shows that we’re using the return value of a
-function to initialize a variable. Because the function `five` returns a `5`,
-that line is the same as the following:
+O `5` em `five` é o valor de retorno da função, e é por isso que o tipo de retorno
+é `i32`. Vamos examinar isso com mais detalhes. Há duas partes importantes:
+Primeiro, a linha `let x = five();` mostra que estamos usando o valor de retorno de uma
+função para inicializar uma variável. Porque a função `five` retorna um `5`,
+essa linha é a mesma que a seguinte:
 
 ```rust
 let x = 5;
 ```
 
-Second, the `five` function has no parameters and defines the type of the
-return value, but the body of the function is a lonely `5` with no semicolon
-because it’s an expression whose value we want to return.
+Segundo, a função `five` não tem parâmetros e define o tipo do
+valor de retorno, mas o corpo da função é um `5` solitário sem ponto e vírgula
+porque é uma expressão cujo valor queremos retornar.
 
-Let’s look at another example:
+Vamos olhar para outro exemplo:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-22-function-parameter-and-return/src/main.rs}}
 ```
 
-Running this code will print `The value of x is: 6`. But what happens if we
-place a semicolon at the end of the line containing `x + 1`, changing it from
-an expression to a statement?
+Executar este código imprimirá `The value of x is: 6`. Mas o que acontece se
+colocarmos um ponto e vírgula no final da linha contendo `x + 1`, mudando-a de
+uma expressão para uma declaração?
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-23-statements-dont-return-values/src/main.rs}}
 ```
 
-Compiling this code will produce an error, as follows:
+Compilar este código produzirá um erro, como segue:
 
 ```console
 {{#include ../listings/ch03-common-programming-concepts/no-listing-23-statements-dont-return-values/output.txt}}
 ```
 
-The main error message, `mismatched types`, reveals the core issue with this
-code. The definition of the function `plus_one` says that it will return an
-`i32`, but statements don’t evaluate to a value, which is expressed by `()`,
-the unit type. Therefore, nothing is returned, which contradicts the function
-definition and results in an error. In this output, Rust provides a message to
-possibly help rectify this issue: It suggests removing the semicolon, which
-would fix the error.
+A mensagem de erro principal, `mismatched types` (tipos incompatíveis), revela o problema central com este
+código. A definição da função `plus_one` diz que ela retornará um
+`i32`, mas declarações não avaliam para um valor, o que é expresso por `()`,
+o tipo unitário. Portanto, nada é retornado, o que contradiz a definição da função
+e resulta em um erro. Nesta saída, o Rust fornece uma mensagem para
+possivelmente ajudar a retificar este problema: Ele sugere remover o ponto e vírgula, o que
+corrigiria o erro.

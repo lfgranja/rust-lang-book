@@ -1,32 +1,21 @@
-## Appendix F: Translations of the Book
+# Apêndice F: Traduções do Livro
 
-For resources in languages other than English. Most are still in progress; see
-[the Translations label][label] to help or let us know about a new translation!
+Existem traduções deste livro para muitos idiomas, mantidas por voluntários da comunidade Rust. Se você estiver interessado em ler este livro em outro idioma, verifique a lista abaixo.
 
-[label]: https://github.com/rust-lang/book/issues?q=is%3Aopen+is%3Aissue+label%3ATranslations
+Observe que essas traduções podem não estar atualizadas com a versão mais recente em inglês.
 
-- [Português](https://github.com/rust-br/rust-book-pt-br) (BR)
-- [Português](https://github.com/nunojesus/rust-book-pt-pt) (PT)
-- 简体中文: [KaiserY/trpl-zh-cn](https://github.com/KaiserY/trpl-zh-cn), [gnu4cn/rust-lang-Zh_CN](https://github.com/gnu4cn/rust-lang-Zh_CN)
-- [正體中文](https://github.com/rust-tw/book-tw)
-- [Українська](https://rust-lang-ua.github.io/rustbook_ukrainian)
-- [Español](https://github.com/thecodix/book), [alternate](https://github.com/ManRR/rust-book-es), [Español por RustLangES](https://github.com/RustLangES/rust-book-es)
-- [Русский](https://github.com/rust-lang-ru/book)
-- [한국어](https://github.com/rust-kr/doc.rust-kr.org)
-- [日本語](https://github.com/rust-lang-ja/book-ja)
-- [Français](https://github.com/Jimskapt/rust-book-fr)
-- [Polski](https://github.com/paytchoo/book-pl)
-- [Cebuano](https://github.com/agentzero1/book)
-- [Tagalog](https://github.com/josephace135/book)
-- [Esperanto](https://github.com/psychoslave/Rust-libro)
-- [ελληνική](https://github.com/TChatzigiannakis/rust-book-greek)
-- [Svenska](https://github.com/sebras/book)
-- [Farsi](https://github.com/RustFarsi/book), [Persian (FA)](https://github.com/persian-rust/book)
-- [Deutsch](https://github.com/rust-lang-de/rustbook-de)
-- [हिंदी](https://github.com/venkatarun95/rust-book-hindi)
-- [ไทย](https://github.com/rust-lang-th/book-th)
-- [Danske](https://github.com/DanKHansen/book-dk)
-- [O'zbek](https://github.com/rust-lang-uz/book)
-- [Tiếng Việt](https://github.com/tuanemdev/rust-book-vn)
-- [Italiano](https://nixxo.github.io/rust-lang-book-it/)
-- [বাংলা](https://github.com/IsmailHosenIsmailJames/rust-book-bn)
+* [Deutsch](https://github.com/rust-lang-de/rust-book-de) (Alemão)
+* [Español](https://github.com/rust-lang-es/rust-book-es) (Espanhol)
+* [Français](https://github.com/Jimskapt/rust-book-fr) (Francês)
+* [Italiano](https://github.com/rust-lang-it/rust-book-it) (Italiano)
+* [日本語](https://github.com/rust-lang-ja/book) (Japonês)
+* [한국어](https://github.com/rust-kr/doc.rust-kr.org) (Coreano)
+* [Polski](https://github.com/rust-lang-pl/book) (Polonês)
+* [Português](https://github.com/rust-lang-br/rust-book-pt-br) (Português)
+* [Русский](https://github.com/rust-lang-ru/book) (Russo)
+* [Türkçe](https://github.com/Rust-Turkiye/rust-book-tr) (Turco)
+* [Tiếng Việt](https://github.com/rust-lang-vn/book) (Vietnamita)
+* [简体中文](https://github.com/rust-lang-cn/book) (Chinês Simplificado)
+* [繁體中文](https://github.com/rust-lang-tw/book) (Chinês Tradicional)
+
+Se você conhece outra tradução que gostaria de ver listada aqui, ou se gostaria de iniciar uma nova tradução, sinta-se à vontade para enviar um pull request para o repositório deste livro!

@@ -1,59 +1,40 @@
-## Appendix E: Editions
+# Apêndice E: Edições
 
-In Chapter 1, you saw that `cargo new` adds a bit of metadata to your
-_Cargo.toml_ file about an edition. This appendix talks about what that means!
+No Capítulo 1, você viu que `cargo new` adiciona um pouco de metadados ao seu arquivo *Cargo.toml* sobre uma *edição*. Este apêndice explica o que isso significa.
 
-The Rust language and compiler have a six-week release cycle, meaning users get
-a constant stream of new features. Other programming languages release larger
-changes less often; Rust releases smaller updates more frequently. After a
-while, all of these tiny changes add up. But from release to release, it can be
-difficult to look back and say, “Wow, between Rust 1.10 and Rust 1.31, Rust has
-changed a lot!”
+A linguagem Rust e o compilador têm um ciclo de lançamento de seis semanas. Isso significa que os usuários obtêm um fluxo constante de novas funcionalidades. Outras linguagens de programação lançam atualizações maiores com menos frequência; Rust lança atualizações menores com mais frequência. Depois de algum tempo, todas essas pequenas mudanças se acumulam. Mas de lançamento em lançamento, pode ser difícil olhar para trás e dizer: "Uau, entre Rust 1.10 e Rust 1.31, Rust mudou muito!"
 
-Every three years or so, the Rust team produces a new Rust _edition_. Each
-edition brings together the features that have landed into a clear package with
-fully updated documentation and tooling. New editions ship as part of the usual
-six-week release process.
+A cada dois ou três anos, a equipe Rust produz uma nova *edição* do Rust. Cada edição reúne as funcionalidades que chegaram em um pacote claro e totalmente atualizado de documentação e ferramentas. Novas edições são enviadas como parte do processo normal de lançamento de seis semanas.
 
-Editions serve different purposes for different people:
+Edições servem a diferentes propósitos para diferentes pessoas:
 
-- For active Rust users, a new edition brings together incremental changes into
-  an easy-to-understand package.
-- For non-users, a new edition signals that some major advancements have
-  landed, which might make Rust worth another look.
-- For those developing Rust, a new edition provides a rallying point for the
-  project as a whole.
+* Para usuários de Rust, uma nova edição reúne funcionalidades que foram adicionadas incrementalmente em um pacote fácil de entender.
+* Para não usuários de Rust, uma nova edição sinaliza que alguns grandes avanços foram feitos na linguagem, o que pode tornar Rust valioso de uma nova olhada.
+* Para desenvolvedores de Rust, uma nova edição fornece um ponto de encontro para todo o projeto se unir e focar em um objetivo.
 
-At the time of this writing, four Rust editions are available: Rust 2015, Rust
-2018, Rust 2021, and Rust 2024. This book is written using Rust 2024 edition
-idioms.
+No momento da escrita, há três edições do Rust disponíveis:
 
-The `edition` key in _Cargo.toml_ indicates which edition the compiler should
-use for your code. If the key doesn’t exist, Rust uses `2015` as the edition
-value for backward compatibility reasons.
+* *Edição 2015*: Esta é a versão 1.0 do Rust com algumas pequenas melhorias incrementais adicionadas posteriormente. Se você não especificar uma edição em seu *Cargo.toml*, esta é a edição que você obtém por padrão para compatibilidade com versões anteriores.
+* *Edição 2018*: Esta edição foi lançada com Rust 1.31.0! Esta edição introduziu uma variedade de novos recursos, incluindo uma nova sintaxe para caminhos de módulo, `async`/`await` e um sistema de macros processuais mais simples.
+* *Edição 2021*: Esta edição foi lançada com Rust 1.56.0!
 
-Each project can opt in to an edition other than the default 2015 edition.
-Editions can contain incompatible changes, such as including a new keyword that
-conflicts with identifiers in code. However, unless you opt in to those
-changes, your code will continue to compile even as you upgrade the Rust
-compiler version you use.
+A parte mais importante das edições é que, se você não optar, verá apenas funcionalidades compatíveis com versões anteriores. Para ver coisas que podem não ser compatíveis com versões anteriores (como uma nova palavra-chave), você deve optar por aceitar as alterações.
 
-All Rust compiler versions support any edition that existed prior to that
-compiler’s release, and they can link crates of any supported editions
-together. Edition changes only affect the way the compiler initially parses
-code. Therefore, if you’re using Rust 2015 and one of your dependencies uses
-Rust 2018, your project will compile and be able to use that dependency. The
-opposite situation, where your project uses Rust 2018 and a dependency uses
-Rust 2015, works as well.
+Você pode optar por uma nova edição de uma crate adicionando a chave `edition` à seção `[package]` em seu arquivo *Cargo.toml*. O Listagem E-1 mostra um arquivo *Cargo.toml* que opta pela edição 2021.
 
-To be clear: Most features will be available on all editions. Developers using
-any Rust edition will continue to see improvements as new stable releases are
-made. However, in some cases, mainly when new keywords are added, some new
-features might only be available in later editions. You will need to switch
-editions if you want to take advantage of such features.
+Listagem E-1: Optando pela edição 2021
 
-For more details, see [_The Rust Edition Guide_][edition-guide]. This is a
-complete book that enumerates the differences between editions and explains how
-to automatically upgrade your code to a new edition via `cargo fix`.
+```toml
+[package]
+name = "hello_world"
+version = "0.1.0"
+edition = "2021"
+```
 
-[edition-guide]: https://doc.rust-lang.org/stable/edition-guide
+A maioria dos projetos Cargo criados hoje são criados usando a edição 2021. O arquivo *Cargo.toml* que você viu no Capítulo 1 e criou em todos os projetos neste livro opta pela edição 2021 por padrão.
+
+Uma grande vantagem do sistema de edição é que as crates em diferentes edições podem interoperar umas com as outras. Se você tiver uma crate escrita na edição 2015 e quiser usar uma dependência escrita na edição 2021, tudo funcionará. O oposto também é verdadeiro: crates de edição 2021 podem usar dependências de edição 2015.
+
+Este sistema permite que o ecossistema migre para novas edições gradualmente, sem quebrar o código existente.
+
+Para mais detalhes, o [Guia de Edição](https://doc.rust-lang.org/edition-guide/index.html) é um livro completo sobre o assunto.

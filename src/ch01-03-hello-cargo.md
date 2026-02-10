@@ -1,64 +1,64 @@
-## Hello, Cargo!
+# Hello, Cargo!
 
-Cargo is Rust’s build system and package manager. Most Rustaceans use this tool
-to manage their Rust projects because Cargo handles a lot of tasks for you,
-such as building your code, downloading the libraries your code depends on, and
-building those libraries. (We call the libraries that your code needs
-_dependencies_.)
+Cargo é o sistema de build e gerenciador de pacotes do Rust. A maioria dos Rustaceans usa esta ferramenta
+para gerenciar seus projetos Rust porque o Cargo lida com muitas tarefas para você,
+como compilar seu código, baixar as bibliotecas das quais seu código depende, e
+compilar essas bibliotecas. (Chamamos as bibliotecas que seu código precisa de
+_dependências_.)
 
-The simplest Rust programs, like the one we’ve written so far, don’t have any
-dependencies. If we had built the “Hello, world!” project with Cargo, it would
-only use the part of Cargo that handles building your code. As you write more
-complex Rust programs, you’ll add dependencies, and if you start a project
-using Cargo, adding dependencies will be much easier to do.
+Os programas Rust mais simples, como o que escrevemos até agora, não têm nenhuma
+dependência. Se tivéssemos construído o projeto “Hello, world!” com Cargo, ele
+apenas usaria a parte do Cargo que lida com a compilação do seu código. À medida que você escreve
+programas Rust mais complexos, você adicionará dependências, e se você começar um projeto
+usando Cargo, adicionar dependências será muito mais fácil de fazer.
 
-Because the vast majority of Rust projects use Cargo, the rest of this book
-assumes that you’re using Cargo too. Cargo comes installed with Rust if you
-used the official installers discussed in the
-[“Installation”][installation]<!-- ignore --> section. If you installed Rust
-through some other means, check whether Cargo is installed by entering the
-following in your terminal:
+Como a vasta maioria dos projetos Rust usa Cargo, o restante deste livro
+assume que você está usando Cargo também. O Cargo vem instalado com o Rust se você
+usou os instaladores oficiais discutidos na seção de
+[[ch01-01-installation.md#installation|“Instalação”]]<!-- ignore -->. Se você instalou o Rust
+através de algum outro meio, verifique se o Cargo está instalado digitando o
+seguinte no seu terminal:
 
 ```console
 $ cargo --version
 ```
 
-If you see a version number, you have it! If you see an error, such as `command
-not found`, look at the documentation for your method of installation to
-determine how to install Cargo separately.
+Se você vir um número de versão, você o tem! Se você vir um erro, como `command
+not found`, olhe a documentação para seu método de instalação para
+determinar como instalar o Cargo separadamente.
 
-### Creating a Project with Cargo
+### Criando um Projeto com Cargo
 
-Let’s create a new project using Cargo and look at how it differs from our
-original “Hello, world!” project. Navigate back to your _projects_ directory
-(or wherever you decided to store your code). Then, on any operating system,
-run the following:
+Vamos criar um novo projeto usando Cargo e ver como ele difere do nosso
+projeto “Hello, world!” original. Navegue de volta para o seu diretório _projects_
+(ou onde quer que você tenha decidido armazenar seu código). Então, em qualquer sistema operacional,
+execute o seguinte:
 
 ```console
 $ cargo new hello_cargo
 $ cd hello_cargo
 ```
 
-The first command creates a new directory and project called _hello_cargo_.
-We’ve named our project _hello_cargo_, and Cargo creates its files in a
-directory of the same name.
+O primeiro comando cria um novo diretório e projeto chamado _hello_cargo_.
+Nós nomeamos nosso projeto _hello_cargo_, e o Cargo cria seus arquivos em um
+diretório de mesmo nome.
 
-Go into the _hello_cargo_ directory and list the files. You’ll see that Cargo
-has generated two files and one directory for us: a _Cargo.toml_ file and a
-_src_ directory with a _main.rs_ file inside.
+Entre no diretório _hello_cargo_ e liste os arquivos. Você verá que o Cargo
+gerou dois arquivos e um diretório para nós: um arquivo _Cargo.toml_ e um
+diretório _src_ com um arquivo _main.rs_ dentro.
 
-It has also initialized a new Git repository along with a _.gitignore_ file.
-Git files won’t be generated if you run `cargo new` within an existing Git
-repository; you can override this behavior by using `cargo new --vcs=git`.
+Ele também inicializou um novo repositório Git junto com um arquivo _.gitignore_.
+Arquivos Git não serão gerados se você executar `cargo new` dentro de um repositório Git
+existente; você pode sobrescrever esse comportamento usando `cargo new --vcs=git`.
 
-> Note: Git is a common version control system. You can change `cargo new` to
-> use a different version control system or no version control system by using
-> the `--vcs` flag. Run `cargo new --help` to see the available options.
+> Nota: Git é um sistema de controle de versão comum. Você pode mudar o `cargo new` para
+> usar um sistema de controle de versão diferente ou nenhum sistema de controle de versão usando
+> a flag `--vcs`. Execute `cargo new --help` para ver as opções disponíveis.
 
-Open _Cargo.toml_ in your text editor of choice. It should look similar to the
-code in Listing 1-2.
+Abra _Cargo.toml_ no seu editor de texto de escolha. Ele deve parecer similar ao
+código na Listagem 1-2.
 
-<Listing number="1-2" file-name="Cargo.toml" caption="Contents of *Cargo.toml* generated by `cargo new`">
+<Listing number="1-2" file-name="Cargo.toml" caption="Conteúdo do *Cargo.toml* gerado pelo `cargo new`">
 
 ```toml
 [package]
@@ -71,25 +71,25 @@ edition = "2024"
 
 </Listing>
 
-This file is in the [_TOML_][toml]<!-- ignore --> (_Tom’s Obvious, Minimal
-Language_) format, which is Cargo’s configuration format.
+Este arquivo está no formato [_TOML_](https://toml.io)<!-- ignore --> (_Tom’s Obvious, Minimal
+Language_), que é o formato de configuração do Cargo.
 
-The first line, `[package]`, is a section heading that indicates that the
-following statements are configuring a package. As we add more information to
-this file, we’ll add other sections.
+A primeira linha, `[package]`, é um cabeçalho de seção que indica que as
+declarações a seguir estão configurando um pacote. À medida que adicionamos mais informações a
+este arquivo, adicionaremos outras seções.
 
-The next three lines set the configuration information Cargo needs to compile
-your program: the name, the version, and the edition of Rust to use. We’ll talk
-about the `edition` key in [Appendix E][appendix-e]<!-- ignore -->.
+As próximas três linhas definem as informações de configuração que o Cargo precisa para compilar
+seu programa: o nome, a versão e a edição do Rust a ser usada. Falaremos
+sobre a chave `edition` no [[appendix-05-editions.md|Apêndice E]]<!-- ignore -->.
 
-The last line, `[dependencies]`, is the start of a section for you to list any
-of your project’s dependencies. In Rust, packages of code are referred to as
-_crates_. We won’t need any other crates for this project, but we will in the
-first project in Chapter 2, so we’ll use this dependencies section then.
+A última linha, `[dependencies]`, é o início de uma seção para você listar qualquer
+uma das dependências do seu projeto. Em Rust, pacotes de código são referidos como
+_crates_. Não precisaremos de nenhum outro crate para este projeto, mas precisaremos no
+primeiro projeto no Capítulo 2, então usaremos esta seção de dependências lá.
 
-Now open _src/main.rs_ and take a look:
+Agora abra _src/main.rs_ e dê uma olhada:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 fn main() {
@@ -97,28 +97,28 @@ fn main() {
 }
 ```
 
-Cargo has generated a “Hello, world!” program for you, just like the one we
-wrote in Listing 1-1! So far, the differences between our project and the
-project Cargo generated are that Cargo placed the code in the _src_ directory,
-and we have a _Cargo.toml_ configuration file in the top directory.
+O Cargo gerou um programa “Hello, world!” para você, exatamente como o que
+escrevemos na Listagem 1-1! Até agora, as diferenças entre nosso projeto e o
+projeto que o Cargo gerou são que o Cargo colocou o código no diretório _src_,
+e temos um arquivo de configuração _Cargo.toml_ no diretório superior.
 
-Cargo expects your source files to live inside the _src_ directory. The
-top-level project directory is just for README files, license information,
-configuration files, and anything else not related to your code. Using Cargo
-helps you organize your projects. There’s a place for everything, and
-everything is in its place.
+O Cargo espera que seus arquivos fonte vivam dentro do diretório _src_. O
+diretório de nível superior do projeto é apenas para arquivos README, informações de licença,
+arquivos de configuração e qualquer outra coisa não relacionada ao seu código. Usar o Cargo
+ajuda você a organizar seus projetos. Há um lugar para tudo, e
+tudo está em seu lugar.
 
-If you started a project that doesn’t use Cargo, as we did with the “Hello,
-world!” project, you can convert it to a project that does use Cargo. Move the
-project code into the _src_ directory and create an appropriate _Cargo.toml_
-file. One easy way to get that _Cargo.toml_ file is to run `cargo init`, which
-will create it for you automatically.
+Se você começou um projeto que não usa Cargo, como fizemos com o projeto “Hello,
+world!”, você pode convertê-lo para um projeto que usa Cargo. Mova o
+código do projeto para o diretório _src_ e crie um arquivo _Cargo.toml_
+apropriado. Uma maneira fácil de obter esse arquivo _Cargo.toml_ é executar `cargo init`, que
+o criará para você automaticamente.
 
-### Building and Running a Cargo Project
+### Compilando e Executando um Projeto Cargo
 
-Now let’s look at what’s different when we build and run the “Hello, world!”
-program with Cargo! From your _hello_cargo_ directory, build your project by
-entering the following command:
+Agora vamos ver o que é diferente quando compilamos e executamos o programa “Hello, world!”
+com Cargo! Do seu diretório _hello_cargo_, compile seu projeto
+digitando o seguinte comando:
 
 ```console
 $ cargo build
@@ -126,26 +126,26 @@ $ cargo build
     Finished dev [unoptimized + debuginfo] target(s) in 2.85 secs
 ```
 
-This command creates an executable file in _target/debug/hello_cargo_ (or
-_target\debug\hello_cargo.exe_ on Windows) rather than in your current
-directory. Because the default build is a debug build, Cargo puts the binary in
-a directory named _debug_. You can run the executable with this command:
+Este comando cria um arquivo executável em _target/debug/hello_cargo_ (ou
+_target\debug\hello_cargo.exe_ no Windows) em vez de no seu diretório atual.
+Como o build padrão é um build de debug (depuração), o Cargo coloca o binário em
+um diretório chamado _debug_. Você pode executar o executável com este comando:
 
 ```console
-$ ./target/debug/hello_cargo # or .\target\debug\hello_cargo.exe on Windows
+$ ./target/debug/hello_cargo # ou .\target\debug\hello_cargo.exe no Windows
 Hello, world!
 ```
 
-If all goes well, `Hello, world!` should print to the terminal. Running `cargo
-build` for the first time also causes Cargo to create a new file at the top
-level: _Cargo.lock_. This file keeps track of the exact versions of
-dependencies in your project. This project doesn’t have dependencies, so the
-file is a bit sparse. You won’t ever need to change this file manually; Cargo
-manages its contents for you.
+Se tudo correr bem, `Hello, world!` deve ser impresso no terminal. Executar `cargo
+build` pela primeira vez também faz com que o Cargo crie um novo arquivo no nível
+superior: _Cargo.lock_. Este arquivo mantém o registro das versões exatas das
+dependências no seu projeto. Este projeto não tem dependências, então o
+arquivo é um pouco vazio. Você nunca precisará alterar este arquivo manualmente; o Cargo
+gerencia seu conteúdo para você.
 
-We just built a project with `cargo build` and ran it with
-`./target/debug/hello_cargo`, but we can also use `cargo run` to compile the
-code and then run the resultant executable all in one command:
+Nós acabamos de compilar um projeto com `cargo build` e o executamos com
+`./target/debug/hello_cargo`, mas também podemos usar `cargo run` para compilar o
+código e então executar o executável resultante tudo em um comando:
 
 ```console
 $ cargo run
@@ -154,15 +154,15 @@ $ cargo run
 Hello, world!
 ```
 
-Using `cargo run` is more convenient than having to remember to run `cargo
-build` and then use the whole path to the binary, so most developers use `cargo
+Usar `cargo run` é mais conveniente do que ter que lembrar de executar `cargo
+build` e então usar o caminho completo para o binário, então a maioria dos desenvolvedores usa `cargo
 run`.
 
-Notice that this time we didn’t see output indicating that Cargo was compiling
-`hello_cargo`. Cargo figured out that the files hadn’t changed, so it didn’t
-rebuild but just ran the binary. If you had modified your source code, Cargo
-would have rebuilt the project before running it, and you would have seen this
-output:
+Note que desta vez não vimos saída indicando que o Cargo estava compilando
+`hello_cargo`. O Cargo descobriu que os arquivos não tinham mudado, então ele não
+recompilou, apenas executou o binário. Se você tivesse modificado seu código fonte, o Cargo
+teria recompilado o projeto antes de executá-lo, e você teria visto esta
+saída:
 
 ```console
 $ cargo run
@@ -172,8 +172,8 @@ $ cargo run
 Hello, world!
 ```
 
-Cargo also provides a command called `cargo check`. This command quickly checks
-your code to make sure it compiles but doesn’t produce an executable:
+O Cargo também fornece um comando chamado `cargo check`. Este comando verifica rapidamente
+seu código para garantir que ele compila, mas não produz um executável:
 
 ```console
 $ cargo check
@@ -181,55 +181,55 @@ $ cargo check
     Finished dev [unoptimized + debuginfo] target(s) in 0.32 secs
 ```
 
-Why would you not want an executable? Often, `cargo check` is much faster than
-`cargo build` because it skips the step of producing an executable. If you’re
-continually checking your work while writing the code, using `cargo check` will
-speed up the process of letting you know if your project is still compiling! As
-such, many Rustaceans run `cargo check` periodically as they write their
-program to make sure it compiles. Then, they run `cargo build` when they’re
-ready to use the executable.
+Por que você não iria querer um executável? Frequentemente, `cargo check` é muito mais rápido que
+`cargo build` porque ele pula o passo de produzir um executável. Se você está
+continuamente verificando seu trabalho enquanto escreve o código, usar `cargo check` vai
+acelerar o processo de deixar você saber se seu projeto ainda está compilando! Como
+tal, muitos Rustaceans executam `cargo check` periodicamente enquanto escrevem seu
+programa para garantir que ele compila. Então, eles executam `cargo build` quando estão
+prontos para usar o executável.
 
-Let’s recap what we’ve learned so far about Cargo:
+Vamos recapitular o que aprendemos até agora sobre o Cargo:
 
-- We can create a project using `cargo new`.
-- We can build a project using `cargo build`.
-- We can build and run a project in one step using `cargo run`.
-- We can build a project without producing a binary to check for errors using
+- Podemos criar um projeto usando `cargo new`.
+- Podemos compilar um projeto usando `cargo build`.
+- Podemos compilar e executar um projeto em um passo usando `cargo run`.
+- Podemos compilar um projeto sem produzir um binário para verificar erros usando
   `cargo check`.
-- Instead of saving the result of the build in the same directory as our code,
-  Cargo stores it in the _target/debug_ directory.
+- Em vez de salvar o resultado do build no mesmo diretório que nosso código,
+  o Cargo o armazena no diretório _target/debug_.
 
-An additional advantage of using Cargo is that the commands are the same no
-matter which operating system you’re working on. So, at this point, we’ll no
-longer provide specific instructions for Linux and macOS versus Windows.
+Uma vantagem adicional de usar o Cargo é que os comandos são os mesmos não
+importa em qual sistema operacional você está trabalhando. Então, neste ponto, não
+forneceremos mais instruções específicas para Linux e macOS versus Windows.
 
-### Building for Release
+### Compilando para Release
 
-When your project is finally ready for release, you can use `cargo build
---release` to compile it with optimizations. This command will create an
-executable in _target/release_ instead of _target/debug_. The optimizations
-make your Rust code run faster, but turning them on lengthens the time it takes
-for your program to compile. This is why there are two different profiles: one
-for development, when you want to rebuild quickly and often, and another for
-building the final program you’ll give to a user that won’t be rebuilt
-repeatedly and that will run as fast as possible. If you’re benchmarking your
-code’s running time, be sure to run `cargo build --release` and benchmark with
-the executable in _target/release_.
+Quando seu projeto estiver finalmente pronto para lançamento, você pode usar `cargo build
+--release` para compilá-lo com otimizações. Este comando criará um
+executável em _target/release_ em vez de _target/debug_. As otimizações
+fazem seu código Rust rodar mais rápido, mas ligá-las aumenta o tempo que leva
+para seu programa compilar. É por isso que existem dois perfis diferentes: um
+para desenvolvimento, quando você quer recompilar rapidamente e com frequência, e outro para
+compilar o programa final que você dará a um usuário, que não será recompilado
+repetidamente e que rodará o mais rápido possível. Se você está fazendo benchmarking do
+tempo de execução do seu código, certifique-se de executar `cargo build --release` e fazer o benchmark com
+o executável em _target/release_.
 
 <!-- Old headings. Do not remove or links may break. -->
 <a id="cargo-as-convention"></a>
 
-### Leveraging Cargo’s Conventions
+### Aproveitando as Convenções do Cargo
 
-With simple projects, Cargo doesn’t provide a lot of value over just using
-`rustc`, but it will prove its worth as your programs become more intricate.
-Once programs grow to multiple files or need a dependency, it’s much easier to
-let Cargo coordinate the build.
+Com projetos simples, o Cargo não fornece muito valor além de apenas usar
+`rustc`, mas ele provará seu valor à medida que seus programas se tornarem mais complexos.
+Uma vez que os programas cresçam para múltiplos arquivos ou precisem de uma dependência, é muito mais fácil
+deixar o Cargo coordenar o build.
 
-Even though the `hello_cargo` project is simple, it now uses much of the real
-tooling you’ll use in the rest of your Rust career. In fact, to work on any
-existing projects, you can use the following commands to check out the code
-using Git, change to that project’s directory, and build:
+Mesmo que o projeto `hello_cargo` seja simples, ele agora usa muito do ferramental
+real que você usará no resto da sua carreira Rust. De fato, para trabalhar em qualquer
+projeto existente, você pode usar os seguintes comandos para baixar o código
+usando Git, mudar para o diretório desse projeto e compilar:
 
 ```console
 $ git clone example.org/someproject
@@ -237,25 +237,20 @@ $ cd someproject
 $ cargo build
 ```
 
-For more information about Cargo, check out [its documentation][cargo].
+Para mais informações sobre o Cargo, confira [sua documentação](https://doc.rust-lang.org/cargo/).
 
-## Summary
+## Resumo
 
-You’re already off to a great start on your Rust journey! In this chapter, you
-learned how to:
+Você já está com um ótimo começo na sua jornada Rust! Neste capítulo, você
+aprendeu como:
 
-- Install the latest stable version of Rust using `rustup`.
-- Update to a newer Rust version.
-- Open locally installed documentation.
-- Write and run a “Hello, world!” program using `rustc` directly.
-- Create and run a new project using the conventions of Cargo.
+- Instalar a versão estável mais recente do Rust usando `rustup`.
+- Atualizar para uma versão mais nova do Rust.
+- Abrir a documentação instalada localmente.
+- Escrever e executar um programa “Hello, world!” usando `rustc` diretamente.
+- Criar e executar um novo projeto usando as convenções do Cargo.
 
-This is a great time to build a more substantial program to get used to reading
-and writing Rust code. So, in Chapter 2, we’ll build a guessing game program.
-If you would rather start by learning how common programming concepts work in
-Rust, see Chapter 3 and then return to Chapter 2.
-
-[installation]: ch01-01-installation.html#installation
-[toml]: https://toml.io
-[appendix-e]: appendix-05-editions.html
-[cargo]: https://doc.rust-lang.org/cargo/
+Este é um ótimo momento para construir um programa mais substancial para se acostumar a ler
+e escrever código Rust. Então, no Capítulo 2, construiremos um programa de jogo de adivinhação.
+Se você preferir começar aprendendo como conceitos comuns de programação funcionam em
+Rust, veja o Capítulo 3 e depois retorne ao Capítulo 2.

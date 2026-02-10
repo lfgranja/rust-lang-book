@@ -37,6 +37,16 @@ use-boolean-and = true
 "ch20-02-multithreaded.html" = "ch21-02-multithreaded.html"
 "ch20-03-graceful-shutdown-and-cleanup.html" = "ch21-03-graceful-shutdown-and-cleanup.html"
 
+[output.epub]
+title = "A Linguagem de Programação Rust"
+authors = ["Steve Klabnik", "Carol Nichols"]
+language = "pt-BR"
+
+[output.pdf]
+title = "A Linguagem de Programação Rust"
+authors = ["Steve Klabnik", "Carol Nichols"]
+language = "pt-BR"
+
 # Do not sync this preprocessor; it is for the HTML renderer only.
 [preprocessor.trpl-note]
 command = "cargo run --manifest-path packages/mdbook-trpl/Cargo.toml --bin mdbook-trpl-note"

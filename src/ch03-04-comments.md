@@ -1,19 +1,19 @@
-## Comments
+# Comentários
 
-All programmers strive to make their code easy to understand, but sometimes
-extra explanation is warranted. In these cases, programmers leave _comments_ in
-their source code that the compiler will ignore but that people reading the
-source code may find useful.
+Todos os programadores se esforçam para tornar seu código fácil de entender, mas às vezes
+uma explicação extra é justificada. Nesses casos, os programadores deixam _comentários_ em
+seu código fonte que o compilador ignorará, mas que as pessoas lendo o
+código fonte podem achar úteis.
 
-Here’s a simple comment:
+Aqui está um comentário simples:
 
 ```rust
 // hello, world
 ```
 
-In Rust, the idiomatic comment style starts a comment with two slashes, and the
-comment continues until the end of the line. For comments that extend beyond a
-single line, you’ll need to include `//` on each line, like this:
+Em Rust, o estilo de comentário idiomático inicia um comentário com duas barras, e o
+comentário continua até o final da linha. Para comentários que se estendem além de uma
+única linha, você precisará incluir `//` em cada linha, como este:
 
 ```rust
 // So we're doing something complicated here, long enough that we need
@@ -21,25 +21,25 @@ single line, you’ll need to include `//` on each line, like this:
 // explain what's going on.
 ```
 
-Comments can also be placed at the end of lines containing code:
+Comentários também podem ser colocados no final de linhas contendo código:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-24-comments-end-of-line/src/main.rs}}
 ```
 
-But you’ll more often see them used in this format, with the comment on a
-separate line above the code it’s annotating:
+Mas você os verá mais frequentemente usados neste formato, com o comentário em uma
+linha separada acima do código que ele está anotando:
 
-<span class="filename">Filename: src/main.rs</span>
+<span class="filename">Nome do arquivo: src/main.rs</span>
 
 ```rust
 {{#rustdoc_include ../listings/ch03-common-programming-concepts/no-listing-25-comments-above-line/src/main.rs}}
 ```
 
-Rust also has another kind of comment, documentation comments, which we’ll
-discuss in the [“Publishing a Crate to Crates.io”][publishing]<!-- ignore -->
-section of Chapter 14.
+O Rust também tem outro tipo de comentário, comentários de documentação, que
+discutiremos na seção de [“Publicando um Crate no Crates.io”][publishing]<!-- ignore -->
+do Capítulo 14.
 
 [publishing]: ch14-02-publishing-to-crates-io.html

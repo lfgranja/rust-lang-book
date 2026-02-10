@@ -1,120 +1,48 @@
-## What Is Ownership?
+## O Que É Ownership?
 
-_Ownership_ is a set of rules that govern how a Rust program manages memory.
-All programs have to manage the way they use a computer’s memory while running.
-Some languages have garbage collection that regularly looks for no-longer-used
-memory as the program runs; in other languages, the programmer must explicitly
-allocate and free the memory. Rust uses a third approach: Memory is managed
-through a system of ownership with a set of rules that the compiler checks. If
-any of the rules are violated, the program won’t compile. None of the features
-of ownership will slow down your program while it’s running.
+*Ownership* é um conjunto de regras que governa como um programa Rust gerencia a memória. Todos os programas têm que gerenciar a forma como usam a memória de um computador enquanto estão rodando. Algumas linguagens têm *garbage collection* que procura regularmente por memória não mais utilizada enquanto o programa roda; em outras linguagens, o programador deve alocar e liberar a memória explicitamente. O Rust usa uma terceira abordagem: a memória é gerenciada através de um sistema de *ownership* com um conjunto de regras que o compilador verifica. Se qualquer uma das regras for violada, o programa não compilará. Nenhuma das características do *ownership* deixará seu programa mais lento enquanto ele estiver rodando.
 
-Because ownership is a new concept for many programmers, it does take some time
-to get used to. The good news is that the more experienced you become with Rust
-and the rules of the ownership system, the easier you’ll find it to naturally
-develop code that is safe and efficient. Keep at it!
+Como o *ownership* é um conceito novo para muitos programadores, leva um tempo para se acostumar. A boa notícia é que quanto mais experiente você se tornar com o Rust e as regras do sistema de *ownership*, mais fácil você achará desenvolver naturalmente código que seja seguro e eficiente. Continue firme!
 
-When you understand ownership, you’ll have a solid foundation for understanding
-the features that make Rust unique. In this chapter, you’ll learn ownership by
-working through some examples that focus on a very common data structure:
-strings.
+Quando você entender *ownership*, você terá uma base sólida para entender as características que tornam o Rust único. Neste capítulo, você aprenderá *ownership* trabalhando através de alguns exemplos que focam em uma estrutura de dados muito comum: strings.
 
-> ### The Stack and the Heap
+> ### A Stack e a Heap
 >
-> Many programming languages don’t require you to think about the stack and the
-> heap very often. But in a systems programming language like Rust, whether a
-> value is on the stack or the heap affects how the language behaves and why
-> you have to make certain decisions. Parts of ownership will be described in
-> relation to the stack and the heap later in this chapter, so here is a brief
-> explanation in preparation.
+> Muitas linguagens de programação não exigem que você pense sobre a *stack* (pilha) e a *heap* (monte) com muita frequência. Mas em uma linguagem de programação de sistemas como o Rust, se um valor está na *stack* ou na *heap* afeta como a linguagem se comporta e por que você tem que tomar certas decisões. Partes do *ownership* serão descritas em relação à *stack* e à *heap* mais tarde neste capítulo, então aqui vai uma breve explicação como preparação.
 >
-> Both the stack and the heap are parts of memory available to your code to use
-> at runtime, but they are structured in different ways. The stack stores
-> values in the order it gets them and removes the values in the opposite
-> order. This is referred to as _last in, first out (LIFO)_. Think of a stack of
-> plates: When you add more plates, you put them on top of the pile, and when
-> you need a plate, you take one off the top. Adding or removing plates from
-> the middle or bottom wouldn’t work as well! Adding data is called _pushing
-> onto the stack_, and removing data is called _popping off the stack_. All
-> data stored on the stack must have a known, fixed size. Data with an unknown
-> size at compile time or a size that might change must be stored on the heap
-> instead.
+> Tanto a *stack* quanto a *heap* são partes da memória disponíveis para seu código usar em tempo de execução, mas elas são estruturadas de formas diferentes. A *stack* armazena valores na ordem em que os recebe e remove os valores na ordem oposta. Isso é referido como *last in, first out* (último a entrar, primeiro a sair - LIFO). Pense em uma pilha de pratos: quando você adiciona mais pratos, você os coloca no topo da pilha, e quando você precisa de um prato, você tira um do topo. Adicionar ou remover pratos do meio ou do fundo não funcionaria tão bem! Adicionar dados é chamado de *pushing onto the stack* (empurrar para a *stack*), e remover dados é chamado de *popping off the stack* (retirar da *stack*). Todos os dados armazenados na *stack* devem ter um tamanho conhecido e fixo. Dados com um tamanho desconhecido em tempo de compilação ou um tamanho que pode mudar devem ser armazenados na *heap*.
 >
-> The heap is less organized: When you put data on the heap, you request a
-> certain amount of space. The memory allocator finds an empty spot in the heap
-> that is big enough, marks it as being in use, and returns a _pointer_, which
-> is the address of that location. This process is called _allocating on the
-> heap_ and is sometimes abbreviated as just _allocating_ (pushing values onto
-> the stack is not considered allocating). Because the pointer to the heap is a
-> known, fixed size, you can store the pointer on the stack, but when you want
-> the actual data, you must follow the pointer. Think of being seated at a
-> restaurant. When you enter, you state the number of people in your group, and
-> the host finds an empty table that fits everyone and leads you there. If
-> someone in your group comes late, they can ask where you’ve been seated to
-> find you.
+> A *heap* é menos organizada: quando você coloca dados na *heap*, você requisita uma certa quantidade de espaço. O alocador de memória encontra um espaço vazio na *heap* que seja grande o suficiente, marca-o como estando em uso, e retorna um *ponteiro*, que é o endereço daquela localização. Esse processo é chamado de *allocating on the heap* (alocar na *heap*) e às vezes é abreviado apenas como *alocação* (empurrar valores para a *stack* não é considerado alocação). Como o ponteiro para a *heap* é de um tamanho conhecido e fixo, você pode armazenar o ponteiro na *stack*, mas quando você quer os dados reais, você deve seguir o ponteiro. Pense em sentar-se em um restaurante. Quando você entra, você informa o número de pessoas no seu grupo, e o anfitrião encontra uma mesa vazia que caiba todos e leva vocês até lá. Se alguém no seu grupo chegar atrasado, eles podem perguntar onde vocês foram sentados para encontrá-los.
 >
-> Pushing to the stack is faster than allocating on the heap because the
-> allocator never has to search for a place to store new data; that location is
-> always at the top of the stack. Comparatively, allocating space on the heap
-> requires more work because the allocator must first find a big enough space
-> to hold the data and then perform bookkeeping to prepare for the next
-> allocation.
+> Empurrar para a *stack* é mais rápido do que alocar na *heap* porque o alocador nunca tem que procurar um lugar para armazenar novos dados; essa localização está sempre no topo da *stack*. Comparativamente, alocar espaço na *heap* requer mais trabalho porque o alocador deve primeiro encontrar um espaço grande o suficiente para conter os dados e então realizar a contabilidade para se preparar para a próxima alocação.
 >
-> Accessing data in the heap is generally slower than accessing data on the
-> stack because you have to follow a pointer to get there. Contemporary
-> processors are faster if they jump around less in memory. Continuing the
-> analogy, consider a server at a restaurant taking orders from many tables.
-> It’s most efficient to get all the orders at one table before moving on to
-> the next table. Taking an order from table A, then an order from table B,
-> then one from A again, and then one from B again would be a much slower
-> process. By the same token, a processor can usually do its job better if it
-> works on data that’s close to other data (as it is on the stack) rather than
-> farther away (as it can be on the heap).
+> Acessar dados na *heap* é geralmente mais lento do que acessar dados na *stack* porque você tem que seguir um ponteiro para chegar lá. Processadores contemporâneos são mais rápidos se pularem menos na memória. Continuando a analogia, considere um garçom em um restaurante anotando pedidos de muitas mesas. É mais eficiente pegar todos os pedidos de uma mesa antes de ir para a próxima mesa. Pegar um pedido da mesa A, depois um pedido da mesa B, depois um da A de novo, e depois um da B de novo seria um processo muito mais lento. Pelo mesmo motivo, um processador pode geralmente fazer seu trabalho melhor se ele trabalhar em dados que estão próximos de outros dados (como estão na *stack*) em vez de mais distantes (como podem estar na *heap*).
 >
-> When your code calls a function, the values passed into the function
-> (including, potentially, pointers to data on the heap) and the function’s
-> local variables get pushed onto the stack. When the function is over, those
-> values get popped off the stack.
+> Quando seu código chama uma função, os valores passados para a função (incluindo, potencialmente, ponteiros para dados na *heap*) e as variáveis locais da função são empurrados para a *stack*. Quando a função acaba, esses valores são retirados da *stack*.
 >
-> Keeping track of what parts of code are using what data on the heap,
-> minimizing the amount of duplicate data on the heap, and cleaning up unused
-> data on the heap so that you don’t run out of space are all problems that
-> ownership addresses. Once you understand ownership, you won’t need to think
-> about the stack and the heap very often. But knowing that the main purpose of
-> ownership is to manage heap data can help explain why it works the way it
-> does.
+> Manter o controle de quais partes do código estão usando quais dados na *heap*, minimizar a quantidade de dados duplicados na *heap*, e limpar dados não utilizados na *heap* para que você não fique sem espaço são todos problemas que o *ownership* aborda. Uma vez que você entenda *ownership*, você não precisará pensar sobre a *stack* e a *heap* com muita frequência. Mas saber que o objetivo principal do *ownership* é gerenciar dados da *heap* pode ajudar a explicar por que ele funciona da maneira que funciona.
 
-### Ownership Rules
+### Regras de Ownership
 
-First, let’s take a look at the ownership rules. Keep these rules in mind as we
-work through the examples that illustrate them:
+Primeiro, vamos dar uma olhada nas regras de *ownership*. Mantenha essas regras em mente enquanto trabalhamos nos exemplos que as ilustram:
 
-- Each value in Rust has an _owner_.
-- There can only be one owner at a time.
-- When the owner goes out of scope, the value will be dropped.
+- Cada valor em Rust tem um *owner* (dono).
+- Só pode haver um *owner* por vez.
+- Quando o *owner* sai de escopo, o valor será descartado (*dropped*).
 
-### Variable Scope
+### Escopo de Variável
 
-Now that we’re past basic Rust syntax, we won’t include all the `fn main() {`
-code in the examples, so if you’re following along, make sure to put the
-following examples inside a `main` function manually. As a result, our examples
-will be a bit more concise, letting us focus on the actual details rather than
-boilerplate code.
+Agora que passamos da sintaxe básica do Rust, não incluiremos todo o código `fn main() {` nos exemplos, então se você estiver acompanhando, certifique-se de colocar os exemplos a seguir dentro de uma função `main` manualmente. Como resultado, nossos exemplos serão um pouco mais concisos, permitindo-nos focar nos detalhes reais em vez de código repetitivo.
 
-As a first example of ownership, we’ll look at the scope of some variables. A
-_scope_ is the range within a program for which an item is valid. Take the
-following variable:
+Como um primeiro exemplo de *ownership*, olharemos para o escopo de algumas variáveis. Um *escopo* é o intervalo dentro de um programa para o qual um item é válido. Pegue a seguinte variável:
 
 ```rust
-let s = "hello";
+let s = "olá";
 ```
 
-The variable `s` refers to a string literal, where the value of the string is
-hardcoded into the text of our program. The variable is valid from the point at
-which it’s declared until the end of the current scope. Listing 4-1 shows a
-program with comments annotating where the variable `s` would be valid.
+A variável `s` refere-se a uma string literal, onde o valor da string é codificado diretamente no texto do nosso programa. A variável é válida do ponto em que é declarada até o fim do escopo atual. A Listagem 4-1 mostra um programa com comentários anotando onde a variável `s` seria válida.
 
-<Listing number="4-1" caption="A variable and the scope in which it is valid">
+<Listing number="4-1" caption="Uma variável e o escopo no qual ela é válida">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-01/src/main.rs:here}}
@@ -122,127 +50,69 @@ program with comments annotating where the variable `s` would be valid.
 
 </Listing>
 
-In other words, there are two important points in time here:
+Em outras palavras, existem dois pontos no tempo importantes aqui:
 
-- When `s` comes _into_ scope, it is valid.
-- It remains valid until it goes _out of_ scope.
+- Quando `s` entra *no* escopo, ela é válida.
+- Ela permanece válida até que saia *do* escopo.
 
-At this point, the relationship between scopes and when variables are valid is
-similar to that in other programming languages. Now we’ll build on top of this
-understanding by introducing the `String` type.
+Neste ponto, a relação entre escopos e quando variáveis são válidas é similar à de outras linguagens de programação. Agora vamos construir sobre esse entendimento introduzindo o tipo `String`.
 
-### The `String` Type
+### O Tipo `String`
 
-To illustrate the rules of ownership, we need a data type that is more complex
-than those we covered in the [“Data Types”][data-types]<!-- ignore --> section
-of Chapter 3. The types covered previously are of a known size, can be stored
-on the stack and popped off the stack when their scope is over, and can be
-quickly and trivially copied to make a new, independent instance if another
-part of code needs to use the same value in a different scope. But we want to
-look at data that is stored on the heap and explore how Rust knows when to
-clean up that data, and the `String` type is a great example.
+Para ilustrar as regras de *ownership*, precisamos de um tipo de dados que seja mais complexo do que aqueles que cobrimos na seção [“Tipos de Dados”][data-types]<!-- ignore --> do Capítulo 3. Os tipos cobertos anteriormente são de um tamanho conhecido, podem ser armazenados na *stack* e retirados da *stack* quando seu escopo termina, e podem ser copiados rápida e trivialmente para fazer uma nova instância independente se outra parte do código precisar usar o mesmo valor em um escopo diferente. Mas queremos olhar para dados que são armazenados na *heap* e explorar como o Rust sabe quando limpar esses dados, e o tipo `String` é um ótimo exemplo.
 
-We’ll concentrate on the parts of `String` that relate to ownership. These
-aspects also apply to other complex data types, whether they are provided by
-the standard library or created by you. We’ll discuss non-ownership aspects of
-`String` in [Chapter 8][ch8]<!-- ignore -->.
+Vamos nos concentrar nas partes de `String` que se relacionam com *ownership*. Esses aspectos também se aplicam a outros tipos de dados complexos, sejam eles fornecidos pela biblioteca padrão ou criados por você. Discutiremos aspectos de não-*ownership* de `String` no [Capítulo 8][ch8]<!-- ignore -->.
 
-We’ve already seen string literals, where a string value is hardcoded into our
-program. String literals are convenient, but they aren’t suitable for every
-situation in which we may want to use text. One reason is that they’re
-immutable. Another is that not every string value can be known when we write
-our code: For example, what if we want to take user input and store it? It is
-for these situations that Rust has the `String` type. This type manages
-data allocated on the heap and as such is able to store an amount of text that
-is unknown to us at compile time. You can create a `String` from a string
-literal using the `from` function, like so:
+Já vimos strings literais, onde um valor de string é codificado diretamente em nosso programa. Strings literais são convenientes, mas não são adequadas para toda situação em que podemos querer usar texto. Uma razão é que elas são imutáveis. Outra é que nem todo valor de string pode ser conhecido quando escrevemos nosso código: por exemplo, e se quisermos receber entrada do usuário e armazená-la? É para essas situações que o Rust tem o tipo `String`. Esse tipo gerencia dados alocados na *heap* e, como tal, é capaz de armazenar uma quantidade de texto que é desconhecida para nós em tempo de compilação. Você pode criar uma `String` a partir de uma string literal usando a função `from`, assim:
 
 ```rust
-let s = String::from("hello");
+let s = String::from("olá");
 ```
 
-The double colon `::` operator allows us to namespace this particular `from`
-function under the `String` type rather than using some sort of name like
-`string_from`. We’ll discuss this syntax more in the [“Methods”][methods]<!--
-ignore --> section of Chapter 5, and when we talk about namespacing with
-modules in [“Paths for Referring to an Item in the Module
-Tree”][paths-module-tree]<!-- ignore --> in Chapter 7.
+O operador de dois pontos duplos `::` nos permite criar um *namespace* para essa função `from` particular sob o tipo `String` em vez de usar algum tipo de nome como `string_from`. Discutiremos essa sintaxe mais na seção [“Métodos”][methods]<!-- ignore --> do Capítulo 5, e quando falarmos sobre *namespacing* com módulos em [“Caminhos para Referenciar um Item na Árvore de Módulos”][paths-module-tree]<!-- ignore --> no Capítulo 7.
 
-This kind of string _can_ be mutated:
+Esse tipo de string *pode* ser mutado:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-01-can-mutate-string/src/main.rs:here}}
 ```
 
-So, what’s the difference here? Why can `String` be mutated but literals
-cannot? The difference is in how these two types deal with memory.
+Então, qual é a diferença aqui? Por que `String` pode ser mutada mas literais não podem? A diferença está em como esses dois tipos lidam com a memória.
 
-### Memory and Allocation
+### Memória e Alocação
 
-In the case of a string literal, we know the contents at compile time, so the
-text is hardcoded directly into the final executable. This is why string
-literals are fast and efficient. But these properties only come from the string
-literal’s immutability. Unfortunately, we can’t put a blob of memory into the
-binary for each piece of text whose size is unknown at compile time and whose
-size might change while running the program.
+No caso de uma string literal, sabemos o conteúdo em tempo de compilação, então o texto é codificado diretamente no executável final. É por isso que strings literais são rápidas e eficientes. Mas essas propriedades vêm apenas da imutabilidade da string literal. Infelizmente, não podemos colocar um pedaço de memória no binário para cada pedaço de texto cujo tamanho é desconhecido em tempo de compilação e cujo tamanho pode mudar enquanto o programa roda.
 
-With the `String` type, in order to support a mutable, growable piece of text,
-we need to allocate an amount of memory on the heap, unknown at compile time,
-to hold the contents. This means:
+Com o tipo `String`, para suportar um pedaço de texto mutável e que pode crescer, precisamos alocar uma quantidade de memória na *heap*, desconhecida em tempo de compilação, para conter o conteúdo. Isso significa:
 
-- The memory must be requested from the memory allocator at runtime.
-- We need a way of returning this memory to the allocator when we’re done with
-  our `String`.
+- A memória deve ser requisitada ao alocador de memória em tempo de execução.
+- Precisamos de uma maneira de retornar essa memória ao alocador quando terminarmos com nossa `String`.
 
-That first part is done by us: When we call `String::from`, its implementation
-requests the memory it needs. This is pretty much universal in programming
-languages.
+A primeira parte é feita por nós: quando chamamos `String::from`, sua implementação requisita a memória de que precisa. Isso é praticamente universal em linguagens de programação.
 
-However, the second part is different. In languages with a _garbage collector
-(GC)_, the GC keeps track of and cleans up memory that isn’t being used
-anymore, and we don’t need to think about it. In most languages without a GC,
-it’s our responsibility to identify when memory is no longer being used and to
-call code to explicitly free it, just as we did to request it. Doing this
-correctly has historically been a difficult programming problem. If we forget,
-we’ll waste memory. If we do it too early, we’ll have an invalid variable. If
-we do it twice, that’s a bug too. We need to pair exactly one `allocate` with
-exactly one `free`.
+No entanto, a segunda parte é diferente. Em linguagens com um *garbage collector (GC)*, o GC mantém o controle e limpa a memória que não está sendo mais usada, e nós não precisamos pensar sobre isso. Na maioria das linguagens sem um GC, é nossa responsabilidade identificar quando a memória não está mais sendo usada e chamar código para liberá-la explicitamente, assim como fizemos para requisitá-la. Fazer isso corretamente tem sido historicamente um problema difícil de programação. Se esquecermos, desperdiçaremos memória. Se fizermos muito cedo, teremos uma variável inválida. Se fizermos duas vezes, isso também é um bug. Precisamos emparelhar exatamente um `allocate` (alocar) com exatamente um `free` (liberar).
 
-Rust takes a different path: The memory is automatically returned once the
-variable that owns it goes out of scope. Here’s a version of our scope example
-from Listing 4-1 using a `String` instead of a string literal:
+O Rust toma um caminho diferente: a memória é retornada automaticamente uma vez que a variável que a possui sai de escopo. Aqui está uma versão do nosso exemplo de escopo da Listagem 4-1 usando uma `String` em vez de uma string literal:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-02-string-scope/src/main.rs:here}}
 ```
 
-There is a natural point at which we can return the memory our `String` needs
-to the allocator: when `s` goes out of scope. When a variable goes out of
-scope, Rust calls a special function for us. This function is called
-`drop`, and it’s where the author of `String` can put
-the code to return the memory. Rust calls `drop` automatically at the closing
-curly bracket.
+Existe um ponto natural em que podemos retornar a memória que nossa `String` precisa ao alocador: quando `s` sai de escopo. Quando uma variável sai de escopo, o Rust chama uma função especial para nós. Essa função é chamada `drop`, e é onde o autor de `String` pode colocar o código para retornar a memória. O Rust chama `drop` automaticamente no fechamento da chave.
 
-> Note: In C++, this pattern of deallocating resources at the end of an item’s
-> lifetime is sometimes called _Resource Acquisition Is Initialization (RAII)_.
-> The `drop` function in Rust will be familiar to you if you’ve used RAII
-> patterns.
+> Nota: Em C++, esse padrão de desalocar recursos no final do tempo de vida de um item é às vezes chamado de *Resource Acquisition Is Initialization (RAII)*. A função `drop` no Rust será familiar para você se você já usou padrões RAII.
 
-This pattern has a profound impact on the way Rust code is written. It may seem
-simple right now, but the behavior of code can be unexpected in more
-complicated situations when we want to have multiple variables use the data
-we’ve allocated on the heap. Let’s explore some of those situations now.
+Esse padrão tem um impacto profundo na maneira como o código Rust é escrito. Pode parecer simples agora, mas o comportamento do código pode ser inesperado em situações mais complicadas quando queremos ter múltiplas variáveis usando os dados que alocamos na *heap*. Vamos explorar algumas dessas situações agora.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="ways-variables-and-data-interact-move"></a>
 
-#### Variables and Data Interacting with Move
+#### Variáveis e Dados Interagindo com Move
 
-Multiple variables can interact with the same data in different ways in Rust.
-Listing 4-2 shows an example using an integer.
+Múltiplas variáveis podem interagir com os mesmos dados de maneiras diferentes em Rust. A Listagem 4-2 mostra um exemplo usando um inteiro.
 
-<Listing number="4-2" caption="Assigning the integer value of variable `x` to `y`">
+<Listing number="4-2" caption="Atribuindo o valor inteiro da variável `x` a `y`">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-02/src/main.rs:here}}
@@ -250,27 +120,17 @@ Listing 4-2 shows an example using an integer.
 
 </Listing>
 
-We can probably guess what this is doing: “Bind the value `5` to `x`; then, make
-a copy of the value in `x` and bind it to `y`.” We now have two variables, `x`
-and `y`, and both equal `5`. This is indeed what is happening, because integers
-are simple values with a known, fixed size, and these two `5` values are pushed
-onto the stack.
+Podemos provavelmente adivinhar o que isso está fazendo: "Vincule o valor `5` a `x`; então, faça uma cópia do valor em `x` e vincule-o a `y`." Agora temos duas variáveis, `x` e `y`, e ambas são iguais a `5`. Isso é de fato o que está acontecendo, porque inteiros são valores simples com um tamanho conhecido e fixo, e esses dois valores `5` são empurrados para a *stack*.
 
-Now let’s look at the `String` version:
+Agora vamos olhar para a versão com `String`:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-03-string-move/src/main.rs:here}}
 ```
 
-This looks very similar, so we might assume that the way it works would be the
-same: That is, the second line would make a copy of the value in `s1` and bind
-it to `s2`. But this isn’t quite what happens.
+Isso parece muito similar, então poderíamos assumir que a maneira como funciona seria a mesma: isto é, a segunda linha faria uma cópia do valor em `s1` e o vincularia a `s2`. Mas não é bem isso que acontece.
 
-Take a look at Figure 4-1 to see what is happening to `String` under the
-covers. A `String` is made up of three parts, shown on the left: a pointer to
-the memory that holds the contents of the string, a length, and a capacity.
-This group of data is stored on the stack. On the right is the memory on the
-heap that holds the contents.
+Dê uma olhada na Figura 4-1 para ver o que está acontecendo com a `String` por baixo dos panos. Uma `String` é feita de três partes, mostradas à esquerda: um ponteiro para a memória que contém o conteúdo da string, um comprimento e uma capacidade. Esse grupo de dados é armazenado na *stack*. À direita está a memória na *heap* que contém o conteúdo.
 
 <img alt="Two tables: the first table contains the representation of s1 on the
 stack, consisting of its length (5), capacity (5), and a pointer to the first
@@ -278,69 +138,41 @@ value in the second table. The second table contains the representation of the
 string data on the heap, byte by byte." src="img/trpl04-01.svg" class="center"
 style="width: 50%;" />
 
-<span class="caption">Figure 4-1: The representation in memory of a `String`
-holding the value `"hello"` bound to `s1`</span>
+<span class="caption">Figura 4-1: A representação em memória de uma `String` contendo o valor `"hello"` vinculado a `s1`</span>
 
-The length is how much memory, in bytes, the contents of the `String` are
-currently using. The capacity is the total amount of memory, in bytes, that the
-`String` has received from the allocator. The difference between length and
-capacity matters, but not in this context, so for now, it’s fine to ignore the
-capacity.
+O comprimento é quanta memória, em bytes, o conteúdo da `String` está usando atualmente. A capacidade é a quantidade total de memória, em bytes, que a `String` recebeu do alocador. A diferença entre comprimento e capacidade importa, mas não neste contexto, então por enquanto, tudo bem ignorar a capacidade.
 
-When we assign `s1` to `s2`, the `String` data is copied, meaning we copy the
-pointer, the length, and the capacity that are on the stack. We do not copy the
-data on the heap that the pointer refers to. In other words, the data
-representation in memory looks like Figure 4-2.
+Quando atribuímos `s1` a `s2`, os dados da `String` são copiados, o que significa que copiamos o ponteiro, o comprimento e a capacidade que estão na *stack*. Não copiamos os dados na *heap* aos quais o ponteiro se refere. Em outras palavras, a representação de dados na memória se parece com a Figura 4-2.
 
 <img alt="Three tables: tables s1 and s2 representing those strings on the
 stack, respectively, and both pointing to the same string data on the heap."
 src="img/trpl04-02.svg" class="center" style="width: 50%;" />
 
-<span class="caption">Figure 4-2: The representation in memory of the variable
-`s2` that has a copy of the pointer, length, and capacity of `s1`</span>
+<span class="caption">Figura 4-2: A representação em memória da variável `s2` que tem uma cópia do ponteiro, comprimento e capacidade de `s1`</span>
 
-The representation does _not_ look like Figure 4-3, which is what memory would
-look like if Rust instead copied the heap data as well. If Rust did this, the
-operation `s2 = s1` could be very expensive in terms of runtime performance if
-the data on the heap were large.
+A representação *não* se parece com a Figura 4-3, que é como a memória se pareceria se o Rust copiasse os dados da *heap* também. Se o Rust fizesse isso, a operação `s2 = s1` poderia ser muito cara em termos de desempenho em tempo de execução se os dados na *heap* fossem grandes.
 
 <img alt="Four tables: two tables representing the stack data for s1 and s2,
 and each points to its own copy of string data on the heap."
 src="img/trpl04-03.svg" class="center" style="width: 50%;" />
 
-<span class="caption">Figure 4-3: Another possibility for what `s2 = s1` might
-do if Rust copied the heap data as well</span>
+<span class="caption">Figura 4-3: Outra possibilidade para o que `s2 = s1` poderia fazer se o Rust copiasse os dados da *heap* também</span>
 
-Earlier, we said that when a variable goes out of scope, Rust automatically
-calls the `drop` function and cleans up the heap memory for that variable. But
-Figure 4-2 shows both data pointers pointing to the same location. This is a
-problem: When `s2` and `s1` go out of scope, they will both try to free the
-same memory. This is known as a _double free_ error and is one of the memory
-safety bugs we mentioned previously. Freeing memory twice can lead to memory
-corruption, which can potentially lead to security vulnerabilities.
+Anteriormente, dissemos que quando uma variável sai de escopo, o Rust chama automaticamente a função `drop` e limpa a memória da *heap* para aquela variável. Mas a Figura 4-2 mostra ambos os ponteiros de dados apontando para a mesma localização. Isso é um problema: quando `s2` e `s1` saem de escopo, ambos tentarão liberar a mesma memória. Isso é conhecido como um erro de *double free* (liberação dupla) e é um dos bugs de segurança de memória que mencionamos anteriormente. Liberar memória duas vezes pode levar à corrupção de memória, o que pode potencialmente levar a vulnerabilidades de segurança.
 
-To ensure memory safety, after the line `let s2 = s1;`, Rust considers `s1` as
-no longer valid. Therefore, Rust doesn’t need to free anything when `s1` goes
-out of scope. Check out what happens when you try to use `s1` after `s2` is
-created; it won’t work:
+Para garantir a segurança de memória, depois da linha `let s2 = s1;`, o Rust considera `s1` como não sendo mais válido. Portanto, o Rust não precisa liberar nada quando `s1` sai de escopo. Confira o que acontece quando você tenta usar `s1` depois que `s2` é criada; não funcionará:
 
 ```rust,ignore,does_not_compile
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-04-cant-use-after-move/src/main.rs:here}}
 ```
 
-You’ll get an error like this because Rust prevents you from using the
-invalidated reference:
+Você receberá um erro como este porque o Rust impede você de usar a referência invalidada:
 
 ```console
 {{#include ../listings/ch04-understanding-ownership/no-listing-04-cant-use-after-move/output.txt}}
 ```
 
-If you’ve heard the terms _shallow copy_ and _deep copy_ while working with
-other languages, the concept of copying the pointer, length, and capacity
-without copying the data probably sounds like making a shallow copy. But
-because Rust also invalidates the first variable, instead of being called a
-shallow copy, it’s known as a _move_. In this example, we would say that `s1`
-was _moved_ into `s2`. So, what actually happens is shown in Figure 4-4.
+Se você já ouviu os termos *shallow copy* (cópia rasa) e *deep copy* (cópia profunda) enquanto trabalhava com outras linguagens, o conceito de copiar o ponteiro, comprimento e capacidade sem copiar os dados provavelmente soa como fazer uma *shallow copy*. Mas como o Rust também invalida a primeira variável, em vez de ser chamado de *shallow copy*, isso é conhecido como um *move* (movimento). Neste exemplo, diríamos que `s1` foi *movida* para `s2`. Então, o que realmente acontece é mostrado na Figura 4-4.
 
 <img alt="Three tables: tables s1 and s2 representing those strings on the
 stack, respectively, and both pointing to the same string data on the heap.
@@ -348,121 +180,78 @@ Table s1 is grayed out because s1 is no longer valid; only s2 can be used to
 access the heap data." src="img/trpl04-04.svg" class="center" style="width:
 50%;" />
 
-<span class="caption">Figure 4-4: The representation in memory after `s1` has
-been invalidated</span>
+<span class="caption">Figura 4-4: A representação em memória depois que `s1` foi invalidada</span>
 
-That solves our problem! With only `s2` valid, when it goes out of scope it
-alone will free the memory, and we’re done.
+Isso resolve nosso problema! Com apenas `s2` válida, quando ela sair de escopo, ela sozinha liberará a memória, e pronto.
 
-In addition, there’s a design choice that’s implied by this: Rust will never
-automatically create “deep” copies of your data. Therefore, any _automatic_
-copying can be assumed to be inexpensive in terms of runtime performance.
+Além disso, há uma escolha de design que está implícita nisso: o Rust nunca criará automaticamente cópias "profundas" dos seus dados. Portanto, qualquer cópia *automática* pode ser assumida como sendo barata em termos de desempenho em tempo de execução.
 
-#### Scope and Assignment
+#### Escopo e Atribuição
 
-The inverse of this is true for the relationship between scoping, ownership, and
-memory being freed via the `drop` function as well. When you assign a completely
-new value to an existing variable, Rust will call `drop` and free the original
-value’s memory immediately. Consider this code, for example:
+O inverso disso é verdadeiro para a relação entre escopo, *ownership* e memória sendo liberada via a função `drop` também. Quando você atribui um valor completamente novo a uma variável existente, o Rust chamará `drop` e liberará a memória do valor original imediatamente. Considere este código, por exemplo:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-04b-replacement-drop/src/main.rs:here}}
 ```
 
-We initially declare a variable `s` and bind it to a `String` with the value
-`"hello"`. Then, we immediately create a new `String` with the value `"ahoy"`
-and assign it to `s`. At this point, nothing is referring to the original value
-on the heap at all. Figure 4-5 illustrates the stack and heap data now:
+Nós inicialmente declaramos uma variável `s` e a vinculamos a uma `String` com o valor `"hello"`. Então, imediatamente criamos uma nova `String` com o valor `"ahoy"` e a atribuímos a `s`. Neste ponto, nada está se referindo ao valor original na *heap*. A Figura 4-5 ilustra os dados da *stack* e da *heap* agora:
 
 <img alt="One table representing the string value on the stack, pointing to
 the second piece of string data (ahoy) on the heap, with the original string
 data (hello) grayed out because it cannot be accessed anymore."
 src="img/trpl04-05.svg" class="center" style="width: 50%;" />
 
-<span class="caption">Figure 4-5: The representation in memory after the initial
-value has been replaced in its entirety</span>
+<span class="caption">Figura 4-5: A representação em memória depois que o valor inicial foi substituído em sua totalidade</span>
 
-The original string thus immediately goes out of scope. Rust will run the `drop`
-function on it and its memory will be freed right away. When we print the value
-at the end, it will be `"ahoy, world!"`.
+A string original, assim, sai imediatamente de escopo. O Rust rodará a função `drop` nela e sua memória será liberada imediatamente. Quando imprimimos o valor no final, será `"ahoy, world!"`.
 
 <!-- Old headings. Do not remove or links may break. -->
 
 <a id="ways-variables-and-data-interact-clone"></a>
 
-#### Variables and Data Interacting with Clone
+#### Variáveis e Dados Interagindo com Clone
 
-If we _do_ want to deeply copy the heap data of the `String`, not just the
-stack data, we can use a common method called `clone`. We’ll discuss method
-syntax in Chapter 5, but because methods are a common feature in many
-programming languages, you’ve probably seen them before.
+Se nós *quisermos* copiar profundamente os dados da *heap* da `String`, não apenas os dados da *stack*, podemos usar um método comum chamado `clone`. Discutiremos sintaxe de método no Capítulo 5, mas como métodos são uma característica comum em muitas linguagens de programação, você provavelmente já os viu antes.
 
-Here’s an example of the `clone` method in action:
+Aqui está um exemplo do método `clone` em ação:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-05-clone/src/main.rs:here}}
 ```
 
-This works just fine and explicitly produces the behavior shown in Figure 4-3,
-where the heap data _does_ get copied.
+Isso funciona muito bem e produz explicitamente o comportamento mostrado na Figura 4-3, onde os dados da *heap* *são* copiados.
 
-When you see a call to `clone`, you know that some arbitrary code is being
-executed and that code may be expensive. It’s a visual indicator that something
-different is going on.
+Quando você vê uma chamada para `clone`, você sabe que algum código arbitrário está sendo executado e que esse código pode ser caro. É um indicador visual de que algo diferente está acontecendo.
 
-#### Stack-Only Data: Copy
+#### Dados Somente da Stack: Copy
 
-There’s another wrinkle we haven’t talked about yet. This code using
-integers—part of which was shown in Listing 4-2—works and is valid:
+Há outra ruga sobre a qual não falamos ainda. Este código usando inteiros — parte do qual foi mostrado na Listagem 4-2 — funciona e é válido:
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/no-listing-06-copy/src/main.rs:here}}
 ```
 
-But this code seems to contradict what we just learned: We don’t have a call to
-`clone`, but `x` is still valid and wasn’t moved into `y`.
+Mas esse código parece contradizer o que acabamos de aprender: não temos uma chamada para `clone`, mas `x` ainda é válido e não foi movido para `y`.
 
-The reason is that types such as integers that have a known size at compile
-time are stored entirely on the stack, so copies of the actual values are quick
-to make. That means there’s no reason we would want to prevent `x` from being
-valid after we create the variable `y`. In other words, there’s no difference
-between deep and shallow copying here, so calling `clone` wouldn’t do anything
-different from the usual shallow copying, and we can leave it out.
+A razão é que tipos como inteiros que têm um tamanho conhecido em tempo de compilação são armazenados inteiramente na *stack*, então cópias dos valores reais são rápidas de fazer. Isso significa que não há razão para querermos impedir `x` de ser válido depois de criarmos a variável `y`. Em outras palavras, não há diferença entre cópia profunda e rasa aqui, então chamar `clone` não faria nada diferente da cópia rasa usual, e podemos deixá-lo de fora.
 
-Rust has a special annotation called the `Copy` trait that we can place on
-types that are stored on the stack, as integers are (we’ll talk more about
-traits in [Chapter 10][traits]<!-- ignore -->). If a type implements the `Copy`
-trait, variables that use it do not move, but rather are trivially copied,
-making them still valid after assignment to another variable.
+O Rust tem uma anotação especial chamada a *trait* `Copy` que podemos colocar em tipos que são armazenados na *stack*, como inteiros são (falaremos mais sobre traits no [Capítulo 10][traits]<!-- ignore -->). Se um tipo implementa a trait `Copy`, variáveis que a usam não se movem, mas sim são trivialmente copiadas, tornando-as ainda válidas após atribuição a outra variável.
 
-Rust won’t let us annotate a type with `Copy` if the type, or any of its parts,
-has implemented the `Drop` trait. If the type needs something special to happen
-when the value goes out of scope and we add the `Copy` annotation to that type,
-we’ll get a compile-time error. To learn about how to add the `Copy` annotation
-to your type to implement the trait, see [“Derivable
-Traits”][derivable-traits]<!-- ignore --> in Appendix C.
+O Rust não nos deixará anotar um tipo com `Copy` se o tipo, ou qualquer uma de suas partes, tiver implementado a trait `Drop`. Se o tipo precisa que algo especial aconteça quando o valor sai de escopo e adicionamos a anotação `Copy` a esse tipo, teremos um erro em tempo de compilação. Para aprender sobre como adicionar a anotação `Copy` ao seu tipo para implementar a trait, veja [“Traits Deriváveis”][derivable-traits]<!-- ignore --> no Apêndice C.
 
-So, what types implement the `Copy` trait? You can check the documentation for
-the given type to be sure, but as a general rule, any group of simple scalar
-values can implement `Copy`, and nothing that requires allocation or is some
-form of resource can implement `Copy`. Here are some of the types that
-implement `Copy`:
+Então, quais tipos implementam a trait `Copy`? Você pode checar a documentação para o tipo dado para ter certeza, mas como regra geral, qualquer grupo de valores escalares simples pode implementar `Copy`, e nada que exija alocação ou seja alguma forma de recurso pode implementar `Copy`. Aqui estão alguns dos tipos que implementam `Copy`:
 
-- All the integer types, such as `u32`.
-- The Boolean type, `bool`, with values `true` and `false`.
-- All the floating-point types, such as `f64`.
-- The character type, `char`.
-- Tuples, if they only contain types that also implement `Copy`. For example,
-  `(i32, i32)` implements `Copy`, but `(i32, String)` does not.
+- Todos os tipos inteiros, como `u32`.
+- O tipo Booleano, `bool`, com valores `true` e `false`.
+- Todos os tipos de ponto flutuante, como `f64`.
+- O tipo caractere, `char`.
+- Tuplas, se elas contiverem apenas tipos que também implementam `Copy`. Por exemplo, `(i32, i32)` implementa `Copy`, mas `(i32, String)` não.
 
-### Ownership and Functions
+### Ownership e Funções
 
-The mechanics of passing a value to a function are similar to those when
-assigning a value to a variable. Passing a variable to a function will move or
-copy, just as assignment does. Listing 4-3 has an example with some annotations
-showing where variables go into and out of scope.
+A mecânica de passar um valor para uma função é similar à de atribuir um valor a uma variável. Passar uma variável para uma função irá mover ou copiar, assim como a atribuição faz. A Listagem 4-3 tem um exemplo com algumas anotações mostrando onde variáveis entram e saem de escopo.
 
-<Listing number="4-3" file-name="src/main.rs" caption="Functions with ownership and scope annotated">
+<Listing number="4-3" file-name="src/main.rs" caption="Funções com ownership e escopo anotados">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-03/src/main.rs}}
@@ -470,18 +259,13 @@ showing where variables go into and out of scope.
 
 </Listing>
 
-If we tried to use `s` after the call to `takes_ownership`, Rust would throw a
-compile-time error. These static checks protect us from mistakes. Try adding
-code to `main` that uses `s` and `x` to see where you can use them and where
-the ownership rules prevent you from doing so.
+Se tentássemos usar `s` após a chamada para `takes_ownership`, o Rust lançaria um erro em tempo de compilação. Essas verificações estáticas nos protegem de erros. Tente adicionar código a `main` que usa `s` e `x` para ver onde você pode usá-los e onde as regras de *ownership* impedem você de fazê-lo.
 
-### Return Values and Scope
+### Valores de Retorno e Escopo
 
-Returning values can also transfer ownership. Listing 4-4 shows an example of a
-function that returns some value, with similar annotations as those in Listing
-4-3.
+Retornar valores também pode transferir *ownership*. A Listagem 4-4 mostra um exemplo de uma função que retorna algum valor, com anotações similares às da Listagem 4-3.
 
-<Listing number="4-4" file-name="src/main.rs" caption="Transferring ownership of return values">
+<Listing number="4-4" file-name="src/main.rs" caption="Transferindo ownership de valores de retorno">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-04/src/main.rs}}
@@ -489,20 +273,13 @@ function that returns some value, with similar annotations as those in Listing
 
 </Listing>
 
-The ownership of a variable follows the same pattern every time: Assigning a
-value to another variable moves it. When a variable that includes data on the
-heap goes out of scope, the value will be cleaned up by `drop` unless ownership
-of the data has been moved to another variable.
+O *ownership* de uma variável segue o mesmo padrão toda vez: atribuir um valor a outra variável o move. Quando uma variável que inclui dados na *heap* sai de escopo, o valor será limpo pelo `drop` a menos que o *ownership* dos dados tenha sido movido para outra variável.
 
-While this works, taking ownership and then returning ownership with every
-function is a bit tedious. What if we want to let a function use a value but
-not take ownership? It’s quite annoying that anything we pass in also needs to
-be passed back if we want to use it again, in addition to any data resulting
-from the body of the function that we might want to return as well.
+Embora isso funcione, tomar *ownership* e então retornar *ownership* com cada função é um pouco tedioso. E se quisermos deixar uma função usar um valor mas não tomar *ownership*? É bastante irritante que qualquer coisa que passemos também precise ser passada de volta se quisermos usá-la novamente, além de quaisquer dados resultantes do corpo da função que possamos querer retornar também.
 
-Rust does let us return multiple values using a tuple, as shown in Listing 4-5.
+O Rust nos permite retornar múltiplos valores usando uma tupla, como mostrado na Listagem 4-5.
 
-<Listing number="4-5" file-name="src/main.rs" caption="Returning ownership of parameters">
+<Listing number="4-5" file-name="src/main.rs" caption="Retornando ownership de parâmetros">
 
 ```rust
 {{#rustdoc_include ../listings/ch04-understanding-ownership/listing-04-05/src/main.rs}}
@@ -510,13 +287,11 @@ Rust does let us return multiple values using a tuple, as shown in Listing 4-5.
 
 </Listing>
 
-But this is too much ceremony and a lot of work for a concept that should be
-common. Luckily for us, Rust has a feature for using a value without
-transferring ownership: references.
+Mas isso é muita cerimônia e muito trabalho para um conceito que deveria ser comum. Felizmente para nós, o Rust tem uma funcionalidade para usar um valor sem transferir *ownership*: referências.
 
-[data-types]: ch03-02-data-types.html#data-types
-[ch8]: ch08-02-strings.html
-[traits]: ch10-02-traits.html
-[derivable-traits]: appendix-03-derivable-traits.html
-[methods]: ch05-03-method-syntax.html#methods
-[paths-module-tree]: ch07-03-paths-for-referring-to-an-item-in-the-module-tree.html
+[data-types]: [[ch03-02-data-types.md#data-types|Tipos de Dados]]
+[ch8]: [[ch08-02-strings.md|Capítulo 8]]
+[traits]: [[ch10-02-traits.md|Capítulo 10]]
+[derivable-traits]: [[appendix-03-derivable-traits.md|Traits Deriváveis]]
+[methods]: [[ch05-03-method-syntax.md#methods|Métodos]]
+[paths-module-tree]: [[ch07-03-paths-for-referring-to-an-item-in-the-module-tree.md|Caminhos para Referenciar um Item na Árvore de Módulos]]

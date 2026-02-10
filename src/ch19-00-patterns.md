@@ -1,29 +1,15 @@
-# Patterns and Matching
+# Padrões e Casamento de Padrões
 
-Patterns are a special syntax in Rust for matching against the structure of
-types, both complex and simple. Using patterns in conjunction with `match`
-expressions and other constructs gives you more control over a program’s
-control flow. A pattern consists of some combination of the following:
+[[Padrões]] (Patterns) são uma sintaxe especial em Rust para corresponder à estrutura de tipos, tanto complexos quanto simples. Usar padrões em conjunto com expressões `match` e outras construções dá a você mais controle sobre o fluxo de controle de um programa. Um padrão consiste em alguma combinação do seguinte:
 
-- Literals
-- Destructured arrays, enums, structs, or tuples
-- Variables
-- Wildcards
-- Placeholders
+- Literais
+- Arrays, enums, structs ou tuplas desestruturados
+- Variáveis
+- Curingas (Wildcards)
+- Espaços reservados (Placeholders)
 
-Some example patterns include `x`, `(a, 3)`, and `Some(Color::Red)`. In the
-contexts in which patterns are valid, these components describe the shape of
-data. Our program then matches values against the patterns to determine whether
-it has the correct shape of data to continue running a particular piece of code.
+Alguns exemplos de padrões incluem `x`, `(a, 3)` e `Some(Color::Red)`. Nos contextos em que os padrões são válidos, esses componentes descrevem a forma dos dados. Nosso programa então combina valores com os padrões para determinar se tem a forma correta de dados para continuar executando uma determinada parte do código.
 
-To use a pattern, we compare it to some value. If the pattern matches the
-value, we use the value parts in our code. Recall the `match` expressions in
-Chapter 6 that used patterns, such as the coin-sorting machine example. If the
-value fits the shape of the pattern, we can use the named pieces. If it
-doesn’t, the code associated with the pattern won’t run.
+Para usar um padrão, nós o comparamos com algum valor. Se o padrão corresponder ao valor, usamos as partes do valor em nosso código. Lembre-se das expressões `match` no Capítulo 6 que usavam padrões, como o exemplo da máquina de classificação de moedas. Se o valor se encaixar na forma do padrão, podemos usar as peças nomeadas. Se não, o código associado ao padrão não será executado.
 
-This chapter is a reference on all things related to patterns. We’ll cover the
-valid places to use patterns, the difference between refutable and irrefutable
-patterns, and the different kinds of pattern syntax that you might see. By the
-end of the chapter, you’ll know how to use patterns to express many concepts in
-a clear way.
+Este capítulo é uma referência sobre tudo relacionado a padrões. Cobriremos os lugares válidos para usar padrões, a diferença entre padrões refutáveis e irrefutáveis, e os diferentes tipos de sintaxe de padrão que você pode ver. Ao final do capítulo, você saberá como usar padrões para expressar muitos conceitos de uma maneira clara.
