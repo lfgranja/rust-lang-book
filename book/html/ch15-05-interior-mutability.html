@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>RefCell&lt;T&gt; e o Padrão de Mutabilidade Interior - The Rust Programming Language</title>
+        <title>RefCell - A Linguagem de Programação Rust</title>
 
 
         <!-- Custom HTML head -->
@@ -39,10 +39,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-1d4b200b.js";
+            window.path_to_searchindex_js = "searchindex-7da9f5b6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-7a5975c3.js"></script>
+        <script src="toc-4f1b68fd.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -141,13 +141,13 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">A Linguagem de Programação Rust</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
-                        <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/lfgranja/rust-lang-book" title="Git repository" aria-label="Git repository">
                             <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
 
@@ -309,8 +309,7 @@ messages: The application could show the message to the user directly, send an
 email, send a text message, or do something else. The library doesn’t need to
 know that detail. All it needs is something that implements a trait we’ll
 provide, called <code>Messenger</code>. Listing 15-20 shows the library code.</p>
-<figure class="listing" id="listing-15-20">
-<span class="file-name">Filename: src/lib.rs</span>
+<listing number="15-20" file-name="src/lib.rs" caption="A library to keep track of how close a value is to a maximum value and warn when the value is at certain levels">
 <pre><code class="language-rust noplayground">pub trait Messenger {
     fn send(&amp;self, msg: &amp;str);
 }
@@ -349,8 +348,7 @@ where
         }
     }
 }</code></pre>
-<figcaption><a href="#listing-15-20">Listing 15-20</a>: A library to keep track of how close a value is to a maximum value and warn when the value is at certain levels</figcaption>
-</figure>
+</listing>
 <p>One important part of this code is that the <code>Messenger</code> trait has one method
 called <code>send</code> that takes an immutable reference to <code>self</code> and the text of the
 message. This trait is the interface our mock object needs to implement so that
@@ -367,8 +365,7 @@ create a new instance of the mock object, create a <code>LimitTracker</code> tha
 mock object, call the <code>set_value</code> method on <code>LimitTracker</code>, and then check that
 the mock object has the messages we expect. Listing 15-21 shows an attempt to
 implement a mock object to do just that, but the borrow checker won’t allow it.</p>
-<figure class="listing" id="listing-15-21">
-<span class="file-name">Filename: src/lib.rs</span>
+<listing number="15-21" file-name="src/lib.rs" caption="An attempt to implement a `MockMessenger` that isn’t allowed by the borrow checker">
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">pub trait Messenger {
 </span><span class="boring">    fn send(&amp;self, msg: &amp;str);
 </span><span class="boring">}
@@ -440,8 +437,7 @@ mod tests {
         assert_eq!(mock_messenger.sent_messages.len(), 1);
     }
 }</code></pre>
-<figcaption><a href="#listing-15-21">Listing 15-21</a>: An attempt to implement a <code>MockMessenger</code> that isn’t allowed by the borrow checker</figcaption>
-</figure>
+</listing>
 <p>This test code defines a <code>MockMessenger</code> struct that has a <code>sent_messages</code>
 field with a <code>Vec</code> of <code>String</code> values to keep track of the messages it’s told
 to send. We also define an associated function <code>new</code> to make it convenient to
@@ -489,8 +485,7 @@ correctly with our existing design.</p>
 <code>sent_messages</code> within a <code>RefCell&lt;T&gt;</code>, and then the <code>send</code> method will be able
 to modify <code>sent_messages</code> to store the messages we’ve seen. Listing 15-22 shows
 what that looks like.</p>
-<figure class="listing" id="listing-15-22">
-<span class="file-name">Filename: src/lib.rs</span>
+<listing number="15-22" file-name="src/lib.rs" caption="Using `RefCell&lt;T&gt;` to mutate an inner value while the outer value is considered immutable">
 <pre><code class="language-rust noplayground"><span class="boring">pub trait Messenger {
 </span><span class="boring">    fn send(&amp;self, msg: &amp;str);
 </span><span class="boring">}
@@ -564,8 +559,7 @@ mod tests {
         assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
     }
 }</code></pre>
-<figcaption><a href="#listing-15-22">Listing 15-22</a>: Using <code>RefCell&lt;T&gt;</code> to mutate an inner value while the outer value is considered immutable</figcaption>
-</figure>
+</listing>
 <p>The <code>sent_messages</code> field is now of type <code>RefCell&lt;Vec&lt;String&gt;&gt;</code> instead of
 <code>Vec&lt;String&gt;</code>. In the <code>new</code> function, we create a new <code>RefCell&lt;Vec&lt;String&gt;&gt;</code>
 instance around the empty vector.</p>
@@ -600,8 +594,7 @@ runtime. Listing 15-23 shows a modification of the implementation of <code>send<
 Listing 15-22. We’re deliberately trying to create two mutable borrows active
 for the same scope to illustrate that <code>RefCell&lt;T&gt;</code> prevents us from doing this
 at runtime.</p>
-<figure class="listing" id="listing-15-23">
-<span class="file-name">Filename: src/lib.rs</span>
+<listing number="15-23" file-name="src/lib.rs" caption="Creating two mutable references in the same scope to see that `RefCell&lt;T&gt;` will panic">
 <pre><code class="language-rust ignore panics"><span class="boring">pub trait Messenger {
 </span><span class="boring">    fn send(&amp;self, msg: &amp;str);
 </span><span class="boring">}
@@ -678,8 +671,7 @@ at runtime.</p>
 </span><span class="boring">        assert_eq!(mock_messenger.sent_messages.borrow().len(), 1);
 </span><span class="boring">    }
 </span><span class="boring">}</span></code></pre>
-<figcaption><a href="#listing-15-23">Listing 15-23</a>: Creating two mutable references in the same scope to see that <code>RefCell&lt;T&gt;</code> will panic</figcaption>
-</figure>
+</listing>
 <p>We create a variable <code>one_borrow</code> for the <code>RefMut&lt;T&gt;</code> smart pointer returned
 from <code>borrow_mut</code>. Then, we create another mutable borrow in the same way in
 the variable <code>two_borrow</code>. This makes two mutable references in the same scope,
@@ -736,8 +728,7 @@ list once we’ve created them. Let’s add in <code>RefCell&lt;T&gt;</code> for
 change the values in the lists. Listing 15-24 shows that by using a
 <code>RefCell&lt;T&gt;</code> in the <code>Cons</code> definition, we can modify the value stored in all
 the lists.</p>
-<figure class="listing" id="listing-15-24">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="15-24" file-name="src/main.rs" caption="Using `Rc&lt;RefCell&lt;i32&gt;&gt;` to create a `List` that we can mutate">
 <pre class="playground"><code class="language-rust edition2024">#[derive(Debug)]
 enum List {
     Cons(Rc&lt;RefCell&lt;i32&gt;&gt;, Rc&lt;List&gt;),
@@ -762,8 +753,7 @@ fn main() {
     println!("b after = {b:?}");
     println!("c after = {c:?}");
 }</code></pre>
-<figcaption><a href="#listing-15-24">Listing 15-24</a>: Using <code>Rc&lt;RefCell&lt;i32&gt;&gt;</code> to create a <code>List</code> that we can mutate</figcaption>
-</figure>
+</listing>
 <p>We create a value that is an instance of <code>Rc&lt;RefCell&lt;i32&gt;&gt;</code> and store it in a
 variable named <code>value</code> so that we can access it directly later. Then, we create
 a <code>List</code> in <code>a</code> with a <code>Cons</code> variant that holds <code>value</code>. We need to clone

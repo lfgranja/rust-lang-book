@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Closures - The Rust Programming Language</title>
+        <title>Closures - A Linguagem de Programação Rust</title>
 
 
         <!-- Custom HTML head -->
@@ -39,10 +39,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-1d4b200b.js";
+            window.path_to_searchindex_js = "searchindex-7da9f5b6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-7a5975c3.js"></script>
+        <script src="toc-4f1b68fd.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -141,13 +141,13 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">A Linguagem de Programação Rust</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
-                        <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/lfgranja/rust-lang-book" title="Git repository" aria-label="Git repository">
                             <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
 
@@ -194,8 +194,7 @@
 <h3 id="capturando-o-ambiente"><a class="header" href="#capturando-o-ambiente">Capturando o Ambiente</a></h3>
 <p>Primeiro examinaremos como podemos usar closures para capturar valores do ambiente em que são definidas para uso posterior. Aqui está o cenário: de vez em quando, nossa empresa de camisetas doa uma camiseta exclusiva de edição limitada para alguém em nossa lista de e-mail como uma promoção. As pessoas na lista de e-mail podem opcionalmente adicionar sua cor favorita ao seu perfil. Se a pessoa escolhida para uma camiseta grátis tiver sua cor favorita definida, ela receberá a camiseta dessa cor. Se a pessoa não especificou uma cor favorita, ela receberá a cor que a empresa tiver mais no momento.</p>
 <p>Existem muitas maneiras de implementar isso. Para este exemplo, vamos usar um enum chamado <code>ShirtColor</code> que tem as variantes <code>Red</code> e <code>Blue</code> (limitando o número de cores disponíveis para simplificar). Representamos o estoque da empresa com uma struct <code>Inventory</code> que tem um campo chamado <code>shirts</code> que contém um <code>Vec&lt;ShirtColor&gt;</code> representando as cores das camisetas atualmente em estoque. O método <code>giveaway</code> definido em <code>Inventory</code> obtém a preferência de cor da camiseta opcional do ganhador da camiseta grátis e retorna a cor da camiseta que a pessoa receberá. Essa configuração é mostrada na Listagem 13-1.</p>
-<figure class="listing" id="listing-13-1">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-1" file-name="src/main.rs" caption="Situação de sorteio da empresa de camisetas">
 <pre><code class="language-rust noplayground">#[derive(Debug, PartialEq, Copy, Clone)]
 enum ShirtColor {
     Red,
@@ -248,8 +247,7 @@ fn main() {
         user_pref2, giveaway2
     );
 }</code></pre>
-<figcaption><a href="#listing-13-1">Listing 13-1</a>: Situação de sorteio da empresa de camisetas</figcaption>
-</figure>
+</listing>
 <p>A <code>store</code> definida em <code>main</code> tem duas camisetas azuis e uma camiseta vermelha restantes para distribuir nesta promoção de edição limitada. Chamamos o método <code>giveaway</code> para um usuário com preferência por uma camiseta vermelha e um usuário sem preferência.</p>
 <p>Novamente, esse código poderia ser implementado de muitas maneiras e, aqui, para focar em closures, nos limitamos aos conceitos que você já aprendeu, exceto pelo corpo do método <code>giveaway</code> que usa uma closure. No método <code>giveaway</code>, obtemos a preferência do usuário como um parâmetro do tipo <code>Option&lt;ShirtColor&gt;</code> e chamamos o método <code>unwrap_or_else</code> em <code>user_preference</code>. O <a href="../std/option/enum.Option.html#method.unwrap_or_else">método <code>unwrap_or_else</code> em <code>Option&lt;T&gt;</code></a><!-- ignore --> é definido pela biblioteca padrão. Ele recebe um argumento: uma closure sem argumentos que retorna um valor <code>T</code> (o mesmo tipo armazenado na variante <code>Some</code> do <code>Option&lt;T&gt;</code>, neste caso <code>ShirtColor</code>). Se o <code>Option&lt;T&gt;</code> for a variante <code>Some</code>, <code>unwrap_or_else</code> retorna o valor de dentro do <code>Some</code>. Se o <code>Option&lt;T&gt;</code> for a variante <code>None</code>, <code>unwrap_or_else</code> chama a closure e retorna o valor retornado pela closure.</p>
 <p>Especificamos a expressão de closure <code>|| self.most_stocked()</code> como o argumento para <code>unwrap_or_else</code>. Esta é uma closure que não recebe parâmetros (se a closure tivesse parâmetros, eles apareceriam entre os dois pipes verticais). O corpo da closure chama <code>self.most_stocked()</code>. Estamos definindo a closure aqui, e a implementação de <code>unwrap_or_else</code> avaliará a closure mais tarde se o resultado for necessário.</p>
@@ -268,8 +266,7 @@ The user with preference None gets Blue
 <p>Existem mais diferenças entre funções e closures. As closures geralmente não exigem que você anote os tipos dos parâmetros ou o valor de retorno como as funções <code>fn</code> fazem. As anotações de tipo são necessárias em funções porque os tipos fazem parte de uma interface explícita exposta aos seus usuários. Definir essa interface rigidamente é importante para garantir que todos concordem sobre quais tipos de valores uma função usa e retorna. As closures, por outro lado, não são usadas em uma interface exposta como esta: elas são armazenadas em variáveis e usadas sem nomeá-las e expô-las aos usuários de nossa biblioteca.</p>
 <p>As closures são tipicamente curtas e relevantes apenas dentro de um contexto estreito, em vez de em qualquer cenário arbitrário. Dentro desses contextos limitados, o compilador pode inferir os tipos dos parâmetros e o tipo de retorno, semelhante a como ele é capaz de inferir os tipos da maioria das variáveis (existem casos raros em que o compilador também precisa de anotações de tipo de closure).</p>
 <p>Assim como com variáveis, podemos adicionar anotações de tipo se quisermos aumentar a explicitação e a clareza ao custo de ser mais verboso do que o estritamente necessário. Anotar os tipos para uma closure se pareceria com a definição mostrada na Listagem 13-2. Neste exemplo, estamos definindo uma closure e armazenando-a em uma variável em vez de definir a closure no local em que a passamos como argumento, como fizemos na Listagem 13-1.</p>
-<figure class="listing" id="listing-13-2">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-2" file-name="src/main.rs" caption="Adicionando anotações de tipo opcionais dos tipos de parâmetro e valor de retorno na closure">
 <pre class="playground"><code class="language-rust edition2024"><span class="boring">use std::thread;
 </span><span class="boring">use std::time::Duration;
 </span><span class="boring">
@@ -301,8 +298,7 @@ The user with preference None gets Blue
 </span><span class="boring">
 </span><span class="boring">    generate_workout(simulated_user_specified_value, simulated_random_number);
 </span><span class="boring">}</span></code></pre>
-<figcaption><a href="#listing-13-2">Listing 13-2</a>: Adicionando anotações de tipo opcionais dos tipos de parâmetro e valor de retorno na closure</figcaption>
-</figure>
+</listing>
 <p>Com anotações de tipo adicionadas, a sintaxe das closures parece mais semelhante à sintaxe das funções. Aqui, definimos uma função que adiciona 1 ao seu parâmetro e uma closure que tem o mesmo comportamento, para comparação. Adicionamos alguns espaços para alinhar as partes relevantes. Isso ilustra como a sintaxe de closure é semelhante à sintaxe de função, exceto pelo uso de pipes e a quantidade de sintaxe que é opcional:</p>
 <pre><code class="language-rust ignore">fn  add_one_v1   (x: u32) -&gt; u32 { x + 1 }
 let add_one_v2 = |x: u32| -&gt; u32 { x + 1 };
@@ -310,16 +306,14 @@ let add_one_v3 = |x|             { x + 1 };
 let add_one_v4 = |x|               x + 1  ;</code></pre>
 <p>A primeira linha mostra uma definição de função e a segunda linha mostra uma definição de closure totalmente anotada. Na terceira linha, removemos as anotações de tipo da definição de closure. Na quarta linha, removemos as chaves, que são opcionais porque o corpo da closure tem apenas uma expressão. Todas essas são definições válidas que produzirão o mesmo comportamento quando chamadas. As linhas <code>add_one_v3</code> e <code>add_one_v4</code> requerem que as closures sejam avaliadas para serem compiladas porque os tipos serão inferidos de seu uso. Isso é semelhante a <code>let v = Vec::new();</code> precisando de anotações de tipo ou valores de algum tipo para serem inseridos no <code>Vec</code> para que o Rust possa inferir o tipo.</p>
 <p>Para definições de closure, o compilador inferirá um tipo concreto para cada um de seus parâmetros e para seu valor de retorno. Por exemplo, a Listagem 13-3 mostra a definição de uma closure curta que apenas retorna o valor que recebe como parâmetro. Esta closure não é muito útil, exceto para os propósitos deste exemplo. Observe que não adicionamos nenhuma anotação de tipo à definição. Como não há anotações de tipo, podemos chamar a closure com qualquer tipo, o que fizemos aqui com <code>String</code> na primeira vez. Se tentarmos chamar <code>example_closure</code> com um inteiro, obteremos um erro.</p>
-<figure class="listing" id="listing-13-3">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-3" file-name="src/main.rs" caption="Tentando chamar uma closure cujos tipos são inferidos com dois tipos diferentes">
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
 </span>    let example_closure = |x| x;
 
     let s = example_closure(String::from("hello"));
     let n = example_closure(5);
 <span class="boring">}</span></code></pre>
-<figcaption><a href="#listing-13-3">Listing 13-3</a>: Tentando chamar uma closure cujos tipos são inferidos com dois tipos diferentes</figcaption>
-</figure>
+</listing>
 <p>O compilador nos dá este erro:</p>
 <pre><code class="language-console">$ cargo run
    Compiling closure-example v0.1.0 (file:///projects/closure-example)
@@ -355,8 +349,7 @@ error: could not compile `closure-example` (bin "closure-example") due to 1 prev
 <h3 id="capturando-referências-ou-movendo-a-posse"><a class="header" href="#capturando-referências-ou-movendo-a-posse">Capturando Referências ou Movendo a Posse</a></h3>
 <p>Closures podem capturar valores de seu ambiente de três maneiras, que mapeiam diretamente para as três maneiras que uma função pode receber um parâmetro: emprestando imutavelmente, emprestando mutavelmente e assumindo a posse. A closure decidirá qual delas usar com base no que o corpo da função faz com os valores capturados.</p>
 <p>Na Listagem 13-4, definimos uma closure que captura uma referência imutável para o vetor chamado <code>list</code> porque ele só precisa de uma referência imutável para imprimir o valor.</p>
-<figure class="listing" id="listing-13-4">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-4" file-name="src/main.rs" caption="Definindo e chamando uma closure que captura uma referência imutável">
 <pre class="playground"><code class="language-rust edition2024">fn main() {
     let list = vec![1, 2, 3];
     println!("Before defining closure: {list:?}");
@@ -367,8 +360,7 @@ error: could not compile `closure-example` (bin "closure-example") due to 1 prev
     only_borrows();
     println!("After calling closure: {list:?}");
 }</code></pre>
-<figcaption><a href="#listing-13-4">Listing 13-4</a>: Definindo e chamando uma closure que captura uma referência imutável</figcaption>
-</figure>
+</listing>
 <p>Este exemplo também ilustra que uma variável pode se vincular a uma definição de closure, e podemos chamar a closure posteriormente usando o nome da variável e parênteses como se o nome da variável fosse um nome de função.</p>
 <p>Como podemos ter várias referências imutáveis para <code>list</code> ao mesmo tempo, <code>list</code> ainda é acessível a partir do código antes da definição da closure, após a definição da closure, mas antes que a closure seja chamada, e depois que a closure é chamada. Este código compila, executa e imprime:</p>
 <pre><code class="language-console">$ cargo run
@@ -381,8 +373,7 @@ From closure: [1, 2, 3]
 After calling closure: [1, 2, 3]
 </code></pre>
 <p>Em seguida, na Listagem 13-5, alteramos o corpo da closure para que ele adicione um elemento ao vetor <code>list</code>. A closure agora captura uma referência mutável.</p>
-<figure class="listing" id="listing-13-5">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-5" file-name="src/main.rs" caption="Definindo e chamando uma closure que captura uma referência mutável">
 <pre class="playground"><code class="language-rust edition2024">fn main() {
     let mut list = vec![1, 2, 3];
     println!("Before defining closure: {list:?}");
@@ -392,8 +383,7 @@ After calling closure: [1, 2, 3]
     borrows_mutably();
     println!("After calling closure: {list:?}");
 }</code></pre>
-<figcaption><a href="#listing-13-5">Listing 13-5</a>: Definindo e chamando uma closure que captura uma referência mutável</figcaption>
-</figure>
+</listing>
 <p>Este código compila, executa e imprime:</p>
 <pre><code class="language-console">$ cargo run
    Compiling closure-example v0.1.0 (file:///projects/closure-example)
@@ -405,8 +395,7 @@ After calling closure: [1, 2, 3, 7]
 <p>Observe que não há mais um <code>println!</code> entre a definição e a chamada da closure <code>borrows_mutably</code>: Quando <code>borrows_mutably</code> é definido, ele captura uma referência mutável para <code>list</code>. Não usamos a closure novamente após a chamada da closure, então o empréstimo mutável termina. Entre a definição da closure e a chamada da closure, um empréstimo imutável para impressão não é permitido, porque nenhum outro empréstimo é permitido quando há um empréstimo mutável. Tente adicionar um <code>println!</code> lá para ver qual mensagem de erro você recebe!</p>
 <p>Se você quiser forçar a closure a assumir a posse dos valores que ela usa no ambiente, mesmo que o corpo da closure não precise estritamente de posse, você pode usar a palavra-chave <code>move</code> antes da lista de parâmetros.</p>
 <p>Essa técnica é útil principalmente ao passar uma closure para uma nova thread para mover os dados para que eles sejam de propriedade da nova thread. Discutiremos threads e por que você gostaria de usá-las em detalhes no Capítulo 16, quando falarmos sobre concorrência, mas, por enquanto, vamos explorar brevemente a criação de uma nova thread usando uma closure que precisa da palavra-chave <code>move</code>. A Listagem 13-6 mostra a Listagem 13-4 modificada para imprimir o vetor em uma nova thread em vez de na thread principal.</p>
-<figure class="listing" id="listing-13-6">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-6" file-name="src/main.rs" caption="Usando `move` para forçar a closure para a thread a assumir a posse de `list`">
 <pre class="playground"><code class="language-rust edition2024">use std::thread;
 
 fn main() {
@@ -417,8 +406,7 @@ fn main() {
         .join()
         .unwrap();
 }</code></pre>
-<figcaption><a href="#listing-13-6">Listing 13-6</a>: Usando <code>move</code> para forçar a closure para a thread a assumir a posse de <code>list</code></figcaption>
-</figure>
+</listing>
 <p>Geramos uma nova thread, dando à thread uma closure para executar como argumento. O corpo da closure imprime a lista. Na Listagem 13-4, a closure capturou apenas <code>list</code> usando uma referência imutável porque essa é a menor quantidade de acesso a <code>list</code> necessária para imprimi-la. Neste exemplo, mesmo que o corpo da closure ainda precise apenas de uma referência imutável, precisamos especificar que <code>list</code> deve ser movido para a closure colocando a palavra-chave <code>move</code> no início da definição da closure. Se a thread principal executasse mais operações antes de chamar <code>join</code> na nova thread, a nova thread poderia terminar antes que o restante da thread principal terminasse, ou a thread principal poderia terminar primeiro. Se a thread principal mantivesse a posse de <code>list</code>, mas terminasse antes da nova thread e descartasse <code>list</code>, a referência imutável na thread seria inválida. Portanto, o compilador exige que <code>list</code> seja movido para a closure dada à nova thread para que a referência seja válida. Tente remover a palavra-chave <code>move</code> ou usar <code>list</code> na thread principal após a definição da closure para ver quais erros de compilador você obtém!</p>
 <!-- Old headings. Do not remove or links may break. -->
 <p><a id="storing-closures-using-generic-parameters-and-the-fn-traits"></a>
@@ -453,8 +441,7 @@ fn main() {
 <p>Nota: Se o que queremos fazer não requer capturar um valor do ambiente, podemos usar o nome de uma função em vez de uma closure onde precisamos de algo que implemente um dos traits <code>Fn</code>. Por exemplo, em um valor <code>Option&lt;Vec&lt;T&gt;&gt;</code>, poderíamos chamar <code>unwrap_or_else(Vec::new)</code> para obter um vetor novo e vazio se o valor for <code>None</code>. O compilador implementa automaticamente qualquer um dos traits <code>Fn</code> aplicáveis para uma definição de função.</p>
 </blockquote>
 <p>Agora vamos ver o método da biblioteca padrão <code>sort_by_key</code>, definido em fatias, para ver como ele difere de <code>unwrap_or_else</code> e por que <code>sort_by_key</code> usa <code>FnMut</code> em vez de <code>FnOnce</code> para o limite de trait. A closure recebe um argumento na forma de uma referência ao item atual na fatia sendo considerada e retorna um valor do tipo <code>K</code> que pode ser ordenado. Esta função é útil quando você deseja classificar uma fatia por um atributo específico de cada item. Na Listagem 13-7, temos uma lista de instâncias <code>Rectangle</code> e usamos <code>sort_by_key</code> para ordená-las por seu atributo <code>width</code> do menor para o maior.</p>
-<figure class="listing" id="listing-13-7">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-7" file-name="src/main.rs" caption="Usando `sort_by_key` para ordenar retângulos por largura">
 <pre class="playground"><code class="language-rust edition2024">#[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -471,8 +458,7 @@ fn main() {
     list.sort_by_key(|r| r.width);
     println!("{list:#?}");
 }</code></pre>
-<figcaption><a href="#listing-13-7">Listing 13-7</a>: Usando <code>sort_by_key</code> para ordenar retângulos por largura</figcaption>
-</figure>
+</listing>
 <p>Este código imprime:</p>
 <pre><code class="language-console">$ cargo run
    Compiling rectangles v0.1.0 (file:///projects/rectangles)
@@ -495,8 +481,7 @@ fn main() {
 </code></pre>
 <p>A razão pela qual <code>sort_by_key</code> é definido para receber uma closure <code>FnMut</code> é que ele chama a closure várias vezes: uma vez para cada item na fatia. A closure <code>|r| r.width</code> não captura, muta ou move nada de seu ambiente, então ela atende aos requisitos de limite de trait.</p>
 <p>Em contraste, a Listagem 13-8 mostra um exemplo de uma closure que implementa apenas o trait <code>FnOnce</code>, porque move um valor para fora do ambiente. O compilador não nos deixará usar esta closure com <code>sort_by_key</code>.</p>
-<figure class="listing" id="listing-13-8">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-8" file-name="src/main.rs" caption="Tentando usar uma closure `FnOnce` com `sort_by_key`">
 <pre><code class="language-rust ignore does_not_compile">#[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -519,8 +504,7 @@ fn main() {
     });
     println!("{list:#?}");
 }</code></pre>
-<figcaption><a href="#listing-13-8">Listing 13-8</a>: Tentando usar uma closure <code>FnOnce</code> com <code>sort_by_key</code></figcaption>
-</figure>
+</listing>
 <p>Esta é uma maneira inventada e complicada (que não funciona) de tentar contar o número de vezes que <code>sort_by_key</code> chama a closure ao classificar <code>list</code>. Este código tenta fazer essa contagem empurrando <code>value</code>—uma <code>String</code> do ambiente da closure—para o vetor <code>sort_operations</code>. A closure captura <code>value</code> e, em seguida, move <code>value</code> para fora da closure transferindo a posse de <code>value</code> para o vetor <code>sort_operations</code>. Esta closure pode ser chamada uma vez; tentar chamá-la uma segunda vez não funcionaria, porque <code>value</code> não estaria mais no ambiente para ser empurrado para <code>sort_operations</code> novamente! Portanto, esta closure implementa apenas <code>FnOnce</code>. Quando tentamos compilar este código, obtemos este erro de que <code>value</code> não pode ser movido para fora da closure porque a closure deve implementar <code>FnMut</code>:</p>
 <pre><code class="language-console">$ cargo run
    Compiling rectangles v0.1.0 (file:///projects/rectangles)
@@ -546,8 +530,7 @@ For more information about this error, try `rustc --explain E0507`.
 error: could not compile `rectangles` (bin "rectangles") due to 1 previous error
 </code></pre>
 <p>O erro aponta para a linha no corpo da closure que move <code>value</code> para fora do ambiente. Para corrigir isso, precisamos alterar o corpo da closure para que ele não mova valores para fora do ambiente. Manter um contador no ambiente e incrementar seu valor no corpo da closure é uma maneira mais direta de contar o número de vezes que a closure é chamada. A closure na Listagem 13-9 funciona com <code>sort_by_key</code> porque está capturando apenas uma referência mutável ao contador <code>num_sort_operations</code> e, portanto, pode ser chamada mais de uma vez.</p>
-<figure class="listing" id="listing-13-9">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="13-9" file-name="src/main.rs" caption="Usar uma closure `FnMut` com `sort_by_key` é permitido.">
 <pre class="playground"><code class="language-rust edition2024">#[derive(Debug)]
 struct Rectangle {
     width: u32,
@@ -568,8 +551,7 @@ fn main() {
     });
     println!("{list:#?}, sorted in {num_sort_operations} operations");
 }</code></pre>
-<figcaption><a href="#listing-13-9">Listing 13-9</a>: Usar uma closure <code>FnMut</code> com <code>sort_by_key</code> é permitido.</figcaption>
-</figure>
+</listing>
 <p>Os traits <code>Fn</code> são importantes ao definir ou usar funções ou tipos que fazem uso de closures. Na próxima seção, discutiremos iteradores. Muitos métodos iteradores recebem argumentos de closure, portanto, lembre-se desses detalhes da closure à medida que continuamos!</p>
 
                     </main>

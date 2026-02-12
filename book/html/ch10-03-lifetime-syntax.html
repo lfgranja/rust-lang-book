@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Validando Referências com Tempos de Vida - The Rust Programming Language</title>
+        <title>Lifetimes - A Linguagem de Programação Rust</title>
 
 
         <!-- Custom HTML head -->
@@ -39,10 +39,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-1d4b200b.js";
+            window.path_to_searchindex_js = "searchindex-7da9f5b6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-7a5975c3.js"></script>
+        <script src="toc-4f1b68fd.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -141,13 +141,13 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">A Linguagem de Programação Rust</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
-                        <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/lfgranja/rust-lang-book" title="Git repository" aria-label="Git repository">
                             <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
 
@@ -207,7 +207,7 @@ com o conceito.</p>
 fossem permitidas, fariam com que um programa referenciasse dados diferentes
 dos dados que pretende referenciar. Considere o programa na Listagem 10-16, que
 tem um escopo externo e um escopo interno.</p>
-<figure class="listing" id="listing-10-16">
+<listing number="10-16" caption="Uma tentativa de usar uma referência cujo valor saiu de escopo">
 <pre><code class="language-rust ignore does_not_compile">fn main() {
     let r;
 
@@ -218,8 +218,7 @@ tem um escopo externo e um escopo interno.</p>
 
     println!("r: {r}");
 }</code></pre>
-<figcaption><a href="#listing-10-16">Listing 10-16</a>: Uma tentativa de usar uma referência cujo valor saiu de escopo</figcaption>
-</figure>
+</listing>
 <blockquote>
 <p>Nota: Os exemplos nas Listagens 10-16, 10-17 e 10-23 declaram variáveis sem
 dar a elas um valor inicial, então o nome da variável existe no escopo
@@ -265,7 +264,7 @@ verificador de empréstimo (borrow checker).</p>
 determinar se todos os empréstimos são válidos. A Listagem 10-17 mostra o mesmo
 código da Listagem 10-16, mas com anotações mostrando os lifetimes das
 variáveis.</p>
-<figure class="listing" id="listing-10-17">
+<listing number="10-17" caption="Anotações dos lifetimes de `r` e `x`, nomeados `&#39;a` e `&#39;b`, respectivamente">
 <pre><code class="language-rust ignore does_not_compile">fn main() {
     let r;                // ---------+-- 'a
                           //          |
@@ -276,8 +275,7 @@ variáveis.</p>
                           //          |
     println!("r: {r}");   //          |
 }                         // ---------+</code></pre>
-<figcaption><a href="#listing-10-17">Listing 10-17</a>: Anotações dos lifetimes de <code>r</code> e <code>x</code>, nomeados <code>'a</code> e <code>'b</code>, respectivamente</figcaption>
-</figure>
+</listing>
 <p>Aqui, anotamos o lifetime de <code>r</code> com <code>'a</code> e o lifetime de <code>x</code> com <code>'b</code>. Como
 você pode ver, o bloco interno <code>'b</code> é muito menor que o bloco de lifetime
 externo <code>'a</code>. Em tempo de compilação, Rust compara o tamanho dos dois lifetimes
@@ -286,7 +284,7 @@ lifetime de <code>'b</code>. O programa é rejeitado porque <code>'b</code> é m
 assunto da referência não vive tanto quanto a referência.</p>
 <p>A Listagem 10-18 corrige o código para que ele não tenha uma referência
 pendente e compile sem erros.</p>
-<figure class="listing" id="listing-10-18">
+<listing number="10-18" caption="Uma referência válida porque os dados têm um lifetime mais longo do que a referência">
 <pre class="playground"><code class="language-rust edition2024">fn main() {
     let x = 5;            // ----------+-- 'b
                           //           |
@@ -295,8 +293,7 @@ pendente e compile sem erros.</p>
     println!("r: {r}");   //   |       |
                           // --+       |
 }                         // ----------+</code></pre>
-<figcaption><a href="#listing-10-18">Listing 10-18</a>: Uma referência válida porque os dados têm um lifetime mais longo do que a referência</figcaption>
-</figure>
+</listing>
 <p>Aqui, <code>x</code> tem o lifetime <code>'b</code>, que neste caso é maior que <code>'a</code>. Isso significa
 que <code>r</code> pode referenciar <code>x</code> porque Rust sabe que a referência em <code>r</code> será
 sempre válida enquanto <code>x</code> for válida.</p>
@@ -308,8 +305,7 @@ lifetimes genéricos em parâmetros de função e valores de retorno.</p>
 função receberá duas fatias de string e retornará uma única fatia de string.
 Depois de implementarmos a função <code>longest</code>, o código na Listagem 10-19 deve
 imprimir <code>A string mais longa é abcd</code>.</p>
-<figure class="listing" id="listing-10-19">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="10-19" file-name="src/main.rs" caption="Uma função `main` que chama a função `longest` para encontrar a maior de duas fatias de string">
 <pre><code class="language-rust ignore">fn main() {
     let string1 = String::from("abcd");
     let string2 = "xyz";
@@ -317,8 +313,7 @@ imprimir <code>A string mais longa é abcd</code>.</p>
     let result = longest(string1.as_str(), string2);
     println!("The longest string is {result}");
 }</code></pre>
-<figcaption><a href="#listing-10-19">Listing 10-19</a>: Uma função <code>main</code> que chama a função <code>longest</code> para encontrar a maior de duas fatias de string</figcaption>
-</figure>
+</listing>
 <p>Observe que queremos que a função receba fatias de string, que são referências,
 em vez de strings, porque não queremos que a função <code>longest</code> tome posse de
 seus parâmetros. Consulte <a href="ch04-03-slices.html#string-slices-as-parameters">“Fatias de String como Parâmetros”</a><!-- ignore -->
@@ -326,8 +321,7 @@ no Capítulo 4 para mais discussões sobre por que os parâmetros que usamos na
 Listagem 10-19 são os que queremos.</p>
 <p>Se tentarmos implementar a função <code>longest</code> como mostrado na Listagem 10-20, ela
 não compilará.</p>
-<figure class="listing" id="listing-10-20">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="10-20" file-name="src/main.rs" caption="Uma implementação da função `longest` que retorna a maior de duas fatias de string, mas ainda não compila">
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
 </span><span class="boring">    let string1 = String::from("abcd");
 </span><span class="boring">    let string2 = "xyz";
@@ -339,8 +333,7 @@ não compilará.</p>
 </span>fn longest(x: &amp;str, y: &amp;str) -&gt; &amp;str {
     if x.len() &gt; y.len() { x } else { y }
 }</code></pre>
-<figcaption><a href="#listing-10-20">Listing 10-20</a>: Uma implementação da função <code>longest</code> que retorna a maior de duas fatias de string, mas ainda não compila</figcaption>
-</figure>
+</listing>
 <p>Em vez disso, recebemos o seguinte erro que fala sobre lifetimes:</p>
 <pre><code class="language-console">$ cargo run
    Compiling chapter10 v0.1.0 (file:///projects/chapter10)
@@ -408,8 +401,7 @@ genérico.</p>
 será válida enquanto ambos os parâmetros forem válidos. Este é o relacionamento
 entre lifetimes dos parâmetros e o valor de retorno. Vamos nomear o lifetime
 <code>'a</code> e adicioná-lo a cada referência, conforme mostrado na Listagem 10-21.</p>
-<figure class="listing" id="listing-10-21">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="10-21" file-name="src/main.rs" caption="A definição da função `longest` especificando que todas as referências na assinatura devem ter o mesmo lifetime `&#39;a`">
 <pre class="playground"><code class="language-rust edition2024"><span class="boring">fn main() {
 </span><span class="boring">    let string1 = String::from("abcd");
 </span><span class="boring">    let string2 = "xyz";
@@ -421,8 +413,7 @@ entre lifetimes dos parâmetros e o valor de retorno. Vamos nomear o lifetime
 </span>fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
     if x.len() &gt; y.len() { x } else { y }
 }</code></pre>
-<figcaption><a href="#listing-10-21">Listing 10-21</a>: A definição da função <code>longest</code> especificando que todas as referências na assinatura devem ter o mesmo lifetime <code>'a</code></figcaption>
-</figure>
+</listing>
 <p>Este código deve compilar e produzir o resultado que queremos quando o usarmos
 com a função <code>main</code> na Listagem 10-19.</p>
 <p>A assinatura da função agora diz ao Rust que, para algum lifetime <code>'a</code>, a função
@@ -459,8 +450,7 @@ será válida pelo comprimento do menor dos lifetimes de <code>x</code> e <code>
 <p>Vamos ver como as anotações de lifetime restringem a função <code>longest</code> passando
 referências que têm lifetimes concretos diferentes. A Listagem 10-22 é um
 exemplo direto.</p>
-<figure class="listing" id="listing-10-22">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="10-22" file-name="src/main.rs" caption="Usando a função `longest` com referências a valores `String` que têm lifetimes concretos diferentes">
 <pre class="playground"><code class="language-rust edition2024">fn main() {
     let string1 = String::from("long string is long");
 
@@ -474,8 +464,7 @@ exemplo direto.</p>
 </span><span class="boring">fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
 </span><span class="boring">    if x.len() &gt; y.len() { x } else { y }
 </span><span class="boring">}</span></code></pre>
-<figcaption><a href="#listing-10-22">Listing 10-22</a>: Usando a função <code>longest</code> com referências a valores <code>String</code> que têm lifetimes concretos diferentes</figcaption>
-</figure>
+</listing>
 <p>Neste exemplo, <code>string1</code> é válida até o final do escopo externo, <code>string2</code> é
 válida até o final do escopo interno, e <code>result</code> referencia algo que é válido
 até o final do escopo interno. Execute este código e você verá que o
@@ -486,8 +475,7 @@ declaração da variável <code>result</code> para fora do escopo interno, mas d
 atribuição do valor à variável <code>result</code> dentro do escopo com <code>string2</code>. Em
 seguida, moveremos o <code>println!</code> que usa <code>result</code> para fora do escopo interno,
 após o término do escopo interno. O código na Listagem 10-23 não compilará.</p>
-<figure class="listing" id="listing-10-23">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="10-23" file-name="src/main.rs" caption="Tentando usar `result` após `string2` ter saído de escopo">
 <pre><code class="language-rust ignore does_not_compile">fn main() {
     let string1 = String::from("long string is long");
     let result;
@@ -501,8 +489,7 @@ após o término do escopo interno. O código na Listagem 10-23 não compilará.
 </span><span class="boring">fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;'a str) -&gt; &amp;'a str {
 </span><span class="boring">    if x.len() &gt; y.len() { x } else { y }
 </span><span class="boring">}</span></code></pre>
-<figcaption><a href="#listing-10-23">Listing 10-23</a>: Tentando usar <code>result</code> após <code>string2</code> ter saído de escopo</figcaption>
-</figure>
+</listing>
 <p>Quando tentamos compilar este código, obtemos este erro:</p>
 <pre><code class="language-console">$ cargo run
    Compiling chapter10 v0.1.0 (file:///projects/chapter10)
@@ -546,8 +533,7 @@ função está fazendo. Por exemplo, se alterássemos a implementação da funç
 <code>longest</code> para retornar sempre o primeiro parâmetro em vez da fatia de string
 mais longa, não precisaríamos especificar um lifetime no parâmetro <code>y</code>. O
 seguinte código compilará:</p>
-<figure class="listing">
-<span class="file-name">Filename: src/main.rs</span>
+<listing file-name="src/main.rs">
 <pre class="playground"><code class="language-rust edition2024"><span class="boring">fn main() {
 </span><span class="boring">    let string1 = String::from("abcd");
 </span><span class="boring">    let string2 = "efghijklmnopqrstuvwxyz";
@@ -559,7 +545,7 @@ seguinte código compilará:</p>
 </span>fn longest&lt;'a&gt;(x: &amp;'a str, y: &amp;str) -&gt; &amp;'a str {
     x
 }</code></pre>
-</figure>
+</listing>
 <p>Especificamos um parâmetro de lifetime <code>'a</code> para o parâmetro <code>x</code> e o tipo de
 retorno, mas não para o parâmetro <code>y</code>, porque o lifetime de <code>y</code> não tem nenhuma
 relação com o lifetime de <code>x</code> ou o valor de retorno.</p>
@@ -570,8 +556,7 @@ referir a um valor criado dentro desta função. No entanto, isso seria uma
 referência pendente porque o valor sairá de escopo no final da função.
 Considere esta tentativa de implementação da função <code>longest</code> que não
 compilará:</p>
-<figure class="listing">
-<span class="file-name">Filename: src/main.rs</span>
+<listing file-name="src/main.rs">
 <pre><code class="language-rust ignore does_not_compile"><span class="boring">fn main() {
 </span><span class="boring">    let string1 = String::from("abcd");
 </span><span class="boring">    let string2 = "xyz";
@@ -584,7 +569,7 @@ compilará:</p>
     let result = String::from("really long string");
     result.as_str()
 }</code></pre>
-</figure>
+</listing>
 <p>Aqui, mesmo que tenhamos especificado um parâmetro de lifetime <code>'a</code> para o tipo
 de retorno, esta implementação falhará ao compilar porque o lifetime do valor
 de retorno não está relacionado ao lifetime dos parâmetros de forma alguma.
@@ -623,8 +608,7 @@ definir structs para manter referências, mas nesse caso, precisaríamos
 adicionar uma anotação de lifetime em cada referência na definição da struct. A
 Listagem 10-24 tem uma struct chamada <code>ImportantExcerpt</code> que contém uma fatia
 de string.</p>
-<figure class="listing" id="listing-10-24">
-<span class="file-name">Filename: src/main.rs</span>
+<listing number="10-24" file-name="src/main.rs" caption="Uma struct que contém uma referência, exigindo uma anotação de lifetime">
 <pre class="playground"><code class="language-rust edition2024">struct ImportantExcerpt&lt;'a&gt; {
     part: &amp;'a str,
 }
@@ -636,8 +620,7 @@ fn main() {
         part: first_sentence,
     };
 }</code></pre>
-<figcaption><a href="#listing-10-24">Listing 10-24</a>: Uma struct que contém uma referência, exigindo uma anotação de lifetime</figcaption>
-</figure>
+</listing>
 <p>Esta struct tem o único campo <code>part</code> que contém uma fatia de string, que é uma
 referência. Assim como com tipos de dados genéricos, declaramos o nome do
 parâmetro de lifetime genérico dentro de colchetes angulares após o nome da
@@ -654,8 +637,7 @@ sai de escopo, então a referência na instância <code>ImportantExcerpt</code> 
 parâmetros de lifetime para funções ou structs que usam referências. No
 entanto, tivemos uma função na Listagem 4-9, mostrada novamente na Listagem
 10-25, que compilou sem anotações de lifetime.</p>
-<figure class="listing" id="listing-10-25">
-<span class="file-name">Filename: src/lib.rs</span>
+<listing number="10-25" file-name="src/lib.rs" caption="Uma função que definimos na Listagem 4-9 que compilou sem anotações de lifetime, embora o parâmetro e o tipo de retorno sejam referências">
 <pre class="playground"><code class="language-rust edition2024">fn first_word(s: &amp;str) -&gt; &amp;str {
     let bytes = s.as_bytes();
 
@@ -683,8 +665,7 @@ entanto, tivemos uma função na Listagem 4-9, mostrada novamente na Listagem
 </span><span class="boring">    // this works too, without the slice syntax!
 </span><span class="boring">    let word = first_word(my_string_literal);
 </span><span class="boring">}</span></code></pre>
-<figcaption><a href="#listing-10-25">Listing 10-25</a>: Uma função que definimos na Listagem 4-9 que compilou sem anotações de lifetime, embora o parâmetro e o tipo de retorno sejam referências</figcaption>
-</figure>
+</listing>
 <p>A razão pela qual esta função compila sem anotações de lifetime é histórica: Em
 versões iniciais (pré-1.0) de Rust, este código não teria compilado, porque
 toda referência precisava de um lifetime explícito. Naquela época, a assinatura
