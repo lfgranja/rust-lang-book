@@ -1,10 +1,17 @@
-# Funcionalidades de Linguagens Orientadas a Objetos
+# Object-Oriented Programming Features
 
-Rust é influenciado por diversos paradigmas de programação, incluindo programação orientada a objetos. Exploramos as funcionalidades de programação funcional no Capítulo 13. Neste capítulo, vamos explorar as funcionalidades orientadas a objetos de Rust e como elas se comparam ao que você pode estar acostumado em outras linguagens.
+<!-- Old headings. Do not remove or links may break. -->
 
-A programação orientada a objetos (POO) é uma maneira de modelar programas. Objetos, como um conceito de programação, foram introduzidos na linguagem Simula nos anos 60. Esses conceitos influenciaram a arquitetura de programação de Smalltalk, e essas ideias influenciaram muitas outras linguagens, incluindo C++, Java e Python.
+<a id="object-oriented-programming-features-of-rust"></a>
 
-Neste capítulo, abordaremos:
-* O que significa ser orientado a objetos e se Rust se encaixa nessa definição.
-* Como usar [[Trait Objects]] para obter polimorfismo.
-* Como implementar o padrão de projeto de estado (state design pattern) para estruturar código.
+Object-oriented programming (OOP) is a way of modeling programs. Objects as a
+programmatic concept were introduced in the programming language Simula in the
+1960s. Those objects influenced Alan Kay’s programming architecture in which
+objects pass messages to each other. To describe this architecture, he coined
+the term _object-oriented programming_ in 1967. Many competing definitions
+describe what OOP is, and by some of these definitions Rust is object oriented
+but by others it is not. In this chapter, we’ll explore certain characteristics
+that are commonly considered object oriented and how those characteristics
+translate to idiomatic Rust. We’ll then show you how to implement an
+object-oriented design pattern in Rust and discuss the trade-offs of doing so
+versus implementing a solution using some of Rust’s strengths instead.

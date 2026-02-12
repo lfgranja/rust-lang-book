@@ -1,135 +1,178 @@
-# Funções e Closures Avançadas
+## Advanced Functions and Closures
 
-Esta seção explora algumas funcionalidades avançadas relacionadas a funções e closures, incluindo ponteiros de função e retorno de closures.
+This section explores some advanced features related to functions and closures,
+including function pointers and returning closures.
 
-## Ponteiros de Função
+### Function Pointers
 
-Falamos sobre como passar closures para funções; você também pode passar funções regulares para funções! Essa técnica é útil quando você deseja passar uma função que já definiu em vez de definir uma nova closure. Funções coagem para o tipo `fn` (com um *f* minúsculo), não deve ser confundido com o trait de closure `Fn`. O tipo `fn` é chamado de *ponteiro de função* (function pointer). Passar funções com ponteiros de função permitirá que você use funções como argumentos para outras funções.
+We’ve talked about how to pass closures to functions; you can also pass regular
+functions to functions! This technique is useful when you want to pass a
+function you’ve already defined rather than defining a new closure. Functions
+coerce to the type `fn` (with a lowercase _f_), not to be confused with the
+`Fn` closure trait. The `fn` type is called a _function pointer_. Passing
+functions with function pointers will allow you to use functions as arguments
+to other functions.
 
-A sintaxe para especificar que um parâmetro é um ponteiro de função é semelhante à das closures, como mostrado no Listagem 19-27, onde definimos uma função `add_one` que adiciona 1 ao seu parâmetro. A função `do_twice` recebe dois parâmetros: um ponteiro de função para qualquer função que receba um parâmetro `i32` e retorne um `i32`, e um valor `i32`. A função `do_twice` chama a função `f` duas vezes, passando a ela o valor `arg`, depois soma os dois resultados da chamada de função. A função `main` chama `do_twice` com os argumentos `add_one` e `5`.
+The syntax for specifying that a parameter is a function pointer is similar to
+that of closures, as shown in Listing 20-28, where we’ve defined a function
+`add_one` that adds 1 to its parameter. The function `do_twice` takes two
+parameters: a function pointer to any function that takes an `i32` parameter
+and returns an `i32`, and one `i32` value. The `do_twice` function calls the
+function `f` twice, passing it the `arg` value, then adds the two function call
+results together. The `main` function calls `do_twice` with the arguments
+`add_one` and `5`.
 
-Listagem 19-27: Usando o tipo `fn` para aceitar um ponteiro de função como argumento
-
-```rust
-fn add_one(x: i32) -> i32 {
-    x + 1
-}
-
-fn do_twice(f: fn(i32) -> i32, arg: i32) -> i32 {
-    f(arg) + f(arg)
-}
-
-fn main() {
-    let resposta = do_twice(add_one, 5);
-
-    println!("A resposta é: {}", resposta);
-}
-```
-
-Este código imprime `A resposta é: 12`. Especificamos que o parâmetro `f` em `do_twice` é um `fn` que recebe um parâmetro do tipo `i32` e retorna um `i32`. Podemos então chamar `f` no corpo de `do_twice`. Em `main`, podemos passar o nome da função `add_one` como o primeiro argumento para `do_twice`.
-
-Ao contrário das closures, `fn` é um tipo em vez de um trait, então especificamos `fn` como o tipo de parâmetro diretamente, em vez de declarar um parâmetro de tipo genérico com um dos traits `Fn` como um limite de trait.
-
-Ponteiros de função implementam todos os três traits de closure (`Fn`, `FnMut` e `FnOnce`), o que significa que você sempre pode passar um ponteiro de função como argumento para uma função que espera uma closure. É melhor escrever funções usando um tipo genérico e um dos traits de closure para que suas funções possam aceitar funções ou closures.
-
-Dito isso, um exemplo de onde você gostaria de aceitar apenas `fn` e não closures é ao interagir com código externo que não tem closures: funções C podem aceitar funções como argumentos, mas C não tem closures.
-
-Como exemplo de onde você poderia usar uma closure definida inline ou uma função nomeada, vamos ver um uso do método `map` fornecido pelo trait `Iterator` na biblioteca padrão. Para usar o método `map` para transformar um vetor de números em um vetor de strings, poderíamos usar uma closure, como no Listagem 19-28.
-
-Listagem 19-28: Usando uma closure com o método `map` para converter números em strings
+<Listing number="20-28" file-name="src/main.rs" caption="Using the `fn` type to accept a function pointer as an argument">
 
 ```rust
-    let lista_de_numeros = vec![1, 2, 3];
-    let lista_de_strings: Vec<String> = lista_de_numeros.iter().map(|i| i.to_string()).collect();
+{{#rustdoc_include ../listings/ch20-advanced-features/listing-20-28/src/main.rs}}
 ```
 
-Ou poderíamos nomear uma função como o argumento para `map` em vez da closure. O Listagem 19-29 mostra como isso ficaria.
+</Listing>
 
-Listagem 19-29: Usando a função `String::to_string` com o método `map` para converter números em strings
+This code prints `The answer is: 12`. We specify that the parameter `f` in
+`do_twice` is an `fn` that takes one parameter of type `i32` and returns an
+`i32`. We can then call `f` in the body of `do_twice`. In `main`, we can pass
+the function name `add_one` as the first argument to `do_twice`.
+
+Unlike closures, `fn` is a type rather than a trait, so we specify `fn` as the
+parameter type directly rather than declaring a generic type parameter with one
+of the `Fn` traits as a trait bound.
+
+Function pointers implement all three of the closure traits (`Fn`, `FnMut`, and
+`FnOnce`), meaning you can always pass a function pointer as an argument for a
+function that expects a closure. It’s best to write functions using a generic
+type and one of the closure traits so that your functions can accept either
+functions or closures.
+
+That said, one example of where you would want to only accept `fn` and not
+closures is when interfacing with external code that doesn’t have closures: C
+functions can accept functions as arguments, but C doesn’t have closures.
+
+As an example of where you could use either a closure defined inline or a named
+function, let’s look at a use of the `map` method provided by the `Iterator`
+trait in the standard library. To use the `map` method to turn a vector of
+numbers into a vector of strings, we could use a closure, as in Listing 20-29.
+
+<Listing number="20-29" caption="Using a closure with the `map` method to convert numbers to strings">
 
 ```rust
-    let lista_de_numeros = vec![1, 2, 3];
-    let lista_de_strings: Vec<String> = lista_de_numeros.iter().map(ToString::to_string).collect();
+{{#rustdoc_include ../listings/ch20-advanced-features/listing-20-29/src/main.rs:here}}
 ```
 
-Observe que devemos usar a sintaxe totalmente qualificada sobre a qual falamos na seção "Traits Avançados" anteriormente, porque há várias funções disponíveis chamadas `to_string`. Aqui, estamos usando a função `to_string` definida no trait `ToString`, que a biblioteca padrão implementou para qualquer tipo que implementa `Display`.
+</Listing>
 
-Lembre-se da seção "Valores Enum" no Capítulo 6 que o nome de cada variante de enum que definimos também se torna uma função inicializadora. Podemos usar essas funções inicializadoras como ponteiros de função que implementam os traits de closure, o que significa que podemos especificar as funções inicializadoras como argumentos para métodos que recebem closures, como visto no Listagem 19-30.
+Or we could name a function as the argument to `map` instead of the closure.
+Listing 20-30 shows what this would look like.
 
-Listagem 19-30: Usando um inicializador de enum com o método `map` para criar uma instância `Status` a partir de números
+<Listing number="20-30" caption="Using the `String::to_string` function with the `map` method to convert numbers to strings">
 
 ```rust
-    enum Status {
-        Valor(u32),
-        Parar,
-    }
-
-    let lista_de_status: Vec<Status> = (0u32..20).map(Status::Valor).collect();
+{{#rustdoc_include ../listings/ch20-advanced-features/listing-20-30/src/main.rs:here}}
 ```
 
-Aqui, criamos instâncias de `Status::Valor` usando cada valor `u32` no intervalo em que `map` é chamado, usando a função inicializadora de `Status::Valor`. Algumas pessoas preferem este estilo e outras preferem usar closures. Eles compilam para o mesmo código, então use o estilo que for mais claro para você.
+</Listing>
 
-## Retornando Closures
+Note that we must use the fully qualified syntax that we talked about in the
+[“Advanced Traits”][advanced-traits]<!-- ignore --> section because there are
+multiple functions available named `to_string`.
 
-[[Closures]] são representadas por traits, o que significa que você não pode retornar closures diretamente. Na maioria dos casos em que você pode querer retornar um trait, você pode usar o tipo concreto que implementa o trait como o valor de retorno da função. No entanto, você geralmente não pode fazer isso com closures porque elas não têm um tipo concreto que seja retornável; você não tem permissão para usar o ponteiro de função `fn` como um tipo de retorno se a closure capturar quaisquer valores de seu escopo, por exemplo.
+Here, we’re using the `to_string` function defined in the `ToString` trait,
+which the standard library has implemented for any type that implements
+`Display`.
 
-Em vez disso, você normalmente usará a sintaxe `impl Trait` que aprendemos no Capítulo 10. Você pode retornar qualquer tipo de função, usando `Fn`, `FnOnce` e `FnMut`. Por exemplo, o código a seguir funcionará muito bem:
+Recall from the [“Enum Values”][enum-values]<!-- ignore --> section in Chapter
+6 that the name of each enum variant that we define also becomes an initializer
+function. We can use these initializer functions as function pointers that
+implement the closure traits, which means we can specify the initializer
+functions as arguments for methods that take closures, as seen in Listing 20-31.
+
+<Listing number="20-31" caption="Using an enum initializer with the `map` method to create a `Status` instance from numbers">
 
 ```rust
-fn retorna_closure() -> impl Fn(i32) -> i32 {
-    |x| x + 1
-}
+{{#rustdoc_include ../listings/ch20-advanced-features/listing-20-31/src/main.rs:here}}
 ```
 
-No entanto, como observamos na seção "Inferindo e Anotando Tipos de Closure" no Capítulo 13, cada closure também é seu próprio tipo distinto. Se você precisar trabalhar com múltiplas funções que têm a mesma assinatura, mas implementações diferentes, você precisará usar um trait object para elas. Considere o que acontece se você escrever código como o mostrado no Listagem 19-31.
+</Listing>
 
-Listagem 19-31: Criando um `Vec<T>` de closures definidas por funções que retornam tipos `impl Fn`
+Here, we create `Status::Value` instances using each `u32` value in the range
+that `map` is called on by using the initializer function of `Status::Value`.
+Some people prefer this style and some people prefer to use closures. They
+compile to the same code, so use whichever style is clearer to you.
+
+### Returning Closures
+
+Closures are represented by traits, which means you can’t return closures
+directly. In most cases where you might want to return a trait, you can instead
+use the concrete type that implements the trait as the return value of the
+function. However, you can’t usually do that with closures because they don’t
+have a concrete type that is returnable; you’re not allowed to use the function
+pointer `fn` as a return type if the closure captures any values from its
+scope, for example.
+
+Instead, you will normally use the `impl Trait` syntax we learned about in
+Chapter 10. You can return any function type, using `Fn`, `FnOnce`, and `FnMut`.
+For example, the code in Listing 20-32 will compile just fine.
+
+<Listing number="20-32" caption="Returning a closure from a function using the `impl Trait` syntax">
+
+```rust
+{{#rustdoc_include ../listings/ch20-advanced-features/listing-20-32/src/lib.rs}}
+```
+
+</Listing>
+
+However, as we noted in the [“Inferring and Annotating Closure
+Types”][closure-types]<!-- ignore --> section in Chapter 13, each closure is
+also its own distinct type. If you need to work with multiple functions that
+have the same signature but different implementations, you will need to use a
+trait object for them. Consider what happens if you write code like that shown
+in Listing 20-33.
+
+<Listing file-name="src/main.rs" number="20-33" caption="Creating a `Vec<T>` of closures defined by functions that return `impl Fn` types">
 
 ```rust,ignore,does_not_compile
-fn retorna_closure(a: i32) -> impl Fn(i32) -> i32 {
-    if a > 0 {
-        move |b| a + b
-    } else {
-        move |b| a - b
-    }
-}
+{{#rustdoc_include ../listings/ch20-advanced-features/listing-20-33/src/main.rs}}
 ```
 
-Aqui temos uma função `retorna_closure` que retorna uma closure que adiciona ou subtrai `a` de seu argumento `b`, dependendo se `a` é maior que 0. Observe que as closures que ela retorna são diferentes, embora implementem o mesmo trait `Fn(i32) -> i32`. Se tentarmos compilar isso, Rust nos avisa que não funcionará:
+</Listing>
 
-```console
-error[E0308]: `if` and `else` have incompatible types
- --> src/lib.rs:5:9
-  |
-2 | /     if a > 0 {
-3 | |         move |b| a + b
-  | |         -------------- expected because of this
-4 | |     } else {
-5 | |         move |b| a - b
-  | |         ^^^^^^^^^^^^^^ expected closure, found a different closure
-6 | |     }
-  | |_____- `if` and `else` have incompatible types
-  |
-  = note: expected type `[closure@src/lib.rs:3:9: 3:23 a:_]`
-             found type `[closure@src/lib.rs:5:9: 5:23 a:_]`
-  = note: no two closures, even if identical, have the same type
-  = help: consider boxing your closure and/or using it as a trait object
+Here we have two functions, `returns_closure` and `returns_initialized_closure`,
+which both return `impl Fn(i32) -> i32`. Notice that the closures that they
+return are different, even though they implement the same type. If we try to
+compile this, Rust lets us know that it won’t work:
+
+```text
+{{#include ../listings/ch20-advanced-features/listing-20-33/output.txt}}
 ```
 
-A mensagem de erro nos diz que `if` e `else` têm tipos incompatíveis e aponta que não há duas closures, mesmo que idênticas, que tenham o mesmo tipo. Mesmo que retornem `impl Fn(i32) -> i32`, os tipos opacos que Rust gera para cada uma são distintos. (Isso é semelhante a como Rust produz tipos concretos diferentes para blocos assíncronos distintos, mesmo quando têm o mesmo tipo de saída, como vimos na seção "O Tipo `Pin` e o Trait `Unpin`" no Capítulo 17.) Vimos uma solução para este problema algumas vezes agora: podemos usar um trait object, como no Listagem 19-32.
+The error message tells us that whenever we return an `impl Trait`, Rust
+creates a unique _opaque type_, a type where we cannot see into the details of
+what Rust constructs for us, nor can we guess the type Rust will generate to
+write ourselves. So, even though these functions return closures that implement
+the same trait, `Fn(i32) -> i32`, the opaque types Rust generates for each are
+distinct. (This is similar to how Rust produces different concrete types for
+distinct async blocks even when they have the same output type, as we saw in
+[“The `Pin` Type and the `Unpin` Trait”][future-types]<!-- ignore --> in
+Chapter 17.) We have seen a solution to this problem a few times now: We can
+use a trait object, as in Listing 20-34.
 
-Listagem 19-32: Criando um `Vec<T>` de closures definidas por funções que retornam `Box<dyn Fn>` para que tenham o mesmo tipo
+<Listing number="20-34" caption="Creating a `Vec<T>` of closures defined by functions that return `Box<dyn Fn>` so that they have the same type">
 
 ```rust
-fn retorna_closure(a: i32) -> Box<dyn Fn(i32) -> i32> {
-    if a > 0 {
-        Box::new(move |b| a + b)
-    } else {
-        Box::new(move |b| a - b)
-    }
-}
+{{#rustdoc_include ../listings/ch20-advanced-features/listing-20-34/src/main.rs:here}}
 ```
 
-Este código compilará perfeitamente. Para saber mais sobre trait objects, consulte a seção "Usando Objetos de Trait que Permitem Valores de Tipos Diferentes" no Capítulo 17.
+</Listing>
 
-A seguir, vamos ver macros!
+This code will compile just fine. For more about trait objects, refer to the
+section [“Using Trait Objects To Abstract over Shared
+Behavior”][trait-objects]<!-- ignore --> in Chapter 18.
+
+Next, let’s look at macros!
+
+[advanced-traits]: ch20-02-advanced-traits.html#advanced-traits
+[enum-values]: ch06-01-defining-an-enum.html#enum-values
+[closure-types]: ch13-01-closures.html#closure-type-inference-and-annotation
+[future-types]: ch17-03-more-futures.html
+[trait-objects]: ch18-02-trait-objects.html
