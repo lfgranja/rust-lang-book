@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Usando Objetos de Trait para Abstrair Comportamento Compartilhado - The Rust Programming Language</title>
+        <title>Objetos de Trait - A Linguagem de Programação Rust</title>
 
 
         <!-- Custom HTML head -->
@@ -39,10 +39,10 @@
             const path_to_root = "";
             const default_light_theme = "light";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-d50822a8.js";
+            window.path_to_searchindex_js = "searchindex-7da9f5b6.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-7a5975c3.js"></script>
+        <script src="toc-4f1b68fd.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -141,13 +141,13 @@
                         </button>
                     </div>
 
-                    <h1 class="menu-title">The Rust Programming Language</h1>
+                    <h1 class="menu-title">A Linguagem de Programação Rust</h1>
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
                         </a>
-                        <a href="https://github.com/rust-lang/book" title="Git repository" aria-label="Git repository">
+                        <a href="https://github.com/lfgranja/rust-lang-book" title="Git repository" aria-label="Git repository">
                             <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></span>
                         </a>
 
@@ -181,154 +181,318 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="usando-objetos-de-trait-que-permitem-valores-de-tipos-diferentes"><a class="header" href="#usando-objetos-de-trait-que-permitem-valores-de-tipos-diferentes">Usando Objetos de Trait que Permitem Valores de Tipos Diferentes</a></h1>
-<p>No Capítulo 8, mencionamos que uma limitação dos vetores é que eles podem armazenar apenas elementos de um único tipo. Criamos uma solução alternativa no Listagem 8-10, onde definimos um enum <code>CelulaPlanilha</code> que tinha variantes para conter inteiros, floats e textos. Isso significava que poderíamos armazenar diferentes tipos de dados em cada célula e ainda ter um vetor que representasse uma linha de células. Esta é uma solução perfeita quando nossos itens intercambiáveis são um conjunto fixo de tipos que conhecemos quando nosso código é compilado.</p>
-<p>No entanto, às vezes queremos que nosso usuário da biblioteca seja capaz de estender o conjunto de tipos que são válidos em uma situação específica. Para mostrar como podemos conseguir isso, criaremos uma ferramenta de interface gráfica de usuário (GUI) de exemplo que itera através de uma lista de itens, chamando um método <code>desenhar</code> em cada um para desenhá-lo na tela — uma técnica comum para ferramentas GUI. Criaremos uma caixa (crate) de biblioteca chamada <code>gui</code> que contém a estrutura de uma biblioteca GUI. Essa caixa pode incluir alguns tipos para as pessoas usarem, como <code>Botao</code> ou <code>CampoTexto</code>. Além disso, os usuários de <code>gui</code> desejarão criar seus próprios tipos que podem ser desenhados: por exemplo, um programador pode adicionar uma <code>Imagem</code> e outro pode adicionar uma <code>CaixaSelecao</code>.</p>
-<p>Não implementaremos uma biblioteca GUI completa para este exemplo, mas mostraremos como as peças se encaixariam. No momento de escrever a biblioteca, não podemos saber e definir todos os tipos que outros programadores podem querer criar. Mas sabemos que <code>gui</code> precisa acompanhar muitos valores de tipos diferentes, e precisa chamar um método <code>desenhar</code> em cada um desses valores de tipos diferentes. Não precisa saber exatamente o que acontecerá quando chamarmos o método <code>desenhar</code>, apenas que o valor terá esse método disponível para chamarmos.</p>
-<p>Para fazer isso em uma linguagem com herança, poderíamos definir uma classe chamada <code>Componente</code> que tem um método chamado <code>desenhar</code> nela. As outras classes, como <code>Botao</code>, <code>Imagem</code> e <code>CaixaSelecao</code>, herdariam de <code>Componente</code> e, portanto, herdariam o método <code>desenhar</code>. Elas poderiam cada uma sobrescrever o método <code>desenhar</code> para definir seu comportamento personalizado, mas o framework poderia tratar todos os tipos como se fossem instâncias de <code>Componente</code> e chamar <code>desenhar</code> nelas. Mas como Rust não tem herança, precisamos de outra maneira de estruturar a biblioteca <code>gui</code> para permitir que os usuários a estendam com novos tipos.</p>
-<h2 id="definindo-um-trait-para-comportamento-comum"><a class="header" href="#definindo-um-trait-para-comportamento-comum">Definindo um Trait para Comportamento Comum</a></h2>
-<p>Para implementar o comportamento que queremos que <code>gui</code> tenha, definiremos um [[Traits|trait]] chamado <code>Desenhavel</code> que terá um método chamado <code>desenhar</code>. Então, podemos definir um vetor que recebe um <em>trait object</em>. Um trait object aponta para uma instância de um tipo que implementa nosso trait especificado, bem como uma tabela usada para procurar métodos desse trait em tempo de execução. Criamos um trait object especificando algum tipo de ponteiro, como uma referência <code>&amp;</code> ou um ponteiro inteligente <code>Box&lt;T&gt;</code>, depois a palavra-chave <code>dyn</code>, e então especificando o trait relevante. (Falaremos sobre o motivo pelo qual trait objects devem usar um ponteiro no Capítulo 19 na seção “Tipos de Tamanho Dinâmico e o Trait <code>Sized</code>”.) Podemos usar trait objects no lugar de um tipo genérico ou concreto. Onde quer que usemos um trait object, o sistema de tipos de Rust garantirá em tempo de compilação que qualquer valor usado nesse contexto implementará o trait do trait object. Consequentemente, não precisamos saber todos os tipos possíveis em tempo de compilação.</p>
-<p>Mencionamos que em Rust, evitamos usar os termos “objeto” e “herança” para diferenciar de outras linguagens, porque eles têm significados diferentes. No entanto, <strong>trait objects</strong> (objetos de trait) em Rust são bastante semelhantes a objetos em outras linguagens, no sentido de que eles combinam dados e comportamento. Mas trait objects diferem de objetos tradicionais porque não podemos adicionar dados a um trait object. Trait objects não são tão úteis quanto objetos em outras linguagens: seu propósito específico é permitir abstração sobre comportamento comum.</p>
-<p>Listagem 17-3: Definição do trait <code>Desenhavel</code></p>
-<pre class="playground"><code class="language-rust edition2024"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>pub trait Desenhavel {
-    fn desenhar(&amp;self);
-}
-<span class="boring">}</span></code></pre>
-<p>Essa sintaxe deve ser familiar de nossas discussões sobre como definir traits no Capítulo 10. Em seguida vem a nova sintaxe: Listagem 17-4 define uma struct chamada <code>Tela</code> que contém um vetor chamado <code>componentes</code>. Este vetor é do tipo <code>Box&lt;dyn Desenhavel&gt;</code>, que é um trait object; é um substituto para qualquer tipo dentro de um <code>Box</code> que implementa o trait <code>Desenhavel</code>.</p>
-<p>Listagem 17-4: Definição da struct <code>Tela</code> com um campo <code>componentes</code> contendo um vetor de trait objects que implementam <code>Desenhavel</code></p>
-<pre class="playground"><code class="language-rust edition2024"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>pub struct Tela {
-    pub componentes: Vec&lt;Box&lt;dyn Desenhavel&gt;&gt;,
-}
-
-impl Tela {
+                        <!-- Old headings. Do not remove or links may break. -->
+<p><a id="using-trait-objects-that-allow-for-values-of-different-types"></a></p>
+<h2 id="usando-objetos-de-trait-para-abstrair-comportamentos-comuns"><a class="header" href="#usando-objetos-de-trait-para-abstrair-comportamentos-comuns">Usando Objetos de Trait para Abstrair Comportamentos Comuns</a></h2>
+<p>No Capítulo 8, mencionamos que uma limitação dos vetores é que eles podem
+armazenar elementos de apenas um tipo. Criamos uma solução alternativa na Listagem 8-9 onde
+definimos um enum <code>SpreadsheetCell</code> que tinha variantes para conter inteiros, floats,
+e texto. Isso significava que podíamos armazenar diferentes tipos de dados em cada célula e
+ainda ter um vetor que representava uma linha de células. Esta é uma solução perfeitamente boa
+quando nossos itens intercambiáveis são um conjunto fixo de tipos que conhecemos
+quando nosso código é compilado.</p>
+<p>No entanto, às vezes queremos que nosso usuário da biblioteca seja capaz de estender o conjunto de
+tipos que são válidos em uma situação particular. Para mostrar como podemos alcançar
+isso, criaremos um exemplo de ferramenta de interface gráfica do usuário (GUI) que itera
+através de uma lista de itens, chamando um método <code>draw</code> em cada um para desenhá-lo na
+tela—uma técnica comum para ferramentas GUI. Criaremos um crate de biblioteca chamado
+<code>gui</code> que contém a estrutura de uma biblioteca GUI. Este crate pode incluir
+alguns tipos para as pessoas usarem, como <code>Button</code> ou <code>TextField</code>. Além disso,
+usuários do <code>gui</code> vão querer criar seus próprios tipos que podem ser desenhados: Por
+exemplo, um programador pode adicionar uma <code>Image</code>, e outro pode adicionar uma
+<code>SelectBox</code>.</p>
+<p>No momento de escrever a biblioteca, não podemos saber e definir todos os tipos que
+outros programadores podem querer criar. Mas sabemos que <code>gui</code> precisa manter
+o controle de muitos valores de tipos diferentes, e precisa chamar um método <code>draw</code>
+em cada um desses valores de tipos diferentes. Não precisa saber exatamente o que
+acontecerá quando chamarmos o método <code>draw</code>, apenas que o valor terá esse
+método disponível para chamarmos.</p>
+<p>Para fazer isso em uma linguagem com herança, poderíamos definir uma classe chamada
+<code>Component</code> que tem um método chamado <code>draw</code>. As outras classes, tais como
+<code>Button</code>, <code>Image</code>, e <code>SelectBox</code>, herdariam de <code>Component</code> e assim
+herdariam o método <code>draw</code>. Elas poderiam cada uma sobrescrever o método <code>draw</code> para definir
+seu comportamento customizado, mas o framework poderia tratar todos os tipos como se
+eles fossem instâncias de <code>Component</code> e chamar <code>draw</code> neles. Mas como Rust
+não tem herança, precisamos de outra maneira de estruturar a biblioteca <code>gui</code> para
+permitir que usuários criem novos tipos compatíveis com a biblioteca.</p>
+<h3 id="definindo-uma-trait-para-comportamento-comum"><a class="header" href="#definindo-uma-trait-para-comportamento-comum">Definindo uma Trait para Comportamento Comum</a></h3>
+<p>Para implementar o comportamento que queremos que <code>gui</code> tenha, definiremos uma trait
+chamada <code>Draw</code> que terá um método chamado <code>draw</code>. Então, podemos definir um
+vetor que recebe um objeto de trait (trait object). Um <em>objeto de trait</em> aponta tanto para uma instância
+de um tipo implementando nossa trait especificada quanto para uma tabela usada para procurar métodos
+de trait nesse tipo em tempo de execução. Criamos um objeto de trait especificando algum
+tipo de ponteiro, tal como uma referência ou um ponteiro inteligente <code>Box&lt;T&gt;</code>, então a
+palavra-chave <code>dyn</code>, e então especificando a trait relevante. (Falaremos sobre a
+razão pela qual objetos de trait devem usar um ponteiro em <a href="ch20-03-advanced-types.html#dynamically-sized-types-and-the-sized-trait">“Tipos Dinamicamente Dimensionados e a
+Trait <code>Sized</code>”</a><!-- ignore --> no Capítulo 20.) Podemos usar
+objetos de trait no lugar de um tipo genérico ou concreto. Onde quer que usemos um objeto
+de trait, o sistema de tipos do Rust garantirá em tempo de compilação que qualquer valor usado
+nesse contexto implementará a trait do objeto de trait. Consequentemente, não
+precisamos saber todos os tipos possíveis em tempo de compilação.</p>
+<p>Mencionamos que, em Rust, nos abstemos de chamar structs e enums de
+“objetos” para distingui-los dos objetos de outras linguagens. Em uma struct ou
+enum, os dados nos campos da struct e o comportamento nos blocos <code>impl</code> são
+separados, enquanto em outras linguagens, os dados e comportamento combinados em um
+conceito é frequentemente rotulado como um objeto. Objetos de trait diferem de objetos em outras
+linguagens no sentido de que não podemos adicionar dados a um objeto de trait. Objetos de trait não são tão
+geralmente úteis quanto objetos em outras linguagens: Seu propósito específico é
+permitir abstração através de comportamento comum.</p>
+<p>A Listagem 18-3 mostra como definir uma trait chamada <code>Draw</code> com um método chamado
+<code>draw</code>.</p>
+<listing number="18-3" file-name="src/lib.rs" caption="Definição da trait `Draw`">
+<pre><code class="language-rust noplayground">pub trait Draw {
+    fn draw(&amp;self);
+}</code></pre>
+</listing>
+<p>Essa sintaxe deve parecer familiar de nossas discussões sobre como definir traits
+no Capítulo 10. A seguir vem alguma sintaxe nova: A Listagem 18-4 define uma struct chamada
+<code>Screen</code> que segura um vetor chamado <code>components</code>. Este vetor é do tipo
+<code>Box&lt;dyn Draw&gt;</code>, que é um objeto de trait; é um substituto para qualquer tipo dentro de um
+<code>Box</code> que implementa a trait <code>Draw</code>.</p>
+<listing number="18-4" file-name="src/lib.rs" caption="Definição da struct `Screen` com um campo `components` segurando um vetor de objetos de trait que implementam a trait `Draw`">
+<pre><code class="language-rust noplayground"><span class="boring">pub trait Draw {
+</span><span class="boring">    fn draw(&amp;self);
+</span><span class="boring">}
+</span><span class="boring">
+</span>pub struct Screen {
+    pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;,
+}</code></pre>
+</listing>
+<p>Na struct <code>Screen</code>, definiremos um método chamado <code>run</code> que chamará o
+método <code>draw</code> em cada um de seus <code>components</code>, como mostrado na Listagem 18-5.</p>
+<listing number="18-5" file-name="src/lib.rs" caption="Um método `run` em `Screen` que chama o método `draw` em cada componente">
+<pre><code class="language-rust noplayground"><span class="boring">pub trait Draw {
+</span><span class="boring">    fn draw(&amp;self);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">pub struct Screen {
+</span><span class="boring">    pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span>impl Screen {
     pub fn run(&amp;self) {
-        for componente in self.componentes.iter() {
-            componente.desenhar();
+        for component in self.components.iter() {
+            component.draw();
         }
     }
-}
-<span class="boring">}</span></code></pre>
-<p>Na struct <code>Tela</code>, armazenaremos um vetor de trait objects <code>Box&lt;dyn Desenhavel&gt;</code>. Na struct <code>Tela</code>, definiremos um método <code>run</code> que chama o método <code>desenhar</code> em cada um de seus <code>componentes</code>.</p>
-<p>Isso funciona de forma diferente de definir uma struct que usa um parâmetro de tipo genérico com trait bounds. Um parâmetro de tipo genérico só pode ser substituído por um tipo concreto de cada vez, enquanto trait objects permitem que múltiplos tipos concretos preencham o trait object em tempo de execução. Por exemplo, poderíamos ter definido a struct <code>Tela</code> usando um tipo genérico e um trait bound como no Listagem 17-5:</p>
-<p>Listagem 17-5: Uma implementação alternativa da struct <code>Tela</code> e seu método <code>run</code> usando genéricos e trait bounds</p>
-<pre class="playground"><code class="language-rust edition2024"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>pub struct Tela&lt;T: Desenhavel&gt; {
-    pub componentes: Vec&lt;T&gt;,
+}</code></pre>
+</listing>
+<p>Isso funciona diferentemente de definir uma struct que usa um parâmetro de tipo genérico
+com limites de trait. Um parâmetro de tipo genérico pode ser substituído por
+apenas um tipo concreto de cada vez, enquanto objetos de trait permitem múltiplos
+tipos concretos preencherem o objeto de trait em tempo de execução. Por exemplo, nós
+poderíamos ter definido a struct <code>Screen</code> usando um tipo genérico e um limite de trait,
+como na Listagem 18-6.</p>
+<listing number="18-6" file-name="src/lib.rs" caption="Uma implementação alternativa da struct `Screen` e seu método `run` usando genéricos e limites de trait">
+<pre><code class="language-rust noplayground"><span class="boring">pub trait Draw {
+</span><span class="boring">    fn draw(&amp;self);
+</span><span class="boring">}
+</span><span class="boring">
+</span>pub struct Screen&lt;T: Draw&gt; {
+    pub components: Vec&lt;T&gt;,
 }
 
-impl&lt;T&gt; Tela&lt;T&gt;
+impl&lt;T&gt; Screen&lt;T&gt;
 where
-    T: Desenhavel,
+    T: Draw,
 {
     pub fn run(&amp;self) {
-        for componente in self.componentes.iter() {
-            componente.desenhar();
+        for component in self.components.iter() {
+            component.draw();
         }
     }
-}
-<span class="boring">}</span></code></pre>
-<p>Isso nos restringe a uma instância de <code>Tela</code> que tem uma lista de componentes todos do tipo <code>Botao</code> ou todos do tipo <code>CampoTexto</code>. Se você tiver apenas coleções homogêneas, usar genéricos e trait bounds é preferível porque as definições serão monomorfizadas em tempo de compilação para usar os tipos concretos.</p>
-<p>Por outro lado, com o método usando trait objects, uma instância de <code>Tela</code> pode conter um <code>Vec&lt;T&gt;</code> que contém um <code>Box&lt;Botao&gt;</code> bem como um <code>Box&lt;CampoTexto&gt;</code>. Vamos ver como isso funciona e depois falaremos sobre as implicações de desempenho em tempo de execução.</p>
-<h2 id="implementando-o-trait"><a class="header" href="#implementando-o-trait">Implementando o Trait</a></h2>
-<p>Agora vamos adicionar alguns tipos que implementam o trait <code>Desenhavel</code>. Forneceremos o tipo <code>Botao</code>. Novamente, a implementação real de uma biblioteca GUI está além do escopo deste livro, então o corpo do método <code>desenhar</code> não terá nenhuma implementação útil em seu corpo. Para imaginar como a implementação se pareceria, uma struct <code>Botao</code> poderia ter campos para <code>largura</code>, <code>altura</code> e <code>rotulo</code>, como mostrado no Listagem 17-6:</p>
-<p>Listagem 17-6: Uma struct <code>Botao</code> que implementa o trait <code>Desenhavel</code></p>
-<pre class="playground"><code class="language-rust edition2024"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>pub struct Botao {
-    pub largura: u32,
-    pub altura: u32,
-    pub rotulo: String,
+}</code></pre>
+</listing>
+<p>Isso nos restringe a uma instância de <code>Screen</code> que tem uma lista de componentes todos do
+tipo <code>Button</code> ou todos do tipo <code>TextField</code>. Se você só terá coleções homogêneas,
+usar genéricos e limites de trait é preferível porque as
+definições serão monomorfizadas em tempo de compilação para usar os tipos concretos.</p>
+<p>Por outro lado, com o método usando objetos de trait, uma instância de <code>Screen</code>
+pode segurar um <code>Vec&lt;T&gt;</code> que contém um <code>Box&lt;Button&gt;</code> bem como um
+<code>Box&lt;TextField&gt;</code>. Vamos olhar para como isso funciona, e então falaremos sobre as
+implicações de desempenho em tempo de execução.</p>
+<h3 id="implementando-a-trait"><a class="header" href="#implementando-a-trait">Implementando a Trait</a></h3>
+<p>Agora adicionaremos alguns tipos que implementam a trait <code>Draw</code>. Forneceremos o
+tipo <code>Button</code>. Novamente, implementar uma biblioteca GUI real está além do escopo
+deste livro, então o método <code>draw</code> não terá nenhuma implementação útil em seu
+corpo. Para imaginar como a implementação poderia se parecer, uma struct <code>Button</code>
+poderia ter campos para <code>width</code>, <code>height</code>, e <code>label</code>, como mostrado na Listagem 18-7.</p>
+<listing number="18-7" file-name="src/lib.rs" caption="Uma struct `Button` que implementa a trait `Draw`">
+<pre><code class="language-rust noplayground"><span class="boring">pub trait Draw {
+</span><span class="boring">    fn draw(&amp;self);
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">pub struct Screen {
+</span><span class="boring">    pub components: Vec&lt;Box&lt;dyn Draw&gt;&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Screen {
+</span><span class="boring">    pub fn run(&amp;self) {
+</span><span class="boring">        for component in self.components.iter() {
+</span><span class="boring">            component.draw();
+</span><span class="boring">        }
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>pub struct Button {
+    pub width: u32,
+    pub height: u32,
+    pub label: String,
 }
 
-impl Desenhavel for Botao {
-    fn desenhar(&amp;self) {
-        // código para desenhar um botão na verdade
+impl Draw for Button {
+    fn draw(&amp;self) {
+        // code to actually draw a button
+    }
+}</code></pre>
+</listing>
+<p>Os campos <code>width</code>, <code>height</code>, e <code>label</code> em <code>Button</code> diferirão dos
+campos em outros componentes; por exemplo, um tipo <code>TextField</code> poderia ter esses
+mesmos campos mais um campo <code>placeholder</code>. Cada um dos tipos que queremos desenhar na
+tela implementará a trait <code>Draw</code> mas usará código diferente no
+método <code>draw</code> para definir como desenhar esse tipo particular, como <code>Button</code> tem aqui
+(sem o código GUI real, como mencionado). O tipo <code>Button</code>, por exemplo,
+poderia ter um bloco <code>impl</code> adicional contendo métodos relacionados ao que
+acontece quando um usuário clica no botão. Esses tipos de métodos não se aplicarão a
+tipos como <code>TextField</code>.</p>
+<p>Se alguém usando nossa biblioteca decidir implementar uma struct <code>SelectBox</code> que tem
+campos <code>width</code>, <code>height</code>, e <code>options</code>, eles implementariam a trait <code>Draw</code>
+no tipo <code>SelectBox</code> também, como mostrado na Listagem 18-8.</p>
+<listing number="18-8" file-name="src/main.rs" caption="Outro crate usando `gui` e implementando a trait `Draw` em uma struct `SelectBox`">
+<pre><code class="language-rust ignore">use gui::Draw;
+
+struct SelectBox {
+    width: u32,
+    height: u32,
+    options: Vec&lt;String&gt;,
+}
+
+impl Draw for SelectBox {
+    fn draw(&amp;self) {
+        // code to actually draw a select box
     }
 }
-<span class="boring">}</span></code></pre>
-<p>Os campos <code>largura</code>, <code>altura</code> e <code>rotulo</code> em <code>Botao</code> serão diferentes dos campos em outros componentes; por exemplo, um tipo <code>CampoTexto</code> pode ter esses mesmos campos, mais um campo <code>placeholder</code>. Cada um dos tipos que queremos desenhar na tela implementará o trait <code>Desenhavel</code> mas usará um código diferente no método <code>desenhar</code> para definir como desenhar esse tipo específico, como <code>Botao</code> tem aqui (sem o código GUI real, como mencionado). O tipo <code>Botao</code>, por exemplo, pode ter um bloco <code>impl</code> separado contendo métodos relacionados ao que acontece quando o botão é clicado. Esses tipos de métodos não se aplicam a um <code>CampoTexto</code>.</p>
-<p>Se alguém usando nossa biblioteca decidir implementar uma struct <code>CaixaSelecao</code> que tem <code>largura</code>, <code>altura</code> e <code>opcoes</code>, eles podem implementar o trait <code>Desenhavel</code> na struct <code>CaixaSelecao</code> também, como mostrado no Listagem 17-7:</p>
-<p>Listagem 17-7: Outro tipo, <code>CaixaSelecao</code>, implementando o trait <code>Desenhavel</code>, em outra crate</p>
-<pre class="playground"><code class="language-rust edition2024"><span class="boring">#![allow(unused)]
-</span><span class="boring">fn main() {
-</span>use gui::Desenhavel;
-
-struct CaixaSelecao {
-    largura: u32,
-    altura: u32,
-    opcoes: Vec&lt;String&gt;,
-}
-
-impl Desenhavel for CaixaSelecao {
-    fn desenhar(&amp;self) {
-        // código para desenhar uma caixa de seleção na verdade
-    }
-}
-<span class="boring">}</span></code></pre>
-<p>Agora que implementamos <code>Desenhavel</code> em <code>Botao</code> (dentro da biblioteca) e <code>CaixaSelecao</code> (fora da biblioteca), o usuário da nossa biblioteca pode criar uma instância de <code>Tela</code> e adicionar instâncias de <code>Botao</code> e <code>CaixaSelecao</code> a ela, e então chamar <code>run</code>, como mostrado no Listagem 17-8.</p>
-<p>Listagem 17-8: Usando trait objects para armazenar valores de tipos diferentes que implementam o mesmo trait</p>
-<pre class="playground"><code class="language-rust edition2024">use gui::{Desenhavel, Botao, Tela};
+<span class="boring">
+</span><span class="boring">fn main() {}</span></code></pre>
+</listing>
+<p>O usuário da nossa biblioteca agora pode escrever sua função <code>main</code> para criar uma instância de <code>Screen</code>.
+Para a instância de <code>Screen</code>, eles podem adicionar um <code>SelectBox</code> e um <code>Button</code>
+colocando cada um em um <code>Box&lt;T&gt;</code> para se tornar um objeto de trait. Eles podem então chamar o
+método <code>run</code> na instância de <code>Screen</code>, que chamará <code>draw</code> em cada um dos
+componentes. A Listagem 18-9 mostra esta implementação.</p>
+<listing number="18-9" file-name="src/main.rs" caption="Usando objetos de trait para armazenar valores de tipos diferentes que implementam a mesma trait">
+<pre><code class="language-rust ignore"><span class="boring">use gui::Draw;
+</span><span class="boring">
+</span><span class="boring">struct SelectBox {
+</span><span class="boring">    width: u32,
+</span><span class="boring">    height: u32,
+</span><span class="boring">    options: Vec&lt;String&gt;,
+</span><span class="boring">}
+</span><span class="boring">
+</span><span class="boring">impl Draw for SelectBox {
+</span><span class="boring">    fn draw(&amp;self) {
+</span><span class="boring">        // code to actually draw a select box
+</span><span class="boring">    }
+</span><span class="boring">}
+</span><span class="boring">
+</span>use gui::{Button, Screen};
 
 fn main() {
-    let tela = Tela {
-        componentes: vec![
-            Box::new(CaixaSelecao {
-                largura: 75,
-                altura: 10,
-                opcoes: vec![
-                    String::from("Sim"),
-                    String::from("Talvez"),
-                    String::from("Não"),
+    let screen = Screen {
+        components: vec![
+            Box::new(SelectBox {
+                width: 75,
+                height: 10,
+                options: vec![
+                    String::from("Yes"),
+                    String::from("Maybe"),
+                    String::from("No"),
                 ],
             }),
-            Box::new(Botao {
-                largura: 50,
-                altura: 10,
-                rotulo: String::from("OK"),
+            Box::new(Button {
+                width: 50,
+                height: 10,
+                label: String::from("OK"),
             }),
         ],
     };
 
-    tela.run();
+    screen.run();
 }</code></pre>
-<p>Quando escrevemos a biblioteca, não sabíamos que alguém poderia adicionar o tipo <code>CaixaSelecao</code>, mas nossa implementação de <code>Tela</code> foi capaz de operar na nova variante e desenhá-la. Este conceito—de se preocupar apenas com as mensagens que um valor responde, em vez do tipo concreto do valor—é semelhante ao conceito de <em>duck typing</em> em linguagens tipadas dinamicamente: se anda como um pato e grasna como um pato, então deve ser um pato! Na implementação de <code>run</code> na <code>Tela</code> no Listagem 17-4, <code>run</code> não precisa saber qual é o tipo concreto de cada componente. Ele não verifica se um componente é uma instância de um <code>Botao</code> ou uma <code>CaixaSelecao</code>, ele apenas chama o método <code>desenhar</code> no componente. Ao especificar <code>Box&lt;dyn Desenhavel&gt;</code> como o tipo dos valores no vetor <code>componentes</code>, definimos que a <code>Tela</code> precisa de valores que possamos chamar o método <code>desenhar</code>.</p>
-<p>A vantagem de usar trait objects e o sistema de tipos de Rust para escrever código semelhante ao código usando duck typing é que nunca precisamos verificar se um valor implementa um método específico em tempo de execução ou nos preocupar em obter erros se invocarmos um método mas o valor não o implementar. Rust não compilará nosso código se os valores não implementarem os traits que os trait objects precisam.</p>
-<p>Por exemplo, o Listagem 17-9 mostra o que acontece se tentarmos criar uma <code>Tela</code> com uma <code>String</code> como componente:</p>
-<p>Listagem 17-9: Tentando usar um tipo que não implementa o trait do trait object</p>
-<pre class="playground"><code class="language-rust edition2024">use gui::Tela;
+</listing>
+<p>Quando escrevemos a biblioteca, não sabíamos que alguém poderia adicionar o
+tipo <code>SelectBox</code>, mas nossa implementação de <code>Screen</code> foi capaz de operar no
+novo tipo e desenhá-lo porque <code>SelectBox</code> implementa a trait <code>Draw</code>, o que
+significa que implementa o método <code>draw</code>.</p>
+<p>Esse conceito—de estar preocupado apenas com as mensagens que um valor responde
+em vez do tipo concreto do valor—é similar ao conceito de <em>duck typing</em>
+(tipagem pato) em linguagens dinamicamente tipadas: Se anda como um pato e grasna como
+um pato, então deve ser um pato! Na implementação de <code>run</code> em <code>Screen</code> na
+Listagem 18-5, <code>run</code> não precisa saber qual é o tipo concreto de cada
+componente. Ele não verifica se um componente é uma instância de um <code>Button</code>
+ou um <code>SelectBox</code>, ele apenas chama o método <code>draw</code> no componente. Ao
+especificar <code>Box&lt;dyn Draw&gt;</code> como o tipo dos valores no vetor <code>components</code>,
+definimos <code>Screen</code> para precisar de valores nos quais podemos chamar o método <code>draw</code>.</p>
+<p>A vantagem de usar objetos de trait e o sistema de tipos do Rust para escrever código
+similar a código usando duck typing é que nunca temos que verificar se um
+valor implementa um método particular em tempo de execução ou nos preocupar em obter erros
+se um valor não implementa um método mas o chamamos de qualquer maneira. Rust não compilará
+nosso código se os valores não implementarem as traits que os objetos de trait precisam.</p>
+<p>Por exemplo, a Listagem 18-10 mostra o que acontece se tentarmos criar uma <code>Screen</code>
+com uma <code>String</code> como um componente.</p>
+<listing number="18-10" file-name="src/main.rs" caption="Tentando usar um tipo que não implementa a trait do objeto de trait">
+<pre><code class="language-rust ignore does_not_compile">use gui::Screen;
 
 fn main() {
-    let tela = Tela {
-        componentes: vec![
-            Box::new(String::from("Olá")),
-        ],
+    let screen = Screen {
+        components: vec![Box::new(String::from("Hi"))],
     };
 
-    tela.run();
+    screen.run();
 }</code></pre>
-<p>Receberemos este erro porque <code>String</code> não implementa o trait <code>Desenhavel</code>:</p>
+</listing>
+<p>Receberemos este erro porque <code>String</code> não implementa a trait <code>Draw</code>:</p>
 <pre><code class="language-console">$ cargo run
    Compiling gui v0.1.0 (file:///projects/gui)
-error[E0277]: the trait bound `String: Desenhavel` is not satisfied
-  --&gt; src/main.rs:5:13
-   |
-5  |             Box::new(String::from("Olá")),
-   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Desenhavel` is not implemented for `String`
-   |
-   = note: required for the cast to the object type `dyn Desenhavel`
+error[E0277]: the trait bound `String: Draw` is not satisfied
+ --&gt; src/main.rs:5:26
+  |
+5 |         components: vec![Box::new(String::from("Hi"))],
+  |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ the trait `Draw` is not implemented for `String`
+  |
+  = help: the trait `Draw` is implemented for `Button`
+  = note: required for the cast from `Box&lt;String&gt;` to `Box&lt;dyn Draw&gt;`
 
 For more information about this error, try `rustc --explain E0277`.
-error: could not compile `gui` due to previous error
+error: could not compile `gui` (bin "gui") due to 1 previous error
 </code></pre>
-<p>Este erro nos avisa que estamos passando algo para a <code>Tela</code> que não queríamos passar ou que devemos implementar <code>Desenhavel</code> na <code>String</code> para que a <code>Tela</code> possa chamar <code>desenhar</code> nela.</p>
-<h2 id="trait-objects-realizam-despacho-dinâmico"><a class="header" href="#trait-objects-realizam-despacho-dinâmico">Trait Objects Realizam Despacho Dinâmico</a></h2>
-<p>Lembre-se da seção “Desempenho de Código Usando Genéricos” no Capítulo 10, nossa discussão sobre o processo de monomorfização realizado pelo compilador quando usamos <em>trait bounds</em> em genéricos: o compilador gera implementações não genéricas de funções e métodos para cada tipo concreto que usamos no lugar de um parâmetro de tipo genérico. O código que resulta da monomorfização está fazendo <em>despacho estático</em> (static dispatch), que é quando o compilador sabe qual método você está chamando em tempo de compilação. Isso se opõe ao <em>despacho dinâmico</em> (dynamic dispatch), que é quando o compilador não pode dizer em tempo de compilação qual método você está chamando. Em casos de despacho dinâmico, o compilador emite código que descobrirá em tempo de execução qual método chamar.</p>
-<p>Quando usamos trait objects, Rust deve usar despacho dinâmico. O compilador não sabe todos os tipos que podem ser usados com o código que está usando trait objects, então ele não sabe qual método implementado em qual tipo chamar. Em vez disso, em tempo de execução, Rust usa os ponteiros dentro do trait object para saber qual método chamar. Há um custo de tempo de execução quando essa busca acontece que não ocorre com o despacho estático. O despacho dinâmico também impede que o compilador escolha fazer <em>inline</em> do código de um método, o que por sua vez impede algumas otimizações. No entanto, ganhamos flexibilidade extra no código que escrevemos e no suporte no Listagem 17-5 e fomos capazes de suportar no Listagem 17-9, então é uma troca a considerar.</p>
+<p>Este erro nos deixa saber que ou estamos passando algo para <code>Screen</code> que não
+pretendíamos passar e então devemos passar um tipo diferente, ou devemos implementar
+<code>Draw</code> em <code>String</code> para que <code>Screen</code> seja capaz de chamar <code>draw</code> nela.</p>
+<!-- Old headings. Do not remove or links may break. -->
+<p><a id="trait-objects-perform-dynamic-dispatch"></a></p>
+<h3 id="realizando-despacho-dinâmico-dynamic-dispatch"><a class="header" href="#realizando-despacho-dinâmico-dynamic-dispatch">Realizando Despacho Dinâmico (Dynamic Dispatch)</a></h3>
+<p>Lembre-se de <a href="ch10-01-syntax.html#performance-of-code-using-generics">“Desempenho de Código Usando Genéricos”</a><!-- ignore --> no Capítulo 10 nossa
+discussão sobre o processo de monomorfização realizado em genéricos pelo
+compilador: O compilador gera implementações não genéricas de funções e
+métodos para cada tipo concreto que usamos no lugar de um parâmetro de tipo
+genérico. O código que resulta da monomorfização está fazendo <em>despacho estático</em> (static dispatch),
+que é quando o compilador sabe qual método você está chamando em
+tempo de compilação. Isso é oposto ao <em>despacho dinâmico</em> (dynamic dispatch), que é quando o compilador
+não consegue dizer em tempo de compilação qual método você está chamando. Em casos de despacho dinâmico,
+o compilador emite código que em tempo de execução saberá qual método chamar.</p>
+<p>Quando usamos objetos de trait, Rust deve usar despacho dinâmico. O compilador não
+sabe todos os tipos que podem ser usados com o código que está usando objetos de trait,
+então ele não sabe qual método implementado em qual tipo chamar. Em vez disso, em
+tempo de execução, Rust usa os ponteiros dentro do objeto de trait para saber qual método
+chamar. Essa busca incorre em um custo de tempo de execução que não ocorre com despacho estático.
+Despacho dinâmico também impede o compilador de escolher fazer inline do código de um método,
+o que por sua vez impede algumas otimizações, e Rust tem algumas regras sobre
+onde você pode e não pode usar despacho dinâmico, chamadas <em>compatibilidade dyn</em> (dyn compatibility). Essas
+regras estão além do escopo desta discussão, mas você pode ler mais sobre elas
+<a href="https://doc.rust-lang.org/reference/items/traits.html#dyn-compatibility">na referência</a><!-- ignore -->. No entanto, ganhamos flexibilidade extra
+no código que escrevemos na Listagem 18-5 e fomos capazes de suportar
+na Listagem 18-9, então é uma compensação a considerar.</p>
 
                     </main>
 
