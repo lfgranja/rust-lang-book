@@ -189,7 +189,7 @@ Finalmente, `flush` aguardará e impedirá que o programa continue até que todo
 
 Execute este código e faça uma requisição. Seu navegador não deve mais mostrar um erro, mas apenas uma página em branco no navegador:
 
-<img alt="Página em branco no navegador" src="img/trpl20-01.png" class="center" />
+<img alt="Página em branco no navegador" src="img/trpl21-01.png" class="center" />
 
 <span class="caption">Figura 20-1: Uma página em branco no seu navegador</span>
 
@@ -250,7 +250,7 @@ Em seguida, usamos `format!` para adicionar o conteúdo do arquivo como o corpo 
 
 Execute este código com `cargo run` e carregue `127.0.0.1:7878` no seu navegador; você deve ver seu HTML renderizado!
 
-<img alt="Página HTML renderizada no navegador" src="img/trpl20-02.png" class="center" />
+<!-- <img alt="Página HTML renderizada no navegador" src="img/trpl21-02.png" class="center" /> -->
 
 <span class="caption">Figura 20-2: O HTML do *hello.html* renderizado no navegador</span>
 
