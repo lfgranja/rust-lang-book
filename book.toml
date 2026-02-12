@@ -1,15 +1,11 @@
-# Sync any changes to this *other than where explicitly specified* with the copy
-# in `nostarch/book.toml`!
-
 [book]
-title = "The Rust Programming Language"
+title = "A Linguagem de Programação Rust"
 authors = ["Steve Klabnik", "Carol Nichols", "Chris Krycho", "Contributions from the Rust Community"]
 
 [output.html]
 additional-css = ["ferris.css", "theme/2018-edition.css", "theme/semantic-notes.css", "theme/listing.css"]
 additional-js = ["ferris.js"]
 git-repository-url = "https://github.com/lfgranja/rust-lang-book"
-site-url = "/rust-lang-book/"
 
 [output.html.search]
 use-boolean-and = true
@@ -48,13 +44,12 @@ title = "A Linguagem de Programação Rust"
 authors = ["Steve Klabnik", "Carol Nichols"]
 language = "pt-BR"
 
-# Do not sync this preprocessor; it is for the HTML renderer only.
-[preprocessor.trpl-note]
-command = "cargo run --manifest-path packages/mdbook-trpl/Cargo.toml --bin mdbook-trpl-note"
+#[preprocessor.trpl-note]
+#command = "cargo run --manifest-path packages/mdbook-trpl/Cargo.toml --bin mdbook-trpl-note"
 
-[preprocessor.trpl-listing]
-command = "cargo run --manifest-path packages/mdbook-trpl/Cargo.toml --bin mdbook-trpl-listing"
-output-mode = "default"
+#[preprocessor.trpl-listing]
+#command = "cargo run --manifest-path packages/mdbook-trpl/Cargo.toml --bin mdbook-trpl-listing"
+#output-mode = "default"
 
 [rust]
 edition = "2024"
