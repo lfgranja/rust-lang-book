@@ -1,68 +1,68 @@
-## Putting It All Together: Futures, Tasks, and Threads
+## Juntando Tudo: Futures, Tarefas e Threads
 
-As we saw in [Chapter 16][ch16]<!-- ignore -->, threads provide one approach to
-concurrency. We’ve seen another approach in this chapter: using async with
-futures and streams. If you’re wondering when to choose one method over the other,
-the answer is: it depends! And in many cases, the choice isn’t threads _or_
-async but rather threads _and_ async.
+Como vimos no [Capítulo 16][ch16]<!-- ignore -->, threads fornecem uma abordagem para
+concorrência. Vimos outra abordagem neste capítulo: usando async com
+futures e streams. Se você está se perguntando quando escolher um método em vez do outro,
+a resposta é: depende! E em muitos casos, a escolha não é threads _ou_
+async, mas sim threads _e_ async.
 
-Many operating systems have supplied threading-based concurrency models for
-decades now, and many programming languages support them as a result. However,
-these models are not without their tradeoffs. On many operating systems, they
-use a fair bit of memory for each thread. Threads are also only an option when
-your operating system and hardware support them. Unlike mainstream desktop and
-mobile computers, some embedded systems don’t have an OS at all, so they also
-don’t have threads.
+Muitos sistemas operacionais têm fornecido modelos de concorrência baseados em threads por
+décadas agora, e muitas linguagens de programação os suportam como resultado. No entanto,
+esses modelos não são sem seus compromissos (tradeoffs). Em muitos sistemas operacionais, eles
+usam uma quantidade razoável de memória para cada thread. Threads também são apenas uma opção quando
+seu sistema operacional e hardware as suportam. Diferente de computadores desktop e
+móveis convencionais, alguns sistemas embarcados não têm um SO de forma alguma, então eles também
+não têm threads.
 
-The async model provides a different—and ultimately complementary—set of
-tradeoffs. In the async model, concurrent operations don’t require their own
-threads. Instead, they can run on tasks, as when we used `trpl::spawn_task` to
-kick off work from a synchronous function in the streams section. A task is
-similar to a thread, but instead of being managed by the operating system, it’s
-managed by library-level code: the runtime.
+O modelo async fornece um conjunto diferente—e em última análise complementar—de
+compromissos. No modelo async, operações concorrentes não requerem suas próprias
+threads. Em vez disso, elas podem rodar em tarefas (tasks), como quando usamos `trpl::spawn_task` para
+iniciar trabalho a partir de uma função síncrona na seção de streams. Uma tarefa é
+similar a uma thread, mas em vez de ser gerenciada pelo sistema operacional, ela é
+gerenciada por código em nível de biblioteca: o runtime.
 
-There’s a reason the APIs for spawning threads and spawning tasks are so
-similar. Threads act as a boundary for sets of synchronous operations;
-concurrency is possible _between_ threads. Tasks act as a boundary for sets of
-_asynchronous_ operations; concurrency is possible both _between_ and _within_
-tasks, because a task can switch between futures in its body. Finally, futures
-are Rust’s most granular unit of concurrency, and each future may represent a
-tree of other futures. The runtime—specifically, its executor—manages tasks,
-and tasks manage futures. In that regard, tasks are similar to lightweight,
-runtime-managed threads with added capabilities that come from being managed by
-a runtime instead of by the operating system.
+Há uma razão para as APIs para criar (spawning) threads e tarefas serem tão
+similares. Threads agem como um limite para conjuntos de operações síncronas;
+concorrência é possível _entre_ threads. Tarefas agem como um limite para conjuntos de
+operações _assíncronas_; concorrência é possível tanto _entre_ quanto _dentro_
+de tarefas, porque uma tarefa pode alternar entre futures em seu corpo. Finalmente, futures
+são a unidade mais granular de concorrência do Rust, e cada future pode representar uma
+árvore de outros futures. O runtime—especificamente, seu executor—gerencia tarefas,
+e tarefas gerenciam futures. Nesse aspecto, tarefas são similares a threads leves,
+gerenciadas pelo runtime com capacidades adicionais que vêm de serem gerenciadas por
+um runtime em vez de pelo sistema operacional.
 
-This doesn’t mean that async tasks are always better than threads (or vice
-versa). Concurrency with threads is in some ways a simpler programming model
-than concurrency with `async`. That can be a strength or a weakness. Threads are
-somewhat “fire and forget”; they have no native equivalent to a future, so they
-simply run to completion without being interrupted except by the operating
-system itself.
+Isso não significa que tarefas async são sempre melhores que threads (ou vice
+versa). Concorrência com threads é de algumas maneiras um modelo de programação mais simples
+do que concorrência com `async`. Isso pode ser uma força ou uma fraqueza. Threads são
+um pouco “fogo e esqueça” (fire and forget); elas não têm equivalente nativo a um future, então elas
+simplesmente rodam até a conclusão sem serem interrompidas exceto pelo próprio
+sistema operacional.
 
-And it turns out that threads and tasks often work
-very well together, because tasks can (at least in some runtimes) be moved
-around between threads. In fact, under the hood, the runtime we’ve been
-using—including the `spawn_blocking` and `spawn_task` functions—is multithreaded
-by default! Many runtimes use an approach called _work stealing_ to
-transparently move tasks around between threads, based on how the threads are
-currently being utilized, to improve the system’s overall performance. That
-approach actually requires threads _and_ tasks, and therefore futures.
+E acontece que threads e tarefas frequentemente funcionam
+muito bem juntas, porque tarefas podem (pelo menos em alguns runtimes) ser movidas
+entre threads. Na verdade, "por baixo dos panos", o runtime que temos
+usado—incluindo as funções `spawn_blocking` e `spawn_task`—é multithreaded
+por padrão! Muitos runtimes usam uma abordagem chamada _roubo de trabalho_ (work stealing) para
+transparentemente mover tarefas entre threads, baseado em como as threads estão
+sendo utilizadas atualmente, para melhorar o desempenho geral do sistema. Essa
+abordagem realmente requer threads _e_ tarefas, e portanto futures.
 
-When thinking about which method to use when, consider these rules of thumb:
+Ao pensar sobre qual método usar e quando, considere estas regras práticas:
 
-- If the work is _very parallelizable_ (that is, CPU-bound), such as processing
-  a bunch of data where each part can be processed separately, threads are a
-  better choice.
-- If the work is _very concurrent_ (that is, I/O-bound), such as handling
-  messages from a bunch of different sources that may come in at different
-  intervals or different rates, async is a better choice.
+- Se o trabalho é _muito paralelizável_ (isto é, limitado por CPU), tal como processar
+  um monte de dados onde cada parte pode ser processada separadamente, threads são uma
+  escolha melhor.
+- Se o trabalho é _muito concorrente_ (isto é, limitado por E/S), tal como lidar com
+  mensagens de um monte de fontes diferentes que podem chegar em intervalos
+  diferentes ou taxas diferentes, async é uma escolha melhor.
 
-And if you need both parallelism and concurrency, you don’t have to choose
-between threads and async. You can use them together freely, letting each
-play the part it’s best at. For example, Listing 17-25 shows a fairly common
-example of this kind of mix in real-world Rust code.
+E se você precisa tanto de paralelismo quanto de concorrência, você não tem que escolher
+entre threads e async. Você pode usá-los juntos livremente, deixando cada um
+fazer a parte em que é melhor. Por exemplo, a Listagem 17-25 mostra um exemplo bastante comum
+desse tipo de mistura em código Rust do mundo real.
 
-<Listing number="17-25" caption="Sending messages with blocking code in a thread and awaiting the messages in an async block" file-name="src/main.rs">
+<Listing number="17-25" caption="Enviando mensagens com código bloqueante em uma thread e aguardando as mensagens em um bloco async" file-name="src/main.rs">
 
 ```rust
 {{#rustdoc_include ../listings/ch17-async-await/listing-17-25/src/main.rs:all}}
@@ -70,34 +70,34 @@ example of this kind of mix in real-world Rust code.
 
 </Listing>
 
-We begin by creating an async channel, then spawning a thread that takes
-ownership of the sender side of the channel using the `move` keyword. Within
-the thread, we send the numbers 1 through 10, sleeping for a second between
-each. Finally, we run a future created with an async block passed to
-`trpl::block_on` just as we have throughout the chapter. In that future, we
-await those messages, just as in the other message-passing examples we have
-seen.
+Começamos criando um canal async, depois criando (spawning) uma thread que toma
+posse do lado remetente do canal usando a palavra-chave `move`. Dentro
+da thread, enviamos os números 1 a 10, dormindo por um segundo entre
+cada um. Finalmente, rodamos um future criado com um bloco async passado para
+`trpl::block_on` assim como fizemos ao longo do capítulo. Nesse future, nós
+aguardamos essas mensagens, assim como nos outros exemplos de passagem de mensagem que
+vimos.
 
-To return to the scenario we opened the chapter with, imagine running a set of
-video encoding tasks using a dedicated thread (because video encoding is
-compute-bound) but notifying the UI that those operations are done with an
-async channel. There are countless examples of these kinds of combinations in
-real-world use cases.
+Para retornar ao cenário com o qual abrimos o capítulo, imagine rodar um conjunto de
+tarefas de codificação de vídeo usando uma thread dedicada (porque codificação de vídeo é
+limitada por computação) mas notificando a UI que essas operações terminaram com um
+canal async. Há incontáveis exemplos desses tipos de combinações em
+casos de uso do mundo real.
 
-## Summary
+## Resumo
 
-This isn’t the last you’ll see of concurrency in this book. The project in
-[Chapter 21][ch21]<!-- ignore --> will apply these concepts in a more realistic
-situation than the simpler examples discussed here and compare problem-solving
-with threading versus tasks and futures more directly.
+Este não é o fim do que você verá sobre concorrência neste livro. O projeto no
+[Capítulo 21][ch21]<!-- ignore --> aplicará esses conceitos em uma situação mais realista
+do que os exemplos mais simples discutidos aqui e comparará a resolução de problemas
+com threads versus tarefas e futures mais diretamente.
 
-No matter which of these approaches you choose, Rust gives you the tools you
-need to write safe, fast, concurrent code—whether for a high-throughput web
-server or an embedded operating system.
+Não importa qual dessas abordagens você escolha, Rust lhe dá as ferramentas que você
+precisa para escrever código seguro, rápido e concorrente—seja para um servidor web de alta taxa de transferência
+ou um sistema operacional embarcado.
 
-Next, we’ll talk about idiomatic ways to model problems and structure solutions
-as your Rust programs get bigger. In addition, we’ll discuss how Rust’s idioms
-relate to those you might be familiar with from object-oriented programming.
+A seguir, falaremos sobre maneiras idiomáticas de modelar problemas e estruturar soluções
+à medida que seus programas Rust ficam maiores. Além disso, discutiremos como os idiomas (idioms) do Rust
+se relacionam com aqueles com os quais você pode estar familiarizado da programação orientada a objetos.
 
 [ch16]: http://localhost:3000/ch16-00-concurrency.html
 [combining-futures]: ch17-03-more-futures.html#building-our-own-async-abstractions
