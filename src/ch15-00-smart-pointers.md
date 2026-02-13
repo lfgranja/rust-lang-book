@@ -1,46 +1,21 @@
-# Smart Pointers
+# Ponteiros Inteligentes
 
-A pointer is a general concept for a variable that contains an address in
-memory. This address refers to, or “points at,” some other data. The most
-common kind of pointer in Rust is a reference, which you learned about in
-Chapter 4. References are indicated by the `&` symbol and borrow the value they
-point to. They don’t have any special capabilities other than referring to
-data, and they have no overhead.
+Um *ponteiro* é um conceito geral para uma variável que contém um endereço de memória. Este endereço refere-se a, ou "aponta para", algum outro dado. O tipo mais comum de ponteiro em Rust é uma referência, sobre a qual você aprendeu no Capítulo 4. Referências são indicadas pelo símbolo `&` e pegam emprestado o valor para o qual apontam. Elas não têm nenhuma capacidade especial além de se referir aos dados, e não têm custo adicional (overhead).
 
-_Smart pointers_, on the other hand, are data structures that act like a
-pointer but also have additional metadata and capabilities. The concept of
-smart pointers isn’t unique to Rust: Smart pointers originated in C++ and exist
-in other languages as well. Rust has a variety of smart pointers defined in the
-standard library that provide functionality beyond that provided by references.
-To explore the general concept, we’ll look at a couple of different examples of
-smart pointers, including a _reference counting_ smart pointer type. This
-pointer enables you to allow data to have multiple owners by keeping track of
-the number of owners and, when no owners remain, cleaning up the data.
+*Ponteiros inteligentes* (smart pointers), por outro lado, são estruturas de dados que agem como um ponteiro, mas também têm metadados e capacidades adicionais. O conceito de ponteiros inteligentes não é exclusivo de Rust: ponteiros inteligentes originaram-se em C++ e existem em outras linguagens também. Rust tem uma variedade de ponteiros inteligentes definidos na biblioteca padrão que fornecem funcionalidades além das fornecidas por referências. Para explorar o conceito geral, veremos alguns exemplos diferentes de ponteiros inteligentes, incluindo um tipo de ponteiro inteligente com *contagem de referências*. Este ponteiro permite que você permita que dados tenham múltiplos donos, mantendo o controle do número de donos e, quando nenhum dono restar, limpando os dados.
 
-In Rust, with its concept of ownership and borrowing, there is an additional
-difference between references and smart pointers: While references only borrow
-data, in many cases smart pointers _own_ the data they point to.
+Em Rust, com seu conceito de posse (ownership) e empréstimo (borrowing), há uma diferença adicional entre referências e ponteiros inteligentes: enquanto referências apenas pegam dados emprestados, em muitos casos ponteiros inteligentes *possuem* os dados para os quais apontam.
 
-Smart pointers are usually implemented using structs. Unlike an ordinary
-struct, smart pointers implement the `Deref` and `Drop` traits. The `Deref`
-trait allows an instance of the smart pointer struct to behave like a reference
-so that you can write your code to work with either references or smart
-pointers. The `Drop` trait allows you to customize the code that’s run when an
-instance of the smart pointer goes out of scope. In this chapter, we’ll discuss
-both of these traits and demonstrate why they’re important to smart pointers.
+Embora não os tenhamos chamado assim na época, já encontramos alguns ponteiros inteligentes neste livro, incluindo `String` e `Vec<T>` no Capítulo 8. Ambos os tipos contam como ponteiros inteligentes porque possuem alguma memória e permitem que você a manipule. Eles também têm metadados e capacidades extras (como sua capacidade e garantia de que os dados adicionais serão sempre UTF-8 válido).
 
-Given that the smart pointer pattern is a general design pattern used
-frequently in Rust, this chapter won’t cover every existing smart pointer. Many
-libraries have their own smart pointers, and you can even write your own. We’ll
-cover the most common smart pointers in the standard library:
+Ponteiros inteligentes são geralmente implementados usando structs. Diferente de uma struct comum, ponteiros inteligentes implementam as traits `Deref` e `Drop`. A trait `Deref` permite que uma instância da struct de ponteiro inteligente se comporte como uma referência, para que você possa escrever seu código para funcionar tanto com referências quanto com ponteiros inteligentes. A trait `Drop` permite que você personalize o código que é executado quando uma instância do ponteiro inteligente sai de escopo. Neste capítulo, discutiremos ambas as traits e demonstraremos por que elas são importantes para ponteiros inteligentes.
 
-- `Box<T>`, for allocating values on the heap
-- `Rc<T>`, a reference counting type that enables multiple ownership
-- `Ref<T>` and `RefMut<T>`, accessed through `RefCell<T>`, a type that enforces
-  the borrowing rules at runtime instead of compile time
+Dado que o padrão de ponteiro inteligente é um padrão de design geral usado frequentemente em Rust, este capítulo não cobrirá todos os ponteiros inteligentes existentes. Muitas bibliotecas têm seus próprios ponteiros inteligentes, e você pode até escrever os seus próprios. Cobriremos os ponteiros inteligentes mais comuns na biblioteca padrão:
 
-In addition, we’ll cover the _interior mutability_ pattern where an immutable
-type exposes an API for mutating an interior value. We’ll also discuss
-reference cycles: how they can leak memory and how to prevent them.
+- `Box<T>`, para alocar valores na heap
+- `Rc<T>`, um tipo com contagem de referências que permite múltipla posse
+- `Ref<T>` e `RefMut<T>`, acessados através de `RefCell<T>`, um tipo que impõe as regras de empréstimo em tempo de execução em vez de tempo de compilação
 
-Let’s dive in!
+Além disso, cobriremos o padrão de *mutabilidade interior* (interior mutability), onde um tipo imutável expõe uma API para mutar um valor interior. Também discutiremos *ciclos de referência*: como eles podem vazar memória e como preveni-los.
+
+Vamos mergulhar nisso!
